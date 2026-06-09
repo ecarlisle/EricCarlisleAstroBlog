@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Footer from '@components/Footer.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+import Header from '@components/Header.astro';
+import { GA_MEASUREMENT_ID } from '../consts';
+
+type Props = CollectionEntry<'blog'>['data'] & {
+  pageType?: 'article' | 'about' | 'contact' | 'portfolio';
+};
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  coverAlt,
+  tags,
+  wordCount,
+  pageType = 'article',
+} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} image={heroImage} pageType={pageType} pubDate={pubDate} updatedDate={updatedDate} tags={tags} wordCount={wordCount} />
+
+		<!-- Google Analytics (GA4) — offloaded to Partytown web worker -->
+		<script
+			type="text/partytown"
+			src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+		></script>
+		<script type="text/partytown">
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', GA_MEASUREMENT_ID);
+		</script>
+	<style>
+		.hero-image {
+			width: 100%;
+		}
+
+		.hero-image img {
+			display: block;
+			margin: 0 auto;
+			border-radius: var(--radius-lg);
+		}
+
+		.prose {
+			padding: var(--space-component);
+		}
+
+		.title {
+			margin-bottom: var(--space-component);
+			padding: var(--space-component) 0;
+			text-align: center;
+		}
+
+		.date {
+			margin-bottom: var(--space-xs);
+			color: var(--text-muted);
+		}
+
+		.last-updated-on {
+			font-style: italic;
+		}
+	</style>
+	</head>
+
+	<body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
+		<Header />
+		<main id="main-content" tabindex="-1">
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt={coverAlt || title} widths={[510, 765, 1020]} sizes="(min-width: 1200px) 1020px, (min-width: 720px) calc(100vw - 3.5rem), calc(100vw - 3rem)" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,71 @@
+.card {
+  position: relative; /* containing block for inclusive-link ::after overlay */
+  padding: var(--space-component);
+  background: var(--bg-surface);
+  border: var(--size-border-pixel) solid var(--bg-surface-elevated);
+  border-radius: var(--radius-lg);
+}
+
+.card > * + * {
+  margin-top: var(--space-inline-strong);
+}
+
+.callout {
+  padding: var(--space-component);
+  border-left: var(--size-border-thick) solid var(--brand-accent);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+}
+
+.callout strong {
+  color: var(--text-primary);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.6em;
+  font-size: var(--type-size-small);
+  border-radius: 999px;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+}
+
+.meta {
+  font-size: var(--type-size-small);
+  color: var(--text-muted);
+  display: flex;
+  gap: var(--space-inline);
+  flex-wrap: wrap;
+}
+
+.meta time {
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-component);
+}
+
+.grid--cards {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-inline) var(--space-component);
+  border-radius: var(--radius-md);
+  background: var(--brand-primary);
+  color: var(--bg-surface);
+  border: none;
+  text-decoration: none;
+  font-size: var(--type-size-body);
+}
+
+.button:hover {
+  background: var(--brand-highlight);
+}

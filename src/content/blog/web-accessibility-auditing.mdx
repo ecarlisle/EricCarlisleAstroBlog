@@ -1,0 +1,34 @@
+---
+title: 'Web Accessibility Auditing: A Practical Guide'
+description: 'Automated scanners, manual testing checklists, screen reader workflows, and how to prioritize findings that actually impact users.'
+pubDate: 'Oct 07 2022'
+tags: ['accessibility', 'engineering']
+heroImage: '@images/blog-placeholder-1.jpg'
+---
+
+An accessibility audit isn't a one-time quality gate — it's a diagnostic that tells you where your product fails for people with disabilities. The goal is a prioritized list of fixes, not a score.
+
+## Automated Scanning
+
+Tools like axe DevTools, WAVE, and Lighthouse catch roughly 30% of accessibility issues. They're excellent at finding missing alt text, insufficient color contrast, and missing form labels. Run them in CI alongside your linter.
+
+But automated tools can't tell you if a focus order makes sense or if a screen reader announcement is confusing. That's where manual testing comes in.
+
+## Manual Testing Checklist
+
+1. Navigate the entire page with Tab and Shift+Tab. Is every interactive element reachable? Do you ever lose focus or get trapped?
+2. Turn on a screen reader (VoiceOver on Mac, NVDA on Windows). Navigate by heading, by landmark, and by tab. Does the page structure make sense?
+3. Zoom to 200%. Is everything still readable without horizontal scrolling?
+4. Disable images. Is all essential information available as text alternatives?
+
+## Prioritization
+
+- **P0**: Blocks a critical user flow (can't submit a form with a screen reader)
+- **P1**: Makes a flow significantly harder (poor focus order, unclear announcements)
+- **P2**: Violates best practices but has a workaround (missing ARIA labels on decorative elements)
+
+Fix P0 issues immediately. Schedule P1 for the next sprint. Track P2 in the backlog.
+
+## Building an Accessibility Culture
+
+The audit is only as good as the follow-through. Assign owners to each finding, link to the specific WCAG criterion, and verify the fix by running the failing check again. Accessibility is a habit, not a milestone.

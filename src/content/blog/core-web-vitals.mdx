@@ -1,0 +1,39 @@
+---
+title: 'Core Web Vitals: Beyond the Dashboard'
+description: 'Debugging LCP, CLS, and INP in production — real causes, diagnostic tools, and fixes that actually move the percentile needle.'
+pubDate: 'Sep 09 2022'
+tags: ['performance']
+heroImage: '@images/blog-placeholder-2.jpg'
+---
+
+The Core Web Vitals dashboard tells you what's slow, but not why. Bridging that gap requires understanding what each metric actually measures and how the browser computes it.
+
+## LCP: Largest Contentful Paint
+
+The most common culprit is the hero image. But not always — LCP can also be a text block rendered with a web font that loads late.
+
+For images, preload the LCP candidate:
+
+```html
+<link rel="preload" as="image" href="/hero.webp" fetchpriority="high" />
+```
+
+For text, ensure your font is self-hosted, preloaded, and uses `font-display: swap` with a matching fallback.
+
+## CLS: Cumulative Layout Shift
+
+CLS happens when elements move after the user has started interacting. The most common sources:
+
+- Images without dimensions — always set width and height
+- Ads and embeds that reserve no space
+- Web fonts causing a text re-layout (FOUT/FOIT)
+
+The fix for images is simple and has been standard advice for years: always set `width` and `height` on images, or use `aspect-ratio` in CSS.
+
+## INP: Interaction to Next Frame
+
+INP measures the delay between a user interaction and the next frame being painted. Long tasks are the enemy here. Break up JavaScript-heavy interactions with `setTimeout` or `scheduler.yield()` to let the browser paint between chunks.
+
+## Measuring in the Field
+
+Lab data (Lighthouse) catches regressions. Field data (CrUX, RUM) catches real user pain. You need both. A fast lab score with poor field data means your testing doesn't match your users' reality — usually slower devices or networks you're not emulating.

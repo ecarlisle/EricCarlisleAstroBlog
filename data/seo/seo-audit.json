@@ -1,0 +1,2263 @@
+{
+  "generatedAt": "2026-06-11T19:53:31.251Z",
+  "auditTarget": "http://127.0.0.1:4321",
+  "publicPagesAudited": 8,
+  "perPageLighthouseSeoScores": [
+    {
+      "page": "/",
+      "url": "http://127.0.0.1:4321/",
+      "seoScore": 1
+    },
+    {
+      "page": "/about/",
+      "url": "http://127.0.0.1:4321/about/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/",
+      "url": "http://127.0.0.1:4321/blog/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/first-post/",
+      "url": "http://127.0.0.1:4321/blog/first-post/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/markdown-style-guide/",
+      "url": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/second-post/",
+      "url": "http://127.0.0.1:4321/blog/second-post/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/third-post/",
+      "url": "http://127.0.0.1:4321/blog/third-post/",
+      "seoScore": 1
+    },
+    {
+      "page": "/blog/using-mdx/",
+      "url": "http://127.0.0.1:4321/blog/using-mdx/",
+      "seoScore": 1
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "url": "http://127.0.0.1:4321/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/",
+        "fetchTime": "2026-06-11T19:52:02.556Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Eric Carlisle",
+        "description": "Welcome to my website!",
+        "canonical": "https://example.com/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 11,
+        "internal": 5,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "/post",
+            "target": "http://127.0.0.1:4321/post",
+            "text": "Post title",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/index.json"
+    },
+    {
+      "path": "/about/",
+      "url": "http://127.0.0.1:4321/about/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/about/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/about/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/about/",
+        "fetchTime": "2026-06-11T19:52:13.762Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "About Me",
+        "description": "Lorem ipsum dolor sit amet",
+        "canonical": "https://example.com/about/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 10,
+        "internal": 4,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/about.json"
+    },
+    {
+      "path": "/blog/",
+      "url": "http://127.0.0.1:4321/blog/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/",
+        "fetchTime": "2026-06-11T19:52:24.590Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Eric Carlisle",
+        "description": "Welcome to my website!",
+        "canonical": "https://example.com/blog/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 15,
+        "internal": 9,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "/blog/markdown-style-guide/",
+            "target": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+            "text": "Markdown Style Guide Jun 19, 2024",
+            "isInternal": true
+          },
+          {
+            "href": "/blog/using-mdx/",
+            "target": "http://127.0.0.1:4321/blog/using-mdx/",
+            "text": "Using MDX Jun 1, 2024",
+            "isInternal": true
+          },
+          {
+            "href": "/blog/third-post/",
+            "target": "http://127.0.0.1:4321/blog/third-post/",
+            "text": "Third post Jul 22, 2022",
+            "isInternal": true
+          },
+          {
+            "href": "/blog/second-post/",
+            "target": "http://127.0.0.1:4321/blog/second-post/",
+            "text": "Second post Jul 15, 2022",
+            "isInternal": true
+          },
+          {
+            "href": "/blog/first-post/",
+            "target": "http://127.0.0.1:4321/blog/first-post/",
+            "text": "First post Jul 8, 2022",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog.json"
+    },
+    {
+      "path": "/blog/first-post/",
+      "url": "http://127.0.0.1:4321/blog/first-post/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/first-post/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/first-post/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/first-post/",
+        "fetchTime": "2026-06-11T19:52:35.428Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "First post",
+        "description": "Lorem ipsum dolor sit amet",
+        "canonical": "https://example.com/blog/first-post/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 10,
+        "internal": 4,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog-first-post.json"
+    },
+    {
+      "path": "/blog/markdown-style-guide/",
+      "url": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+        "fetchTime": "2026-06-11T19:52:46.266Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Markdown Style Guide",
+        "description": "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.",
+        "canonical": "https://example.com/blog/markdown-style-guide/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 11,
+        "internal": 4,
+        "external": 7,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://www.youtube.com/watch?v=PAAkCSZUG1c",
+            "target": "https://www.youtube.com/watch?v=PAAkCSZUG1c",
+            "text": "talk",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog-markdown-style-guide.json"
+    },
+    {
+      "path": "/blog/second-post/",
+      "url": "http://127.0.0.1:4321/blog/second-post/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/second-post/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/second-post/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/second-post/",
+        "fetchTime": "2026-06-11T19:52:57.152Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Second post",
+        "description": "Lorem ipsum dolor sit amet",
+        "canonical": "https://example.com/blog/second-post/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 10,
+        "internal": 4,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog-second-post.json"
+    },
+    {
+      "path": "/blog/third-post/",
+      "url": "http://127.0.0.1:4321/blog/third-post/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/third-post/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/third-post/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/third-post/",
+        "fetchTime": "2026-06-11T19:53:08.045Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Third post",
+        "description": "Lorem ipsum dolor sit amet",
+        "canonical": "https://example.com/blog/third-post/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 10,
+        "internal": 4,
+        "external": 6,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog-third-post.json"
+    },
+    {
+      "path": "/blog/using-mdx/",
+      "url": "http://127.0.0.1:4321/blog/using-mdx/",
+      "httpStatus": 200,
+      "finalUrl": "http://127.0.0.1:4321/blog/using-mdx/",
+      "lighthouse": {
+        "requestedUrl": "http://127.0.0.1:4321/blog/using-mdx/",
+        "finalDisplayedUrl": "http://127.0.0.1:4321/blog/using-mdx/",
+        "fetchTime": "2026-06-11T19:53:18.792Z",
+        "lighthouseVersion": "12.6.1",
+        "score": 1,
+        "audits": {
+          "is-crawlable": {
+            "id": "is-crawlable",
+            "title": "Page isn’t blocked from indexing",
+            "description": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. [Learn more about crawler directives](https://developer.chrome.com/docs/lighthouse/seo/is-crawlable/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "warnings": [],
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "document-title": {
+            "id": "document-title",
+            "title": "Document has a `<title>` element",
+            "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "meta-description": {
+            "id": "meta-description",
+            "title": "Document has a meta description",
+            "description": "Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "http-status-code": {
+            "id": "http-status-code",
+            "title": "Page has successful HTTP status code",
+            "description": "Pages with unsuccessful HTTP status codes may not be indexed properly. [Learn more about HTTP status codes](https://developer.chrome.com/docs/lighthouse/seo/http-status-code/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "link-text": {
+            "id": "link-text",
+            "title": "Links have descriptive text",
+            "description": "Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "crawlable-anchors": {
+            "id": "crawlable-anchors",
+            "title": "Links are crawlable",
+            "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn how to make links crawlable](https://support.google.com/webmasters/answer/9112205)",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "robots-txt": {
+            "id": "robots-txt",
+            "title": "robots.txt is valid",
+            "description": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. [Learn more about robots.txt](https://developer.chrome.com/docs/lighthouse/seo/invalid-robots-txt/).",
+            "score": null,
+            "scoreDisplayMode": "notApplicable"
+          },
+          "image-alt": {
+            "id": "image-alt",
+            "title": "Image elements have `[alt]` attributes",
+            "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "hreflang": {
+            "id": "hreflang",
+            "title": "Document has a valid `hreflang`",
+            "description": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).",
+            "score": 1,
+            "scoreDisplayMode": "binary",
+            "details": {
+              "type": "table",
+              "headings": [],
+              "items": []
+            }
+          },
+          "canonical": {
+            "id": "canonical",
+            "title": "Document has a valid `rel=canonical`",
+            "description": "Canonical links suggest which URL to show in search results. [Learn more about canonical links](https://developer.chrome.com/docs/lighthouse/seo/canonical/).",
+            "score": 1,
+            "scoreDisplayMode": "binary"
+          },
+          "structured-data": {
+            "id": "structured-data",
+            "title": "Structured data is valid",
+            "description": "Run the [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/) and the [Structured Data Linter](http://linter.structured-data.org/) to validate structured data. [Learn more about Structured Data](https://developer.chrome.com/docs/lighthouse/seo/structured-data/).",
+            "score": null,
+            "scoreDisplayMode": "manual"
+          }
+        },
+        "issues": []
+      },
+      "metadata": {
+        "title": "Using MDX",
+        "description": "Lorem ipsum dolor sit amet",
+        "canonical": "https://example.com/blog/using-mdx/",
+        "robots": null,
+        "titleMissing": false,
+        "descriptionMissing": false,
+        "canonicalMissing": false,
+        "canonicalIsRelative": false,
+        "canonicalMatchesPage": false
+      },
+      "links": {
+        "total": 15,
+        "internal": 4,
+        "external": 11,
+        "items": [
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Eric Carlisle",
+            "isInternal": true
+          },
+          {
+            "href": "/",
+            "target": "http://127.0.0.1:4321/",
+            "text": "Home",
+            "isInternal": true
+          },
+          {
+            "href": "/blog",
+            "target": "http://127.0.0.1:4321/blog",
+            "text": "Blog",
+            "isInternal": true
+          },
+          {
+            "href": "/about",
+            "target": "http://127.0.0.1:4321/about",
+            "text": "About",
+            "isInternal": true
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          },
+          {
+            "href": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+            "target": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+            "text": "@astrojs/mdx",
+            "isInternal": false
+          },
+          {
+            "href": "https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro",
+            "target": "https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro",
+            "text": "mix JavaScript and UI Components into your Markdown content",
+            "isInternal": false
+          },
+          {
+            "href": "https://mdxjs.com/docs/what-is-mdx",
+            "target": "https://mdxjs.com/docs/what-is-mdx",
+            "text": "MDX Syntax Documentation",
+            "isInternal": false
+          },
+          {
+            "href": "https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages",
+            "target": "https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages",
+            "text": "Astro Usage Documentation",
+            "isInternal": false
+          },
+          {
+            "href": "https://docs.astro.build/en/reference/directives-reference/#client-directives",
+            "target": "https://docs.astro.build/en/reference/directives-reference/#client-directives",
+            "text": "Client Directives",
+            "isInternal": false
+          },
+          {
+            "href": "https://m.webtoo.ls/@astro",
+            "target": "https://m.webtoo.ls/@astro",
+            "text": "Follow Astro on Mastodon",
+            "isInternal": false
+          },
+          {
+            "href": "https://twitter.com/astrodotbuild",
+            "target": "https://twitter.com/astrodotbuild",
+            "text": "Follow Astro on Twitter",
+            "isInternal": false
+          },
+          {
+            "href": "https://github.com/withastro/astro",
+            "target": "https://github.com/withastro/astro",
+            "text": "Go to Astro's GitHub repo",
+            "isInternal": false
+          }
+        ]
+      },
+      "lighthouseReportFile": "data/seo/lighthouse-seo-reports/blog-using-mdx.json"
+    }
+  ],
+  "indexabilityIssues": [
+    {
+      "page": "/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/ differs from audited local URL http://127.0.0.1:4321/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/about/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/about/ differs from audited local URL http://127.0.0.1:4321/about/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/ differs from audited local URL http://127.0.0.1:4321/blog/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/first-post/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/first-post/ differs from audited local URL http://127.0.0.1:4321/blog/first-post/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/markdown-style-guide/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/markdown-style-guide/ differs from audited local URL http://127.0.0.1:4321/blog/markdown-style-guide/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/second-post/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/second-post/ differs from audited local URL http://127.0.0.1:4321/blog/second-post/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/third-post/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/third-post/ differs from audited local URL http://127.0.0.1:4321/blog/third-post/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": "/blog/using-mdx/",
+      "id": "canonical-local-mismatch",
+      "title": "Canonical URL does not match local audited URL",
+      "description": "Canonical https://example.com/blog/using-mdx/ differs from audited local URL http://127.0.0.1:4321/blog/using-mdx/. In production this must match the canonical production URL.",
+      "score": null,
+      "scoreDisplayMode": "manual",
+      "severity": "medium"
+    },
+    {
+      "page": null,
+      "severity": "medium",
+      "code": "ROBOTS_MISSING",
+      "message": "robots.txt is missing; crawlers will use default crawl rules, but explicit allow/disallow and sitemap guidance is absent.",
+      "url": "http://127.0.0.1:4321/robots.txt"
+    }
+  ],
+  "missingMetadata": [
+    {
+      "page": "/",
+      "url": "http://127.0.0.1:4321/",
+      "title": "Eric Carlisle",
+      "titleMissing": false,
+      "description": "Welcome to my website!",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/about/",
+      "url": "http://127.0.0.1:4321/about/",
+      "title": "About Me",
+      "titleMissing": false,
+      "description": "Lorem ipsum dolor sit amet",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/about/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/",
+      "url": "http://127.0.0.1:4321/blog/",
+      "title": "Eric Carlisle",
+      "titleMissing": false,
+      "description": "Welcome to my website!",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/first-post/",
+      "url": "http://127.0.0.1:4321/blog/first-post/",
+      "title": "First post",
+      "titleMissing": false,
+      "description": "Lorem ipsum dolor sit amet",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/first-post/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/markdown-style-guide/",
+      "url": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "title": "Markdown Style Guide",
+      "titleMissing": false,
+      "description": "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/markdown-style-guide/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/second-post/",
+      "url": "http://127.0.0.1:4321/blog/second-post/",
+      "title": "Second post",
+      "titleMissing": false,
+      "description": "Lorem ipsum dolor sit amet",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/second-post/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/third-post/",
+      "url": "http://127.0.0.1:4321/blog/third-post/",
+      "title": "Third post",
+      "titleMissing": false,
+      "description": "Lorem ipsum dolor sit amet",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/third-post/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    },
+    {
+      "page": "/blog/using-mdx/",
+      "url": "http://127.0.0.1:4321/blog/using-mdx/",
+      "title": "Using MDX",
+      "titleMissing": false,
+      "description": "Lorem ipsum dolor sit amet",
+      "descriptionMissing": false,
+      "canonical": "https://example.com/blog/using-mdx/",
+      "canonicalMissing": false,
+      "canonicalMatchesPage": false,
+      "robots": null
+    }
+  ],
+  "sitemap": {
+    "found": true,
+    "url": "http://127.0.0.1:4321/sitemap-index.xml",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:4321/sitemap-index.xml",
+    "nestedSitemaps": [
+      {
+        "url": "https://example.com/sitemap-0.xml",
+        "localAuditUrl": "http://127.0.0.1:4321/sitemap-0.xml",
+        "status": 200,
+        "finalUrl": "http://127.0.0.1:4321/sitemap-0.xml",
+        "ok": true,
+        "urls": [
+          "https://example.com/",
+          "https://example.com/about/",
+          "https://example.com/blog/",
+          "https://example.com/blog/first-post/",
+          "https://example.com/blog/markdown-style-guide/",
+          "https://example.com/blog/second-post/",
+          "https://example.com/blog/third-post/",
+          "https://example.com/blog/using-mdx/"
+        ],
+        "htmlUrls": [
+          "https://example.com/",
+          "https://example.com/about/",
+          "https://example.com/blog/",
+          "https://example.com/blog/first-post/",
+          "https://example.com/blog/markdown-style-guide/",
+          "https://example.com/blog/second-post/",
+          "https://example.com/blog/third-post/",
+          "https://example.com/blog/using-mdx/"
+        ]
+      }
+    ],
+    "urls": [
+      "https://example.com/sitemap-0.xml",
+      "https://example.com/",
+      "https://example.com/about/",
+      "https://example.com/blog/",
+      "https://example.com/blog/first-post/",
+      "https://example.com/blog/markdown-style-guide/",
+      "https://example.com/blog/second-post/",
+      "https://example.com/blog/third-post/",
+      "https://example.com/blog/using-mdx/"
+    ],
+    "htmlUrls": [
+      "https://example.com/",
+      "https://example.com/about/",
+      "https://example.com/blog/",
+      "https://example.com/blog/first-post/",
+      "https://example.com/blog/markdown-style-guide/",
+      "https://example.com/blog/second-post/",
+      "https://example.com/blog/third-post/",
+      "https://example.com/blog/using-mdx/"
+    ],
+    "pageCount": 8,
+    "expectedProductionHtml": [
+      "https://example.com/",
+      "https://example.com/about/",
+      "https://example.com/blog/",
+      "https://example.com/blog/first-post/",
+      "https://example.com/blog/markdown-style-guide/",
+      "https://example.com/blog/second-post/",
+      "https://example.com/blog/third-post/",
+      "https://example.com/blog/using-mdx/"
+    ],
+    "missingExpectedPages": [],
+    "nonLocalSitemapUrls": [],
+    "localAuditMismatch": true,
+    "issues": []
+  },
+  "robotsTxt": {
+    "found": false,
+    "status": 404,
+    "text": "<!doctype html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<title>404: Not Found</title>\n\t\t<style>\n\t\t\t:root {\n\t\t\t\t--gray-10: hsl(258, 7%, 10%);\n\t\t\t\t--gray-20: hsl(258, 7%, 20%);\n\t\t\t\t--gray-30: hsl(258, 7%, 30%);\n\t\t\t\t--gray-40: hsl(258, 7%, 40%);\n\t\t\t\t--gray-50: hsl(258, 7%, 50%);\n\t\t\t\t--gray-60: hsl(258, 7%, 60%);\n\t\t\t\t--gray-70: hsl(258, 7%, 70%);\n\t\t\t\t--gray-80: hsl(258, 7%, 80%);\n\t\t\t\t--gray-90: hsl(258, 7%, 90%);\n\t\t\t\t--black: #13151A;\n\t\t\t\t--accent-light: #E0CCFA;\n\t\t\t}\n\n\t\t\t* {\n\t\t\t\tbox-sizing: border-box;\n\t\t\t}\n\n\t\t\thtml {\n\t\t\t\tbackground: var(--black);\n\t\t\t\tcolor-scheme: dark;\n\t\t\t\taccent-color: var(--accent-light);\n\t\t\t}\n\n\t\t\tbody {\n\t\t\t\tbackground-color: var(--gray-10);\n\t\t\t\tcolor: var(--gray-80);\n\t\t\t\tfont-family: ui-monospace, Menlo, Monaco, \"Cascadia Mono\", \"Segoe UI Mono\", \"Roboto Mono\", \"Oxygen Mono\", \"Ubuntu Monospace\", \"Source Code Pro\", \"Fira Mono\", \"Droid Sans Mono\", \"Courier New\", monospace;\n\t\t\t\tline-height: 1.5;\n\t\t\t\tmargin: 0;\n\t\t\t}\n\n\t\t\ta {\n\t\t\t\tcolor: var(--accent-light);\n\t\t\t}\n\n\t\t\t.center {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\tjustify-content: center;\n\t\t\t\talign-items: center;\n\t\t\t\theight: 100vh;\n\t\t\t\twidth: 100vw;\n\t\t\t}\n\n\t\t\th1 {\n\t\t\t\tmargin-bottom: 8px;\n\t\t\t\tcolor: white;\n\t\t\t\tfont-family: system-ui, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n\t\t\t\tfont-weight: 700;\n\t\t\t\tmargin-top: 1rem;\n\t\t\t\tmargin-bottom: 0;\n\t\t\t}\n\n\t\t\t.statusCode {\n\t\t\t\tcolor: var(--accent-light);\n\t\t\t}\n\n\t\t\t.astro-icon {\n\t\t\t\theight: 124px;\n\t\t\t\twidth: 124px;\n\t\t\t}\n\n\t\t\tpre, code {\n\t\t\t\tpadding: 2px 8px;\n\t\t\t\tbackground: rgba(0,0,0, 0.25);\n\t\t\t\tborder: 1px solid rgba(255,255,255, 0.25);\n\t\t\t\tborder-radius: 4px;\n\t\t\t\tfont-size: 1.2em;\n\t\t\t\tmargin-top: 0;\n\t\t\t\tmax-width: 60em;\n\t\t\t}\n\t\t</style>\n\t</head>\n\t<body>\n\t\t<main class=\"center\">\n\t\t\t<svg class=\"astro-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"64\" height=\"80\" viewBox=\"0 0 64 80\" fill=\"none\"> <path d=\"M20.5253 67.6322C16.9291 64.3531 15.8793 57.4632 17.3776 52.4717C19.9755 55.6188 23.575 56.6157 27.3035 57.1784C33.0594 58.0468 38.7122 57.722 44.0592 55.0977C44.6709 54.7972 45.2362 54.3978 45.9045 53.9931C46.4062 55.4451 46.5368 56.9109 46.3616 58.4028C45.9355 62.0362 44.1228 64.8429 41.2397 66.9705C40.0868 67.8215 38.8669 68.5822 37.6762 69.3846C34.0181 71.8508 33.0285 74.7426 34.403 78.9491C34.4357 79.0516 34.4649 79.1541 34.5388 79.4042C32.6711 78.5705 31.3069 77.3565 30.2674 75.7604C29.1694 74.0757 28.6471 72.2121 28.6196 70.1957C28.6059 69.2144 28.6059 68.2244 28.4736 67.257C28.1506 64.8985 27.0406 63.8425 24.9496 63.7817C22.8036 63.7192 21.106 65.0426 20.6559 67.1268C20.6215 67.2865 20.5717 67.4446 20.5218 67.6304L20.5253 67.6322Z\" fill=\"white\"/> <path d=\"M20.5253 67.6322C16.9291 64.3531 15.8793 57.4632 17.3776 52.4717C19.9755 55.6188 23.575 56.6157 27.3035 57.1784C33.0594 58.0468 38.7122 57.722 44.0592 55.0977C44.6709 54.7972 45.2362 54.3978 45.9045 53.9931C46.4062 55.4451 46.5368 56.9109 46.3616 58.4028C45.9355 62.0362 44.1228 64.8429 41.2397 66.9705C40.0868 67.8215 38.8669 68.5822 37.6762 69.3846C34.0181 71.8508 33.0285 74.7426 34.403 78.9491C34.4357 79.0516 34.4649 79.1541 34.5388 79.4042C32.6711 78.5705 31.3069 77.3565 30.2674 75.7604C29.1694 74.0757 28.6471 72.2121 28.6196 70.1957C28.6059 69.2144 28.6059 68.2244 28.4736 67.257C28.1506 64.8985 27.0406 63.8425 24.9496 63.7817C22.8036 63.7192 21.106 65.0426 20.6559 67.1268C20.6215 67.2865 20.5717 67.4446 20.5218 67.6304L20.5253 67.6322Z\" fill=\"url(#paint0_linear_738_686)\"/> <path d=\"M0 51.6401C0 51.6401 10.6488 46.4654 21.3274 46.4654L29.3786 21.6102C29.6801 20.4082 30.5602 19.5913 31.5538 19.5913C32.5474 19.5913 33.4275 20.4082 33.7289 21.6102L41.7802 46.4654C54.4274 46.4654 63.1076 51.6401 63.1076 51.6401C63.1076 51.6401 45.0197 2.48776 44.9843 2.38914C44.4652 0.935933 43.5888 0 42.4073 0H20.7022C19.5206 0 18.6796 0.935933 18.1251 2.38914C18.086 2.4859 0 51.6401 0 51.6401Z\" fill=\"white\"/> <defs> <linearGradient id=\"paint0_linear_738_686\" x1=\"31.554\" y1=\"75.4423\" x2=\"39.7462\" y2=\"48.376\" gradientUnits=\"userSpaceOnUse\"> <stop stop-color=\"#D83333\"/> <stop offset=\"1\" stop-color=\"#F041FF\"/> </linearGradient> </defs> </svg>\n\t\t\t<h1><span class=\"statusCode\">404: </span> <span class=\"statusMessage\">Not Found</span></h1>\n\t\t\t\n\t\t\t\t<pre>Path: /robots.txt</pre>\n\t\t\t\n\t\t\t</main>\n\t</body>\n</html>",
+    "sitemaps": [],
+    "issues": [
+      {
+        "severity": "medium",
+        "code": "ROBOTS_MISSING",
+        "message": "robots.txt is missing; crawlers will use default crawl rules, but explicit allow/disallow and sitemap guidance is absent.",
+        "url": "http://127.0.0.1:4321/robots.txt"
+      }
+    ]
+  },
+  "linkChecks": [
+    {
+      "url": "http://127.0.0.1:4321/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/about",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/about",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog/first-post/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog/first-post/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog/markdown-style-guide/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog/second-post/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog/second-post/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog/third-post/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog/third-post/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/blog/using-mdx/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "http://127.0.0.1:4321/blog/using-mdx/",
+      "external": false
+    },
+    {
+      "url": "http://127.0.0.1:4321/post",
+      "status": 404,
+      "ok": false,
+      "finalUrl": "http://127.0.0.1:4321/post",
+      "external": false
+    },
+    {
+      "url": "https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://docs.astro.build/en/basics/astro-pages/",
+      "external": true
+    },
+    {
+      "url": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+      "external": true
+    },
+    {
+      "url": "https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://docs.astro.build/en/guides/integrations-guide/mdx/",
+      "external": true
+    },
+    {
+      "url": "https://docs.astro.build/en/reference/directives-reference/#client-directives",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://docs.astro.build/en/reference/directives-reference/",
+      "external": true
+    },
+    {
+      "url": "https://github.com/withastro/astro",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://github.com/withastro/astro",
+      "external": true
+    },
+    {
+      "url": "https://m.webtoo.ls/@astro",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://m.webtoo.ls/@astro",
+      "external": true
+    },
+    {
+      "url": "https://mdxjs.com/docs/what-is-mdx",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://mdxjs.com/docs/what-is-mdx/",
+      "external": true
+    },
+    {
+      "url": "https://twitter.com/astrodotbuild",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://x.com/astrodotbuild",
+      "external": true
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PAAkCSZUG1c",
+      "status": 200,
+      "ok": true,
+      "finalUrl": "https://www.youtube.com/watch?v=PAAkCSZUG1c",
+      "external": true
+    }
+  ],
+  "brokenLinks": [
+    {
+      "url": "http://127.0.0.1:4321/post",
+      "status": 404,
+      "finalUrl": "http://127.0.0.1:4321/post",
+      "error": null,
+      "sourcePages": [
+        "/"
+      ]
+    }
+  ],
+  "topIssues": [
+    {
+      "severity": "high",
+      "issue": "Astro site is still configured as https://example.com",
+      "affected": [
+        "astro.config.mjs",
+        "sitemap",
+        "canonical links"
+      ],
+      "fix": "Set astro.config.mjs site to the real production domain before publishing so canonical URLs and sitemap locs are production-ready."
+    },
+    {
+      "severity": "medium",
+      "issue": "robots.txt is missing",
+      "affected": [
+        "/robots.txt"
+      ],
+      "fix": "Add a public/static/robots.txt that explicitly allows crawling and points to https://<domain>/sitemap-index.xml."
+    },
+    {
+      "severity": "medium",
+      "issue": "Local audit shows canonical mismatch against 127.0.0.1",
+      "affected": [
+        "/",
+        "/about/",
+        "/blog/",
+        "/blog/first-post/",
+        "/blog/markdown-style-guide/",
+        "/blog/second-post/",
+        "/blog/third-post/",
+        "/blog/using-mdx/"
+      ],
+      "fix": "This is expected during local preview because canonicals use Astro.site; verify it resolves to production after setting the real site URL."
+    },
+    {
+      "severity": "high",
+      "issue": "Broken internal link detected",
+      "affected": [
+        "http://127.0.0.1:4321/post"
+      ],
+      "fix": "Update or remove broken hrefs, or preserve redirects for legacy URLs."
+    },
+    {
+      "severity": "low",
+      "issue": "Some external links redirect before resolving",
+      "affected": [
+        "https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages",
+        "https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro",
+        "https://docs.astro.build/en/reference/directives-reference/#client-directives",
+        "https://mdxjs.com/docs/what-is-mdx",
+        "https://twitter.com/astrodotbuild"
+      ],
+      "fix": "Update hrefs to final URLs when practical, or keep redirects if intentional and monitor them periodically."
+    }
+  ],
+  "summary": {
+    "publicPagesAudited": 8,
+    "averageSeoScore": 1,
+    "pagesWithSeoScore1": 8,
+    "missingTitlePages": [],
+    "missingDescriptionPages": [],
+    "missingCanonicalPages": [],
+    "brokenLinkCount": 1,
+    "sitemapPageCount": 8,
+    "topIssues": [
+      {
+        "severity": "high",
+        "issue": "Astro site is still configured as https://example.com",
+        "affected": [
+          "astro.config.mjs",
+          "sitemap",
+          "canonical links"
+        ],
+        "fix": "Set astro.config.mjs site to the real production domain before publishing so canonical URLs and sitemap locs are production-ready."
+      },
+      {
+        "severity": "medium",
+        "issue": "robots.txt is missing",
+        "affected": [
+          "/robots.txt"
+        ],
+        "fix": "Add a public/static/robots.txt that explicitly allows crawling and points to https://<domain>/sitemap-index.xml."
+      },
+      {
+        "severity": "medium",
+        "issue": "Local audit shows canonical mismatch against 127.0.0.1",
+        "affected": [
+          "/",
+          "/about/",
+          "/blog/",
+          "/blog/first-post/",
+          "/blog/markdown-style-guide/",
+          "/blog/second-post/",
+          "/blog/third-post/",
+          "/blog/using-mdx/"
+        ],
+        "fix": "This is expected during local preview because canonicals use Astro.site; verify it resolves to production after setting the real site URL."
+      },
+      {
+        "severity": "high",
+        "issue": "Broken internal link detected",
+        "affected": [
+          "http://127.0.0.1:4321/post"
+        ],
+        "fix": "Update or remove broken hrefs, or preserve redirects for legacy URLs."
+      },
+      {
+        "severity": "low",
+        "issue": "Some external links redirect before resolving",
+        "affected": [
+          "https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages",
+          "https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro",
+          "https://docs.astro.build/en/reference/directives-reference/#client-directives",
+          "https://mdxjs.com/docs/what-is-mdx",
+          "https://twitter.com/astrodotbuild"
+        ],
+        "fix": "Update hrefs to final URLs when practical, or keep redirects if intentional and monitor them periodically."
+      }
+    ]
+  }
+}

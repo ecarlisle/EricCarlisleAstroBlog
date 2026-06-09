@@ -1,0 +1,31 @@
+---
+title: 'Adding Search to a Static Site Without a Backend'
+description: 'Client-side search strategies — Lunr, Fuse.js, Pagefind, and when each makes sense for a content site with no server component.'
+pubDate: 'Oct 21 2022'
+tags: ['architecture', 'engineering']
+heroImage: '@images/blog-placeholder-3.jpg'
+---
+
+Static sites don't have a server to run a search index against, so search has to happen in the browser. The trade-off is index size versus search quality.
+
+## Pagefind
+
+Pagefind is the current best answer for most sites. It generates a search index at build time and provides a lean client-side bundle for querying it.
+
+```bash
+npx pagefind --site dist
+```
+
+The index is fractionated and compressed — a 1000-page site generates roughly 300 KB of index data, loaded incrementally as the user types. It supports fuzzy matching, filtering by metadata, and custom result UI.
+
+## Lunr
+
+Lunr is a client-side search library that builds its index in the browser. It works entirely offline and supports field-scoped queries (title vs body), but the entire index must be downloaded before any search works. For small sites (under 50 pages) this is fine. For larger sites, the initial load cost is noticeable.
+
+## Fuse.js
+
+Fuse.js is the lightest option at about 8 KB. It does simple pattern matching with configurable fuzziness. It's good for filtering UI elements — dropdowns, tag selectors, command palettes — but doesn't support relevance scoring well enough for full-text search on a content site.
+
+## What Not to Do
+
+Don't embed Google Custom Search. It loads ads, tracks users, and the results styling is nearly impossible to match to your site's design. Algolia DocSearch is a good alternative if you're willing to depend on a third-party service, but for a personal blog, Pagefind gives you the same experience with zero external dependencies.

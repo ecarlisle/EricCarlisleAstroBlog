@@ -1,0 +1,42 @@
+---
+title: 'CSS Grid Layouts Beyond the Basics'
+description: 'Subgrid, auto-fill vs auto-fit, grid areas for responsive dashboards, and when not to use Grid at all.'
+pubDate: 'Oct 14 2022'
+tags: ['css']
+heroImage: '@images/blog-placeholder-2.jpg'
+---
+
+CSS Grid is the most powerful layout tool in browsers, but most usage stays at the surface level — three-column layouts with equal gaps. The real power comes from the features most people skip.
+
+## Subgrid
+
+Subgrid lets child elements align to the parent grid rather than defining their own. This is essential for card layouts where the content varies:
+
+```css
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: auto 1fr auto;
+}
+
+.card {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+}
+```
+
+Now every card's header, body, and footer align across the entire row, regardless of content length.
+
+## Auto-fill vs Auto-fit
+
+The difference is subtle and often misunderstood:
+
+- `auto-fill` creates empty tracks when there aren't enough items to fill a row
+- `auto-fit` collapses empty tracks so items expand to fill available space
+
+Use `auto-fit` when you want items to grow. Use `auto-fill` when you want consistent track sizing.
+
+## When Not to Use Grid
+
+Grid is not a replacement for Flexbox. Flexbox is for one-dimensional layouts where items wrap. Grid is for two-dimensional layouts where you need alignment across both axes. If you only need to space items in a row with wrapping, use Flexbox. The code will be simpler and more predictable.

@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Card from '@components/Card.astro';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import { AUTHOR_NAME, GA_MEASUREMENT_ID, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} pageType="homepage" />
+
+    <!-- Google Analytics (GA4) — offloaded to Partytown web worker -->
+    <script
+      type="text/partytown"
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <section class="feed">
+        <header class="feed-header">
+          <h1>Blog</h1>
+          <p class="feed-description">Notes, ideas, experiments.</p>
+        </header>
+        <ul class="grid grid--cards">
+          {posts.map((post) => (
+            <Card
+              as="li"
+              title={post.data.title}
+              href={`/blog/${post.id}/`}
+              author={AUTHOR_NAME}
+              pubDate={post.data.pubDate}
+            >
+              {post.data.heroImage && (
+                <Image
+                  slot="image"
+                  src={post.data.heroImage}
+                  alt={post.data.coverAlt || post.data.title}
+                  width={720}
+                  height={360}
+                />
+              )}
+              <p>{post.data.description}</p>
+            </Card>
+          ))}
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .feed-header {
+    margin-bottom: var(--space-component-lg);
+  }
+
+  .feed-description {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* Reset <ul> list chrome; grid layout is handled by .grid--cards */
+  ul.grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>

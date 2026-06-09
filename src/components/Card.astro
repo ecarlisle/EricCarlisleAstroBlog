@@ -1,0 +1,101 @@
+---
+/**
+ * `title` is not in the spec's Props list but is required for the inclusive-link
+ * pattern: the component needs the title as a string so it can conditionally wrap
+ * it in an <a> when `href` is present. Without it, a slot wrapper can't be given
+ * an anchor without surrendering control of the markup to the parent.
+ */
+type Props = {
+  as?: 'div' | 'article' | 'li';
+  href?: string;
+  title?: string;
+  class?: string;
+  author?: string;
+  pubDate?: Date;
+};
+
+const { as: Tag = 'div', href, title, class: className, author, pubDate } = Astro.props;
+
+const hasImage = Astro.slots.has('image');
+const hasFooter = Astro.slots.has('footer');
+const hasByline = author !== undefined || pubDate !== undefined;
+
+const dateISO = pubDate?.toISOString();
+const dateDisplay = pubDate?.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<!--
+  Tag is dynamic (div/article/li) to match the semantic context of the parent layout.
+  position: relative on .card (components.css) is the containing block for ::after below.
+-->
+<Tag class:list={['card', className]}>
+
+  {/* Image slot: wrapper only emitted when parent fills this slot. */}
+  {hasImage && (
+    <div class="card-image">
+      <slot name="image" />
+    </div>
+  )}
+
+  <div class="prose">
+    {/* Inclusive card link: title <a> is the one semantic link; ::after stretches it to fill .card. */}
+    {title && href && (
+      <h2 class="card-title">
+        <a href={href} class="card-link">{title}</a>
+      </h2>
+    )}
+    {title && !href && <h2 class="card-title">{title}</h2>}
+
+    <slot />
+
+    {hasByline && (
+      <p class="meta">
+        {author && <strong>{author}</strong>}
+        {pubDate && <time datetime={dateISO}>{dateDisplay}</time>}
+      </p>
+    )}
+  </div>
+
+  {/* Footer slot: position: relative + z-index: 1 lifts it above the ::after overlay. */}
+  {hasFooter && (
+    <div class="card-footer">
+      <slot name="footer" />
+    </div>
+  )}
+
+</Tag>
+
+<style>
+  /* Inclusive link overlay: stretches click surface to full .card bounding box. */
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Restores overlay as click target; nested interactive elements use z-index to escape it. */
+  .card-link:not(:focus-visible)::after {
+    pointer-events: auto;
+  }
+
+  .card-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  /* Lifts footer content above the ::after overlay. */
+  .card-footer {
+    position: relative;
+    z-index: 1;
+  }
+</style>

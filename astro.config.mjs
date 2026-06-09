@@ -1,0 +1,54 @@
+// @ts-check
+
+import mdx from '@astrojs/mdx';
+import expressiveCode from 'astro-expressive-code';
+import pagefind from 'astro-pagefind';
+import partytown from '@astrojs/partytown';
+import sitemap from '@astrojs/sitemap';
+import compress from '@playform/compress';
+import { defineConfig } from 'astro/config';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://ericcarlisle.com',
+  integrations: [
+    expressiveCode({
+      themes: ['dark-plus'],
+      styleOverrides: {
+        codeFontFamily: 'var(--font-mono)',
+        uiFontFamily: 'var(--font-copy)',
+        borderRadius: 'var(--radius-md)',
+        frames: {
+          editorTabBarBackground: 'oklch(0.15 0.015 260)',
+          editorActiveTabBackground: 'oklch(0.11 0.01 260)',
+          terminalBackground: 'oklch(0.11 0.01 260)',
+        },
+      },
+      defaultProps: {
+        overridesByLang: {
+          bash: { frame: 'terminal' },
+          shell: { frame: 'terminal' },
+        },
+      },
+    }),
+    mdx(),
+    pagefind(),
+    sitemap(),
+    compress(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ],
+  vite: {
+    resolve: {
+      alias: {
+        '@styles': '/src/styles',
+        '@images': '/src/assets/images',
+        '@components': '/src/components',
+      },
+    },
+  },
+
+});
