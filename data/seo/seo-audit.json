@@ -2135,28 +2135,20 @@
       "status": 404,
       "finalUrl": "http://127.0.0.1:4321/post",
       "error": null,
-      "sourcePages": [
-        "/"
-      ]
+      "sourcePages": ["/"]
     }
   ],
   "topIssues": [
     {
       "severity": "high",
       "issue": "Astro site is still configured as https://example.com",
-      "affected": [
-        "astro.config.mjs",
-        "sitemap",
-        "canonical links"
-      ],
+      "affected": ["astro.config.mjs", "sitemap", "canonical links"],
       "fix": "Set astro.config.mjs site to the real production domain before publishing so canonical URLs and sitemap locs are production-ready."
     },
     {
       "severity": "medium",
       "issue": "robots.txt is missing",
-      "affected": [
-        "/robots.txt"
-      ],
+      "affected": ["/robots.txt"],
       "fix": "Add a public/static/robots.txt that explicitly allows crawling and points to https://<domain>/sitemap-index.xml."
     },
     {
@@ -2177,9 +2169,7 @@
     {
       "severity": "high",
       "issue": "Broken internal link detected",
-      "affected": [
-        "http://127.0.0.1:4321/post"
-      ],
+      "affected": ["http://127.0.0.1:4321/post"],
       "fix": "Update or remove broken hrefs, or preserve redirects for legacy URLs."
     },
     {
@@ -2208,19 +2198,13 @@
       {
         "severity": "high",
         "issue": "Astro site is still configured as https://example.com",
-        "affected": [
-          "astro.config.mjs",
-          "sitemap",
-          "canonical links"
-        ],
+        "affected": ["astro.config.mjs", "sitemap", "canonical links"],
         "fix": "Set astro.config.mjs site to the real production domain before publishing so canonical URLs and sitemap locs are production-ready."
       },
       {
         "severity": "medium",
         "issue": "robots.txt is missing",
-        "affected": [
-          "/robots.txt"
-        ],
+        "affected": ["/robots.txt"],
         "fix": "Add a public/static/robots.txt that explicitly allows crawling and points to https://<domain>/sitemap-index.xml."
       },
       {
@@ -2241,9 +2225,7 @@
       {
         "severity": "high",
         "issue": "Broken internal link detected",
-        "affected": [
-          "http://127.0.0.1:4321/post"
-        ],
+        "affected": ["http://127.0.0.1:4321/post"],
         "fix": "Update or remove broken hrefs, or preserve redirects for legacy URLs."
       },
       {

@@ -5,16 +5,27 @@ import BaseHead from '@components/BaseHead.astro';
 import Card from '@components/Card.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import PaginationNav from '@components/PaginationNav.astro';
 import { AUTHOR_NAME, GA_MEASUREMENT_ID, SITE_TITLE } from '../consts';
 
 const PAGE_SIZE = 10;
 
-const allPosts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 
 const posts = allPosts.slice(0, PAGE_SIZE);
 const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
 const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
+
+const tagPages: Record<string, number[]> = {};
+allPosts.forEach((post, i) => {
+  const page = Math.floor(i / PAGE_SIZE) + 1;
+  for (const tag of post.data.tags ?? []) {
+    if (!tagPages[tag]) tagPages[tag] = [];
+    if (!tagPages[tag].includes(page)) tagPages[tag].push(page);
+  }
+});
 ---
 
 <!doctype html>
@@ -46,13 +57,18 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
         </header>
 
         {allTags.length > 0 && (
-          <div class="filter-bar" role="group" aria-label="Filter posts by tag">
-            <button class="active" data-tag="all">All</button>
+          <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
+            <a href="/blog" role="button">All</a>
             {allTags.map((tag) => (
-              <button data-tag={tag}>{tag}</button>
+              <a href={`/blog?tag=${tag}`} role="button">{tag}</a>
             ))}
           </div>
         )}
+
+        <p id="no-results" class="callout" style="display:none">
+          No posts tagged "<strong></strong>" on this page.
+          {tagPages && Object.keys(tagPages).length > 0 && <span>Visit <span class="page-links"></span>.</span>}
+        </p>
 
         <ul class="grid grid--cards" id="post-grid">
           {posts.map((post, i) => {
@@ -91,11 +107,7 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
         </ul>
 
         {totalPages > 1 && (
-          <nav class="pagination" aria-label="Pagination">
-            <a href="/blog/page/2" class="pagination-next button">
-              Next page &rarr;
-            </a>
-          </nav>
+          <PaginationNav next={{ url: '/blog/page/2', label: 'Next page →' }} />
         )}
       </section>
     </main>
@@ -118,32 +130,74 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
     padding: 0;
     margin: 0;
   }
+
+  #no-results {
+    text-align: center;
+    margin-bottom: var(--space-component);
+  }
 </style>
 
-<script>
+<script is:inline>
   const filterBar = document.querySelector('.filter-bar');
   if (filterBar) {
-    const buttons = filterBar.querySelectorAll('button');
+    const tagPagesData = JSON.parse(filterBar.dataset.tagPages);
+    const links = filterBar.querySelectorAll('a');
     const cards = document.querySelectorAll('#post-grid .card');
+    const noResults = document.getElementById('no-results');
 
-    function filterByTag(tag: string): void {
-      buttons.forEach((b) => b.classList.toggle('active', b.getAttribute('data-tag') === tag));
+    function filterByTag(tag) {
+      links.forEach((a) => {
+        const href = a.getAttribute('href');
+        const isAll = href === '/blog';
+        const isMatch = !isAll && href.includes(`?tag=${tag}`);
+        a.classList.toggle('active', tag === 'all' ? isAll : isMatch);
+      });
+
+      let visibleCount = 0;
       cards.forEach((card) => {
         const cardTags = card.getAttribute('data-tags');
         if (tag === 'all' || (cardTags && cardTags.includes(tag))) {
           card.style.display = '';
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
+
+      if (noResults) {
+        if (tag !== 'all' && visibleCount === 0) {
+          const nameEl = noResults.querySelector('strong');
+          if (nameEl) nameEl.textContent = tag;
+          const pageLinks = noResults.querySelector('.page-links');
+          if (pageLinks) {
+            const pages = tagPagesData[tag];
+            if (pages && pages.length > 0) {
+              pageLinks.innerHTML = pages
+                .map((p) => `<a href="/blog/page/${p}?tag=${tag}">page ${p}</a>`)
+                .join(', ');
+            } else {
+              pageLinks.innerHTML = '';
+            }
+          }
+          noResults.style.display = '';
+        } else {
+          noResults.style.display = 'none';
+        }
+      }
     }
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => filterByTag(btn.getAttribute('data-tag')!));
+    links.forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = new URL(a.href);
+        const tag = url.searchParams.get('tag') || 'all';
+        filterByTag(tag);
+        window.history.replaceState(null, '', a.href);
+      });
     });
 
     const urlTag = new URLSearchParams(window.location.search).get('tag');
-    if (urlTag && [...buttons].some((b) => b.getAttribute('data-tag') === urlTag)) {
+    if (urlTag && [...links].some((a) => a.href.includes(`?tag=${urlTag}`))) {
       filterByTag(urlTag);
     }
   }

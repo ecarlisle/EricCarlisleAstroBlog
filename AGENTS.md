@@ -34,7 +34,7 @@ No `lint`/`test`/`format` scripts — use `pnpm exec` directly.
 | `src/styles/global.css` | Design tokens + base styles — use tokens, not hardcoded values |
 | `src/styles/components.css` | Shared helpers (`.card`, `.tag`, `.callout`, `.grid`, `.meta`) |
 | `src/components/BaseHead.astro` | OG/Twitter tags, font loading, inline theme flash-guard |
-| `src/layouts/BlogPost.astro` | Wraps every post and the about page |
+| `src/layouts/BlogPost.astro` | Wraps every post and the about page; gates article-only elements (date, reading time, progress bar, TOC, post-nav) behind `{pageType === 'article' && ...}` |
 | `src/pages/blog/[...slug].astro` | Renders individual posts; derives word count from `post.body` |
 
 ## Path Aliases
@@ -60,6 +60,8 @@ No `lint`/`test`/`format` scripts — use `pnpm exec` directly.
 3. **No tests exist**: vitest is configured but `src/` has zero test files. Adding one requires creating a test.
 4. **Theme toggle exists**: `src/components/ThemeToggle.astro` is wired in `Header.astro`. No need to create one.
 5. **Site URL**: `astro.config.mjs` sets `site: 'https://ericcarlisle.com'` — don't change it; vitest uses the same value.
+6. **About page shares BlogPost layout**: `BlogPost.astro` conditionally renders article-only elements (reading progress bar, date/reading-time, back-link, tags, post-nav, TOC sidebar) behind `{pageType === 'article' && ...}` guards. About page passes `pageType="about"` to suppress these. If you add new article-only elements, gate them the same way.
+7. **Pagefind CSS needs high specificity**: Pagefind bundles its own CSS at `:root` specificity (0,1,0). To override, use `:root:root` (0,2,0) for theme vars and `:is(*,#\#):is(*,#\#):is(*,#\#) .my-class` for component overrides to beat `:where()` selectors.
 
 ## Design Rules
 

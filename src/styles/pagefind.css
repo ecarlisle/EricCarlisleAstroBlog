@@ -1,0 +1,89 @@
+/* ========================================================================
+   Pagefind Component UI — map --pf-* vars to design tokens
+   Uses :root:root to beat Pagefind's own :root and [data-pf-theme="dark"]
+   specificity (0,2,0 vs 0,1,1).
+   ======================================================================== */
+:root:root {
+  --pf-text: var(--text-primary);
+  --pf-text-secondary: var(--text-secondary);
+  --pf-text-muted: var(--text-muted);
+  --pf-background: var(--bg-surface);
+  --pf-border: var(--border-main);
+  --pf-border-focus: var(--brand-primary);
+  --pf-skeleton: var(--bg-surface);
+  --pf-skeleton-shine: var(--bg-surface-elevated);
+  --pf-hover: oklch(0.22 0.025 280);
+  --pf-mark: var(--brand-highlight);
+  --pf-scroll-shadow: rgba(255, 255, 255, 0.08);
+
+  --pf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --pf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --pf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  --pf-outline-focus: var(--brand-primary);
+  --pf-modal-backdrop: rgba(0, 0, 0, 0.7);
+  --pf-border-radius: var(--radius-lg);
+  --pf-font: var(--font-copy);
+  --pf-modal-max-width: 640px;
+}
+
+:root:root[data-theme="light"] {
+  --pf-hover: oklch(0.92 0.008 280);
+  --pf-mark: var(--brand-highlight);
+  --pf-scroll-shadow: rgba(0, 0, 0, 0.08);
+
+  --pf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --pf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --pf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.2);
+
+  --pf-modal-backdrop: rgba(0, 0, 0, 0.5);
+}
+
+/* Header search trigger — match theme toggle styling.
+   Pagefind uses :is(*,#\#):is(*,#\#):is(*,#\#) for (0,3,0). Match it. */
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger {
+  display: flex;
+  align-items: center;
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:hover {
+  color: var(--brand-primary);
+  background: transparent;
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:focus-visible {
+  outline: var(--size-border-pixel) dashed var(--brand-accent);
+  outline-offset: 4px;
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-icon {
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask-image: var(--pf-icon-search);
+  mask-image: var(--pf-icon-search);
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-text,
+:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-shortcut {
+  display: none;
+}

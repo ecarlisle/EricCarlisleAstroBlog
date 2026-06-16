@@ -1,21 +1,18 @@
 ---
-type Props = {
-  as?: 'div' | 'article' | 'li';
-  href?: string;
-  title?: string;
-  class?: string;
-  author?: string;
-  pubDate?: Date;
-  tags?: string[];
-  readingTime?: number;
-  index?: number;
-};
-
-const { as: Tag = 'div', href, title, class: className, author, pubDate, tags, readingTime, index = 0 } = Astro.props;
+const {
+  as: Tag = 'div',
+  href,
+  title,
+  class: className,
+  author,
+  pubDate,
+  tags,
+  readingTime,
+  index = 0,
+} = Astro.props;
 
 const hasImage = Astro.slots.has('image');
 const hasFooter = Astro.slots.has('footer');
-const hasByline = author !== undefined || pubDate !== undefined;
 
 const dateISO = pubDate?.toISOString();
 const dateDisplay = pubDate?.toLocaleDateString('en-US', {
@@ -51,7 +48,7 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
 
     {tags && tags.length > 0 && (
       <p class="meta" style="margin-top: var(--space-inline);">
-        {tags.slice(0, 3).map((tag) => (
+        {tags.slice(0, 3).map((tag: string) => (
           <a href={`/blog?tag=${tag}`} class="tag">{tag}</a>
         ))}
       </p>

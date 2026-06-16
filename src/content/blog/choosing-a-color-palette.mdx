@@ -1,0 +1,53 @@
+---
+title: 'Choosing a Color Palette: From Cold Blue to Warm Amber'
+description: 'Why I moved this blog from a default electric blue palette to a warm amber/coral editorial scheme — and how OKLCH made it painless.'
+pubDate: 'Jun 16 2026'
+tags: ['css', 'design-systems']
+heroImage: '@images/blog-placeholder-5.jpg'
+---
+
+Most developer blogs ship with a cold color palette. Electric blues, teals, cyber-greens — the default "tech" look. When I rebuilt this site on Astro, it was no different. The original palette centered on `oklch(0.6 0.22 260)` — a punchy blue accent against deep navy-ish surfaces.
+
+It looked fine. It was not wrong. But it felt like every other dev blog.
+
+## What was wrong with blue
+
+The original palette was serviceable, but it had two problems:
+
+**Every tech blog uses blue.** Look at the default themes for Astro, Next.js, Vercel, GitHub — they all lean cool. Standing out is hard when you're using the same hue as everyone else.
+
+**Cold light, cold dark.** Blue-based dark themes can feel clinical. The goal of this site is to be warm and approachable — a place where I write about design systems and accessibility with some humanity. The blue was fighting that.
+
+## The case for amber
+
+I spent an afternoon in the OKLCH color picker, rotating the hue and watching the feel change.
+
+Landing on `oklch(0.7 0.18 70)` — a warm amber — was immediate. The dark mode got richer. Text popped differently. The whole thing felt less like a dashboard and more like a publication.
+
+The palette settled into three accents:
+
+- **Brand primary** (`oklch(0.7 0.18 70)`): Used for links, hover states, borders on card hover. A warm amber that reads as energetic but not aggressive.
+- **Brand accent** (`oklch(0.65 0.2 30)`): A coral-sienna for secondary interactions and focus outlines. Warmer than the primary.
+- **Brand highlight** (`oklch(0.85 0.14 90)`): A soft gold for link hover states against the dark background.
+
+The background shifted from blue-tinted charcoal (`oklch(0.12 0.015 260)`) to a warmer near-black (`oklch(0.12 0.015 280)`) — just a 20-degree rotation, but it removed the cold cast.
+
+## The light theme
+
+Light mode inverted cleanly. Same hues, just shifted lightness and reduced chroma to keep contrast ratios accessible. The amber becomes a slightly desaturated `oklch(0.48 0.2 70)` — still warm, still amber, but comfortable on white.
+
+The light theme is opt-in only — no `prefers-color-scheme` media query. Readers who prefer dark stay in dark. This avoids the whiplash of a site flipping modes based on system settings.
+
+## What OKLCH gave us
+
+Using OKLCH for the entire palette was the right call for three reasons:
+
+1. **Hue-independent lightness.** You can rotate hue without distorting perceived brightness. Try that in HSL and you get muddy desaturated nonsense.
+2. **Single-source theming.** Light and dark themes are the same OKLCH values with different `l` and `c` parameters. Nothing else changes.
+3. **Future-proof gamut.** OKLCH covers P3 and Rec.2020. When displays catch up, the colors will just look better without touching the code.
+
+## The outcome
+
+After the switch, Lighthouse scores stayed at 100/100 across all categories. The design reads warmer, more editorial, and less like a template. The amber feels intentional — like the blog was built around it, not painted over it.
+
+If you are building a personal site, spend an hour in OKLCH before you settle on your palette. The difference between a default palette and a chosen one is everything.

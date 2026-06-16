@@ -2,7 +2,6 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '@styles/global.css';
-import { Font } from 'astro:assets';
 import FallbackImage from '@images/blog-placeholder-1.jpg';
 import type { ImageMetadata } from 'astro';
 import PagefindConfig from 'astro-pagefind/components/PagefindConfig.astro';
@@ -44,7 +43,6 @@ const {
   twitterHandle,
   robots = 'index, follow',
 } = Astro.props;
-
 ---
 
 <!-- Theme: apply stored preference before first paint to prevent flash -->
@@ -133,3 +131,4 @@ const {
   />
 )}
 <PagefindConfig />
+<pagefind-modal></pagefind-modal>

@@ -2,6 +2,7 @@
 @import "@fontsource-variable/plus-jakarta-sans/wght.css";
 @import "@fontsource-variable/fira-code/wght.css";
 @import "./components.css";
+@import "./pagefind.css";
 
 :root {
   /* Fonts */
@@ -21,8 +22,6 @@
 
   /* Line heights */
   --line-height-body: 1.65;
-  --line-height-heading: 1.25;
-  --line-height-tight: 1.3;
 
   /* Radii */
   --radius-sm: 4px;
@@ -47,12 +46,15 @@
   --border-main: oklch(0.25 0.025 280);
   --border-muted: oklch(0.19 0.015 280);
 
-  /* Fluid spacing */
-  --space-xs: clamp(0.75rem, 0.6vw + 0.65rem, 0.875rem);
-  --space-sm: clamp(1rem, 0.9vw + 0.85rem, 1.25rem);
-  --space-md: clamp(1.5rem, 1.2vw + 1.3rem, 1.75rem);
-  --space-lg: clamp(2.25rem, 1.8vw + 2rem, 2.5rem);
-  --space-xl: clamp(3rem, 2.4vw + 2.7rem, 3.5rem);
+  /* Vertical rhythm: base unit = one line of body text */
+  --rhythm: calc(var(--line-height-body) * 1rem);
+
+  /* Spacing — clean multiples of the baseline rhythm */
+  --space-xs: calc(var(--rhythm) * 0.5);
+  --space-sm: calc(var(--rhythm) * 0.75);
+  --space-md: calc(var(--rhythm) * 1);
+  --space-lg: calc(var(--rhythm) * 1.5);
+  --space-xl: calc(var(--rhythm) * 2);
 
   /* Semantic spacing */
   --space-inline: var(--space-xs);
@@ -112,6 +114,22 @@ html {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 *,
 *::before,
 *::after {
@@ -162,12 +180,6 @@ main {
    TYPOGRAPHY
    ========================= */
 
-h1 { font-size: var(--type-size-h1); }
-h2 { font-size: var(--type-size-h2); }
-h3 { font-size: var(--type-size-h3); }
-h4 { font-size: var(--type-size-h4); }
-h5 { font-size: var(--type-size-h5); }
-
 h1,
 h2,
 h3,
@@ -175,14 +187,49 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headers);
-  margin: 0 0 0.5em 0;
-  line-height: var(--line-height-heading);
   font-weight: 700;
   color: var(--text-primary);
+  margin: 0;
 }
 
-strong, b { font-weight: 700; }
-em, i { font-style: italic; }
+h1 {
+  font-size: var(--type-size-h1);
+  line-height: calc(var(--rhythm) * 3);
+  margin-bottom: calc(var(--rhythm) * 1);
+}
+h2 {
+  font-size: var(--type-size-h2);
+  line-height: calc(var(--rhythm) * 2);
+  margin-top: calc(var(--rhythm) * 2);
+  margin-bottom: calc(var(--rhythm) * 1);
+}
+h3 {
+  font-size: var(--type-size-h3);
+  line-height: calc(var(--rhythm) * 2);
+  margin-top: calc(var(--rhythm) * 1.5);
+  margin-bottom: calc(var(--rhythm) * 0.5);
+}
+h4 {
+  font-size: var(--type-size-h4);
+  line-height: calc(var(--rhythm) * 1.5);
+  margin-top: calc(var(--rhythm) * 1.5);
+  margin-bottom: calc(var(--rhythm) * 0.5);
+}
+h5 {
+  font-size: var(--type-size-h5);
+  line-height: calc(var(--rhythm) * 1.25);
+  margin-top: calc(var(--rhythm) * 1);
+  margin-bottom: calc(var(--rhythm) * 0.5);
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+em,
+i {
+  font-style: italic;
+}
 
 a {
   color: var(--brand-accent);
@@ -195,16 +242,22 @@ a:hover {
   color: var(--brand-highlight);
 }
 
-.prose { margin-inline: auto; }
+.prose {
+  margin-inline: auto;
+}
 
 .prose p,
 .prose li {
   max-width: var(--layout-max-width);
 }
 
-p { margin-bottom: var(--space-component); }
+p {
+  margin-bottom: var(--space-component);
+}
 
-.prose p { line-height: var(--line-height-body); }
+.prose p {
+  line-height: var(--line-height-body);
+}
 
 .prose h2,
 .prose h3 {
@@ -270,12 +323,6 @@ hr {
   top: var(--space-component);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .skip-link {
-    transition: none;
-  }
-}
-
 .sr-only {
   border: 0;
   padding: 0;
@@ -320,14 +367,4 @@ hr {
 
 .card-enter {
   animation: card-enter 0.4s ease-out both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card-enter {
-    animation: none;
-  }
-
-  .reading-progress {
-    display: none;
-  }
 }
