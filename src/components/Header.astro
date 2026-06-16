@@ -31,10 +31,18 @@ import SocialLinks from './SocialLinks.astro';
     left: 0;
     right: 0;
     z-index: 100;
-    background: var(--bg-surface);
+    background: oklch(from var(--bg-main) l c h / 0.85);
     border-bottom: 1px solid var(--border-muted);
     will-change: transform;
     transition: transform var(--transition-normal);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .site-header {
+      background: var(--bg-surface);
+    }
   }
 
   .site-header.header--hidden {

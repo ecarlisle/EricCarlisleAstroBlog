@@ -19,9 +19,9 @@ export default defineConfig({
         uiFontFamily: 'var(--font-copy)',
         borderRadius: 'var(--radius-md)',
         frames: {
-          editorTabBarBackground: 'oklch(0.15 0.015 260)',
-          editorActiveTabBackground: 'oklch(0.11 0.01 260)',
-          terminalBackground: 'oklch(0.11 0.01 260)',
+          editorTabBarBackground: 'oklch(0.18 0.025 280)',
+          editorActiveTabBackground: 'oklch(0.12 0.015 280)',
+          terminalBackground: 'oklch(0.12 0.015 280)',
         },
       },
       defaultProps: {
