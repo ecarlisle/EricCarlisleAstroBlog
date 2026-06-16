@@ -28,17 +28,16 @@
     width: var(--size-touch-target-min);
     height: var(--size-touch-target-min);
     border-radius: var(--radius-md);
-    border: var(--size-border-pixel) solid var(--border-main);
+    border: none;
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
     padding: 4px;
-    transition: color var(--transition-fast), border-color var(--transition-fast);
+    transition: color var(--transition-fast);
   }
 
   .theme-toggle:hover {
     color: var(--brand-primary);
-    border-color: var(--brand-primary);
   }
 
   .theme-toggle:focus-visible {

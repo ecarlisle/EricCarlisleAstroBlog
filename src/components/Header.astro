@@ -17,6 +17,7 @@ import SocialLinks from './SocialLinks.astro';
     </nav>
     <div class="nav-controls">
       <ThemeToggle />
+      <span class="nav-divider" aria-hidden="true"></span>
       <div class="social-links">
         <SocialLinks />
       </div>
@@ -91,6 +92,13 @@ import SocialLinks from './SocialLinks.astro';
     display: flex;
     align-items: center;
     gap: var(--space-inline);
+  }
+
+  .nav-divider {
+    display: block;
+    width: 1px;
+    height: 24px;
+    background: var(--border-muted);
   }
 
   .social-links {
