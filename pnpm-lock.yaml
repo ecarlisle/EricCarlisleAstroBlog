@@ -39,9 +39,6 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.2.8
         version: 5.2.8
-      '@pagefind/component-ui':
-        specifier: ^1.5.2
-        version: 1.5.2
       '@playform/compress':
         specifier: ^0.2.3
         version: 0.2.3
