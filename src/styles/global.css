@@ -10,13 +10,13 @@
   --font-mono: "Fira Code Variable", ui-monospace, monospace;
 
   /* Type sizes */
-  --type-size-body: clamp(1rem, calc(0.45vw + 0.91rem), 1.25rem); /* 16px → 20px */
-  --type-size-small: clamp(0.8125rem, calc(0.2vw + 0.77rem), 0.9375rem); /* 13px → 15px */
-  --type-size-h1: clamp(2rem, calc(3.64vw + 1.27rem), 4rem); /* 32px → 64px */
-  --type-size-h2: clamp(1.625rem, calc(2.13vw + 1.2rem), 2.8rem); /* 26px → 45px */
-  --type-size-h3: clamp(1.375rem, calc(1.14vw + 1.15rem), 2rem); /* 22px → 32px */
-  --type-size-h4: clamp(1.125rem, calc(0.57vw + 1.07rem), 1.5rem); /* 18px → 24px */
-  --type-size-h5: clamp(1rem, calc(0.28vw + 0.94rem), 1.1875rem); /* 16px → 19px */
+  --type-size-body: clamp(1rem, calc(0.45vw + 0.91rem), 1.25rem); /* 16px -> 20px */
+  --type-size-small: clamp(0.8125rem, calc(0.2vw + 0.77rem), 0.9375rem); /* 13px -> 15px */
+  --type-size-h1: clamp(2rem, calc(3.64vw + 1.27rem), 4rem); /* 32px -> 64px */
+  --type-size-h2: clamp(1.625rem, calc(2.13vw + 1.2rem), 2.8rem); /* 26px -> 45px */
+  --type-size-h3: clamp(1.375rem, calc(1.14vw + 1.15rem), 2rem); /* 22px -> 32px */
+  --type-size-h4: clamp(1.125rem, calc(0.57vw + 1.07rem), 1.5rem); /* 18px -> 24px */
+  --type-size-h5: clamp(1rem, calc(0.28vw + 0.94rem), 1.1875rem); /* 16px -> 19px */
   --type-size-blockquote: 1.1em;
 
   /* Line heights */
@@ -30,23 +30,22 @@
   --radius-lg: 12px;
 
   /* ========================================================================
-     Optimized Dark Theme Colors (OKLCH) — default high-end contrast tech
+     Warm Dark Theme (OKLCH) — amber/coral editorial palette
      ======================================================================== */
-  --bg-main: oklch(0.11 0.01 260); /* Deepened onyx velvet blue */
-  --bg-surface: oklch(0.15 0.015 260); /* Crisp, legible container separation */
-  --bg-surface-elevated: oklch(0.19 0.02 260);
+  --bg-main: oklch(0.12 0.015 280);
+  --bg-surface: oklch(0.16 0.02 280);
+  --bg-surface-elevated: oklch(0.2 0.025 280);
 
-  --text-primary: oklch(0.96 0.005 260); /* Starker, premium white text */
-  --text-secondary: oklch(0.78 0.01 260);
-  --text-muted: oklch(0.6 0.015 260); /* WCAG AA 4.5:1 on all dark surfaces */
+  --text-primary: oklch(0.95 0.008 280);
+  --text-secondary: oklch(0.75 0.015 280);
+  --text-muted: oklch(0.58 0.02 280);
 
-  /* The Sex-Appeal Injections: Vibrant neon accents contrasting cold backgrounds */
-  --brand-primary: oklch(0.68 0.19 250); /* Dominant, electric hyper-blue */
-  --brand-accent: oklch(0.74 0.16 140); /* Shifting to a striking tech-green counterpoint */
-  --brand-highlight: oklch(0.85 0.18 90); /* Warm gold terminal spotlight on hover */
+  --brand-primary: oklch(0.7 0.18 70);
+  --brand-accent: oklch(0.65 0.2 30);
+  --brand-highlight: oklch(0.85 0.14 90);
 
-  --border-main: oklch(0.24 0.015 260);
-  --border-muted: oklch(0.18 0.01 260);
+  --border-main: oklch(0.25 0.025 280);
+  --border-muted: oklch(0.19 0.015 280);
 
   /* Fluid spacing */
   --space-xs: clamp(0.75rem, 0.6vw + 0.65rem, 0.875rem);
@@ -64,9 +63,9 @@
   --space-layout: var(--space-xl);
 
   /* Transition & motion tokens */
-  --transition-fast: 0.1s steps(4, end);
-  --transition-normal: 0.15s ease-out;
-  --duration-instant: 0s;
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.25s ease-out;
+  --transition-slow: 0.4s ease-out;
 
   /* Structural sizing tokens */
   --size-border-pixel: 2px;
@@ -83,28 +82,28 @@
 
 /* ========================================================================
    Light theme: explicit user toggle only.
-   Bulletproof contrast optimization for accessibility compliance.
    ======================================================================== */
 [data-theme="light"] {
-  --bg-main: oklch(0.99 0.002 260);
+  --bg-main: oklch(0.985 0.003 280);
   --bg-surface: oklch(1 0 0);
-  --bg-surface-elevated: oklch(0.94 0.005 260);
+  --bg-surface-elevated: oklch(0.92 0.008 280);
 
-  --text-primary: oklch(0.12 0.01 260);
-  --text-secondary: oklch(0.22 0.015 260);
-  --text-muted: oklch(0.35 0.015 260);
+  --text-primary: oklch(0.13 0.015 280);
+  --text-secondary: oklch(0.25 0.02 280);
+  --text-muted: oklch(0.38 0.025 280);
 
-  --brand-primary: oklch(0.28 0.16 250); /* Deepened for perfect light-mode text pass */
-  --brand-accent: oklch(0.22 0.14 140); /* Deep green links passing WCAG AAA thresholds */
-  --brand-highlight: oklch(0.18 0.14 90); /* Highly visible dark gold hover state */
+  --brand-primary: oklch(0.48 0.2 70);
+  --brand-accent: oklch(0.42 0.22 30);
+  --brand-highlight: oklch(0.32 0.25 280);
 
-  --border-main: oklch(0.86 0.008 260);
-  --border-muted: oklch(0.92 0.004 260);
+  --border-main: oklch(0.85 0.01 280);
+  --border-muted: oklch(0.92 0.005 280);
 }
 
 html {
   box-sizing: border-box;
   min-height: 100%;
+  color-scheme: dark light;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -123,7 +122,6 @@ html {
    PAGE STRUCTURE
    ========================= */
 
-/* Sticky footer layout */
 body {
   margin: 0;
   padding: 0;
@@ -139,12 +137,10 @@ body {
   flex-direction: column;
 }
 
-/* Shared structural frame for header/footer */
 .site-frame {
   padding: var(--space-component);
 }
 
-/* Main content grows to fill space (sticky footer behavior) */
 main {
   max-width: var(--layout-max-width-wide);
   margin: auto;
@@ -152,31 +148,25 @@ main {
   flex: 1;
 }
 
-/* Global focus styling */
 :focus-visible {
   outline: var(--size-border-pixel) dashed var(--brand-accent);
   outline-offset: 4px;
+}
+
+::selection {
+  background: var(--brand-primary);
+  color: var(--bg-main);
 }
 
 /* =========================
    TYPOGRAPHY
    ========================= */
 
-h1 {
-  font-size: var(--type-size-h1);
-}
-h2 {
-  font-size: var(--type-size-h2);
-}
-h3 {
-  font-size: var(--type-size-h3);
-}
-h4 {
-  font-size: var(--type-size-h4);
-}
-h5 {
-  font-size: var(--type-size-h5);
-}
+h1 { font-size: var(--type-size-h1); }
+h2 { font-size: var(--type-size-h2); }
+h3 { font-size: var(--type-size-h3); }
+h4 { font-size: var(--type-size-h4); }
+h5 { font-size: var(--type-size-h5); }
 
 h1,
 h2,
@@ -191,52 +181,36 @@ h6 {
   color: var(--text-primary);
 }
 
-/* Text basics */
-strong,
-b {
-  font-weight: 700;
-}
-em,
-i {
-  font-style: italic;
-}
+strong, b { font-weight: 700; }
+em, i { font-style: italic; }
 
-/* Links */
 a {
   color: var(--brand-accent);
   text-decoration: underline;
   text-underline-offset: 0.15em;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
   color: var(--brand-highlight);
 }
 
-/* Prose rhythm */
-.prose {
-  margin-inline: auto;
-}
+.prose { margin-inline: auto; }
 
-/* Prose text constrained to readable line length (45–75 chars per line) */
 .prose p,
 .prose li {
   max-width: var(--layout-max-width);
 }
 
-p {
-  margin-bottom: var(--space-component);
-}
+p { margin-bottom: var(--space-component); }
 
-.prose p {
-  line-height: var(--line-height-body);
-}
+.prose p { line-height: var(--line-height-body); }
 
 .prose h2,
 .prose h3 {
   margin-top: var(--space-section);
 }
 
-/* Code */
 code {
   padding: 0.2em 0.4em;
   background-color: var(--bg-surface);
@@ -258,7 +232,6 @@ div.expressive-code {
   margin-bottom: var(--space-component);
 }
 
-/* Blockquote */
 blockquote {
   border-left: 4px solid var(--brand-accent);
   padding: 0 var(--space-component);
@@ -267,21 +240,18 @@ blockquote {
   color: var(--text-secondary);
 }
 
-/* Horizontal rule */
 hr {
   border: none;
   border-top: 1px solid var(--border-main);
 }
 
-/* Responsive tweaks */
-/* --bp-mobile = 720px — kept literal here because @media cannot evaluate var() */
 @media (max-width: 720px) {
   main {
     padding: var(--space-component);
   }
 }
 
-/* Skip-link: hidden off-screen until focused */
+/* Skip-link */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -306,7 +276,6 @@ hr {
   }
 }
 
-/* Accessible hidden text */
 .sr-only {
   border: 0;
   padding: 0;
@@ -318,4 +287,47 @@ hr {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* =========================
+   READING PROGRESS BAR
+   ========================= */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  height: 3px;
+  background: var(--brand-primary);
+  width: 0%;
+  pointer-events: none;
+  transition: width 50ms linear;
+}
+
+/* =========================
+   CARD ANIMATIONS
+   ========================= */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-enter {
+  animation: card-enter 0.4s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-enter {
+    animation: none;
+  }
+
+  .reading-progress {
+    display: none;
+  }
 }

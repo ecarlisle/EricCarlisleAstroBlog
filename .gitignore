@@ -40,3 +40,6 @@ pnpm-debug.log*
 
 #lighthouse reports
 lh-reports/
+
+.playwright-mcp/
+screenshots/

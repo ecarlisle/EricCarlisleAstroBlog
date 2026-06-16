@@ -9,6 +9,9 @@ import { GA_MEASUREMENT_ID } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
   pageType?: 'article' | 'about' | 'contact' | 'portfolio';
+  wordCount?: number;
+  prevPost?: { title: string; slug: string };
+  nextPost?: { title: string; slug: string };
 };
 
 const {
@@ -19,16 +22,19 @@ const {
   heroImage,
   coverAlt,
   tags,
-  wordCount,
+  wordCount = 0,
   pageType = 'article',
+  prevPost,
+  nextPost,
 } = Astro.props;
+
+const readingTimeMin = Math.ceil(wordCount / 200);
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} image={heroImage} pageType={pageType} pubDate={pubDate} updatedDate={updatedDate} tags={tags} wordCount={wordCount} />
 
-		<!-- Google Analytics (GA4) — offloaded to Partytown web worker -->
 		<script
 			type="text/partytown"
 			src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -52,6 +58,28 @@ const {
 			border-radius: var(--radius-lg);
 		}
 
+		.post-layout {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: var(--space-component-lg);
+      position: relative;
+		}
+
+		@media (min-width: 1024px) {
+			.post-layout {
+				grid-template-columns: 1fr 220px;
+			}
+
+			.post-layout .post-content {
+				grid-column: 1;
+        min-width: 0;
+			}
+
+			.post-layout .post-sidebar {
+				grid-column: 2;
+			}
+		}
+
 		.prose {
 			padding: var(--space-component);
 		}
@@ -65,41 +93,158 @@ const {
 		.date {
 			margin-bottom: var(--space-xs);
 			color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
 		}
 
 		.last-updated-on {
 			font-style: italic;
+      width: 100;
 		}
 	</style>
 	</head>
 
 	<body>
+    <div class="reading-progress" id="reading-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress"></div>
 		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<Header />
 		<main id="main-content" tabindex="-1">
+      <a href="/blog" class="back-link">&larr; Back to all posts</a>
 			<article>
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt={coverAlt || title} widths={[510, 765, 1020]} sizes="(min-width: 1200px) 1020px, (min-width: 720px) calc(100vw - 3.5rem), calc(100vw - 3rem)" />}
 				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+				<div class="post-layout">
+					<div class="post-content">
+						<div class="prose">
+							<div class="title">
+								<div class="date">
+									<FormattedDate date={pubDate} />
+                  {readingTimeMin > 0 && <span class="reading-time">{readingTimeMin} min read</span>}
+									{updatedDate && (
+										<div class="last-updated-on">
+											Last updated on <FormattedDate date={updatedDate} />
+										</div>
+									)}
+								</div>
+								<h1>{title}</h1>
+								<hr />
+							</div>
+							<slot />
 						</div>
-						<h1>{title}</h1>
-						<hr />
+
+            {tags && tags.length > 0 && (
+              <div class="prose" style="margin-top:var(--space-section)">
+                <p class="meta" style="justify-content:center">
+                  {tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </p>
+              </div>
+            )}
+
+            {prevPost || nextPost ? (
+              <div class="post-nav">
+                {prevPost ? (
+                  <a href={`/blog/${prevPost.slug}/`} rel="prev">
+                    <span class="post-nav-label">&larr; Previous</span>
+                    <span class="post-nav-title">{prevPost.title}</span>
+                  </a>
+                ) : <div />}
+                {nextPost ? (
+                  <a href={`/blog/${nextPost.slug}/`} rel="next" class="post-nav-next">
+                    <span class="post-nav-label">Next &rarr;</span>
+                    <span class="post-nav-title">{nextPost.title}</span>
+                  </a>
+                ) : <div />}
+              </div>
+            ) : null}
 					</div>
-					<slot />
+
+          <aside class="post-sidebar">
+            <div class="toc" id="table-of-contents">
+              <h3>On this page</h3>
+              <nav aria-label="Table of contents">
+                <ul id="toc-list"></ul>
+              </nav>
+            </div>
+          </aside>
 				</div>
 			</article>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<script>
+  // Reading progress bar
+  const progressBar = document.getElementById('reading-progress') as HTMLDivElement;
+
+  function updateProgress(): void {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    progressBar.style.width = `${progress}%`;
+    progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+
+  // Table of contents
+  const article = document.querySelector('article');
+  const tocList = document.getElementById('toc-list');
+  if (article && tocList) {
+    const headings = article.querySelectorAll('h2, h3');
+    const items: Array<{ id: string; text: string; level: number }> = [];
+
+    headings.forEach((heading) => {
+      if (!heading.id) {
+        heading.id = heading.textContent?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || '';
+      }
+      items.push({
+        id: heading.id,
+        text: heading.textContent || '',
+        level: heading.tagName === 'H2' ? 2 : 3,
+      });
+    });
+
+    if (items.length > 0) {
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${item.id}`;
+        a.textContent = item.text;
+        if (item.level === 3) {
+          a.style.paddingLeft = 'var(--space-component)';
+        }
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // Highlight active TOC item on scroll
+      const tocLinks = tocList.querySelectorAll('a');
+      function updateActiveToc(): void {
+        let currentId = '';
+        items.forEach((item) => {
+          const el = document.getElementById(item.id);
+          if (el && el.getBoundingClientRect().top < 100) {
+            currentId = item.id;
+          }
+        });
+        tocLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+        });
+      }
+      window.addEventListener('scroll', updateActiveToc, { passive: true });
+      updateActiveToc();
+    } else {
+      const toc = document.getElementById('table-of-contents') as HTMLElement;
+      toc.style.display = 'none';
+    }
+  }
+</script>

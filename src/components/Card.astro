@@ -1,10 +1,4 @@
 ---
-/**
- * `title` is not in the spec's Props list but is required for the inclusive-link
- * pattern: the component needs the title as a string so it can conditionally wrap
- * it in an <a> when `href` is present. Without it, a slot wrapper can't be given
- * an anchor without surrendering control of the markup to the parent.
- */
 type Props = {
   as?: 'div' | 'article' | 'li';
   href?: string;
@@ -12,9 +6,12 @@ type Props = {
   class?: string;
   author?: string;
   pubDate?: Date;
+  tags?: string[];
+  readingTime?: number;
+  index?: number;
 };
 
-const { as: Tag = 'div', href, title, class: className, author, pubDate } = Astro.props;
+const { as: Tag = 'div', href, title, class: className, author, pubDate, tags, readingTime, index = 0 } = Astro.props;
 
 const hasImage = Astro.slots.has('image');
 const hasFooter = Astro.slots.has('footer');
@@ -26,15 +23,10 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
+const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
 ---
 
-<!--
-  Tag is dynamic (div/article/li) to match the semantic context of the parent layout.
-  position: relative on .card (components.css) is the containing block for ::after below.
--->
-<Tag class:list={['card', className]}>
-
-  {/* Image slot: wrapper only emitted when parent fills this slot. */}
+<Tag class:list={['card', className, 'card-enter']} data-tags={tags?.join(',')} style={`animation-delay: ${index * 0.08}s`}>
   {hasImage && (
     <div class="card-image">
       <slot name="image" />
@@ -42,7 +34,6 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
   )}
 
   <div class="prose">
-    {/* Inclusive card link: title <a> is the one semantic link; ::after stretches it to fill .card. */}
     {title && href && (
       <h2 class="card-title">
         <a href={href} class="card-link">{title}</a>
@@ -52,25 +43,29 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
 
     <slot />
 
-    {hasByline && (
-      <p class="meta">
-        {author && <strong>{author}</strong>}
-        {pubDate && <time datetime={dateISO}>{dateDisplay}</time>}
+    <p class="meta">
+      {author && <strong>{author}</strong>}
+      {pubDate && <time datetime={dateISO}>{dateDisplay}</time>}
+      {readingTimeMin && <span class="reading-time">{readingTimeMin} min read</span>}
+    </p>
+
+    {tags && tags.length > 0 && (
+      <p class="meta" style="margin-top: var(--space-inline);">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
       </p>
     )}
   </div>
 
-  {/* Footer slot: position: relative + z-index: 1 lifts it above the ::after overlay. */}
   {hasFooter && (
     <div class="card-footer">
       <slot name="footer" />
     </div>
   )}
-
 </Tag>
 
 <style>
-  /* Inclusive link overlay: stretches click surface to full .card bounding box. */
   .card-link {
     color: inherit;
     text-decoration: none;
@@ -83,7 +78,6 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
     pointer-events: none;
   }
 
-  /* Restores overlay as click target; nested interactive elements use z-index to escape it. */
   .card-link:not(:focus-visible)::after {
     pointer-events: auto;
   }
@@ -93,7 +87,6 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
     text-underline-offset: 0.15em;
   }
 
-  /* Lifts footer content above the ::after overlay. */
   .card-footer {
     position: relative;
     z-index: 1;
