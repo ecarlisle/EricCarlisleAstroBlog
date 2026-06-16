@@ -11,5 +11,4 @@ export const AUTHOR_GITHUB = 'https://github.com/ecarlisle';
 export const AUTHOR_AVATAR = '/images/eric-avatar.jpg';
 export const AUTHOR_JOB_TITLE = 'Principal Full-Stack Engineer & UX Architect';
 export const AUTHOR_ORG = 'Eric Carlisle Consulting';
-export const AUTHOR_TWITTER = ''; // e.g., '@ericcarlisle'
 export const GA_MEASUREMENT_ID = 'G-70E1BWCFJ3';
