@@ -1,12 +1,12 @@
 @import "@fontsource-variable/inter/wght.css";
-@import "@fontsource-variable/space-grotesk/wght.css";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
 @import "@fontsource-variable/fira-code/wght.css";
 @import "./components.css";
 
 :root {
   /* Fonts */
   --font-copy: "Inter Variable", system-ui, sans-serif;
-  --font-headers: "Space Grotesk Variable", system-ui, sans-serif;
+  --font-headers: "Plus Jakarta Sans Variable", system-ui, sans-serif;
   --font-mono: "Fira Code Variable", ui-monospace, monospace;
 
   /* Type sizes */
