@@ -114,22 +114,25 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
     const buttons = filterBar.querySelectorAll('button');
     const cards = document.querySelectorAll('#post-grid .card');
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const tag = btn.getAttribute('data-tag');
-
-        buttons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        cards.forEach((card) => {
-          const cardTags = card.getAttribute('data-tags');
-          if (tag === 'all' || (cardTags && cardTags.includes(tag))) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+    function filterByTag(tag: string): void {
+      buttons.forEach((b) => b.classList.toggle('active', b.getAttribute('data-tag') === tag));
+      cards.forEach((card) => {
+        const cardTags = card.getAttribute('data-tags');
+        if (tag === 'all' || (cardTags && cardTags.includes(tag))) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
       });
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => filterByTag(btn.getAttribute('data-tag')!));
     });
+
+    const urlTag = new URLSearchParams(window.location.search).get('tag');
+    if (urlTag && [...buttons].some((b) => b.getAttribute('data-tag') === urlTag)) {
+      filterByTag(urlTag);
+    }
   }
 </script>

@@ -52,7 +52,7 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
     {tags && tags.length > 0 && (
       <p class="meta" style="margin-top: var(--space-inline);">
         {tags.slice(0, 3).map((tag) => (
-          <span class="tag">{tag}</span>
+          <a href={`/blog?tag=${tag}`} class="tag">{tag}</a>
         ))}
       </p>
     )}
@@ -88,6 +88,11 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
   }
 
   .card-footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag {
     position: relative;
     z-index: 1;
   }

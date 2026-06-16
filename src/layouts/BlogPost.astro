@@ -141,7 +141,7 @@ const readingTimeMin = Math.ceil(wordCount / 200);
               <div class="prose" style="margin-top:var(--space-section)">
                 <p class="meta" style="justify-content:center">
                   {tags.map((tag) => (
-                    <span class="tag">{tag}</span>
+                    <a href={`/blog?tag=${tag}`} class="tag">{tag}</a>
                   ))}
                 </p>
               </div>

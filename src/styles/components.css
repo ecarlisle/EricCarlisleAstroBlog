@@ -76,6 +76,7 @@
   border-radius: 999px;
   background: var(--bg-surface-elevated);
   color: var(--text-secondary);
+  text-decoration: none;
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 
