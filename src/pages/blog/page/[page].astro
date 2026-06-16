@@ -5,22 +5,27 @@ import BaseHead from '@components/BaseHead.astro';
 import Card from '@components/Card.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
-import { AUTHOR_NAME, GA_MEASUREMENT_ID, SITE_TITLE } from '../consts';
+import { AUTHOR_NAME, GA_MEASUREMENT_ID, SITE_TITLE } from '../../../consts';
 
-const PAGE_SIZE = 10;
+export async function getStaticPaths({ paginate }: { paginate: <T>(data: T[], opts?: { pageSize?: number }) => Array<{ params: { page: string }; props: { page: import('astro').Page<T> } }> }) {
+  const allPosts = (await getCollection('blog'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const pages = paginate(allPosts, { pageSize: 10 });
+  return pages.filter((p) => p.params.page !== '1');
+}
+
+const { page } = Astro.props;
+const posts = page.data;
 
 const allPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const posts = allPosts.slice(0, PAGE_SIZE);
 const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
-const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Blog — ${SITE_TITLE}`} description="All blog posts" pageType="collection" />
+    <BaseHead title={`Blog — Page ${page.currentPage} — ${SITE_TITLE}`} description={`Blog posts page ${page.currentPage}`} pageType="collection" />
 
     <script
       type="text/partytown"
@@ -42,7 +47,7 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
       <section class="feed">
         <header class="feed-header">
           <h1>Blog</h1>
-          <p class="feed-description">All posts ({allPosts.length} total)</p>
+          <p class="feed-description">Page {page.currentPage} of {page.lastPage} ({page.total} total)</p>
         </header>
 
         {allTags.length > 0 && (
@@ -55,7 +60,7 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
         )}
 
         <ul class="grid grid--cards" id="post-grid">
-          {posts.map((post, i) => {
+          {posts.map((post: any, i: number) => {
             const wc =
               post.body
                 ?.replace(/^---[\s\S]*?---/, '')
@@ -90,13 +95,14 @@ const totalPages = Math.ceil(allPosts.length / PAGE_SIZE);
           })}
         </ul>
 
-        {totalPages > 1 && (
-          <nav class="pagination" aria-label="Pagination">
-            <a href="/blog/page/2" class="pagination-next button">
-              Next page &rarr;
-            </a>
-          </nav>
-        )}
+        <nav class="pagination" aria-label="Pagination">
+          {page.url.prev ? (
+            <a href={page.currentPage === 2 ? '/blog' : page.url.prev} class="pagination-prev button">&larr; Previous page</a>
+          ) : <div />}
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination-next button">Next page &rarr;</a>
+          ) : <div />}
+        </nav>
       </section>
     </main>
     <Footer />

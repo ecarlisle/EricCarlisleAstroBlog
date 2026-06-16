@@ -476,3 +476,34 @@
     opacity: 1;
   }
 }
+
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-component);
+  margin-top: var(--space-section);
+  padding-top: var(--space-component);
+  border-top: 1px solid var(--border-muted);
+}
+
+.pagination-next {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.pagination-prev {
+  grid-column: 1;
+  justify-self: start;
+}
+
+@media (max-width: 720px) {
+  .pagination {
+    grid-template-columns: 1fr;
+  }
+
+  .pagination-next,
+  .pagination-prev {
+    grid-column: 1;
+    justify-self: stretch;
+  }
+}
