@@ -519,3 +519,203 @@ html[data-theme="light"] .filter-bar sup {
     opacity: 0.4;
   }
 }
+
+/* =========================
+   STYLE GUIDE
+   ========================= */
+.sg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-inline);
+  margin-bottom: var(--space-component-lg);
+}
+
+.sg-grid .sg-swatch--padded {
+  min-height: 100px;
+  justify-content: flex-end;
+}
+
+.sg-swatch {
+  background: var(--sg-bg, var(--bg-surface));
+  color: var(--sg-color, var(--text-primary));
+  padding: var(--space-component);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-muted);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sg-swatch code {
+  font-size: var(--type-size-small);
+  color: var(--sg-color, var(--text-primary));
+}
+
+.sg-swatch span {
+  font-size: var(--type-size-small);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.sg-type-grid {
+  display: grid;
+  gap: var(--space-component);
+  margin-bottom: var(--space-section);
+}
+
+.sg-type-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-component);
+  line-height: 1.5;
+}
+
+.sg-type-card code {
+  font-size: var(--type-size-small);
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-bottom: var(--space-inline);
+  display: block;
+}
+
+.sg-type-card p {
+  margin: 0;
+}
+
+.sg-scale {
+  display: grid;
+  gap: var(--space-component);
+}
+
+.sg-scale-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-component);
+  font-family: var(--font-headers);
+  font-weight: 700;
+  line-height: 1.2;
+  padding: var(--space-inline) 0;
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.sg-scale-item code {
+  font-size: var(--type-size-small);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.sg-scale-item span {
+  font-size: var(--type-size-small);
+  font-weight: 400;
+  color: var(--text-muted);
+  font-family: var(--font-copy);
+  flex-shrink: 0;
+}
+
+.sg-spacing {
+  display: grid;
+  gap: var(--space-component);
+}
+
+.sg-spacing-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-inline);
+}
+
+.sg-spacing-item code {
+  font-size: var(--type-size-small);
+  min-width: 7.5em;
+}
+
+.sg-bar {
+  display: block;
+  height: 1rem;
+  background: var(--brand-primary);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.sg-label {
+  font-size: var(--type-size-small);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.sg-border-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-component);
+}
+
+.sg-border-sample {
+  width: 130px;
+  height: 90px;
+  background: var(--bg-surface);
+  border: var(--size-border-pixel) solid var(--border-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.sg-border-sample code {
+  font-size: var(--type-size-small);
+}
+
+.sg-border-sample span {
+  font-size: var(--type-size-small);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.sg-motion-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-component);
+}
+
+.sg-motion-sample {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-inline);
+}
+
+.sg-motion-sample code {
+  font-size: var(--type-size-small);
+}
+
+.sg-motion-bar {
+  height: 1.5rem;
+  width: 100%;
+  background: var(--brand-primary);
+  border-radius: var(--radius-sm);
+}
+
+.sg-motion-fast {
+  transition: width var(--transition-fast);
+}
+.sg-motion-normal {
+  transition: width var(--transition-normal);
+}
+.sg-motion-slow {
+  transition: width var(--transition-slow);
+}
+
+.sg-motion-sample:hover .sg-motion-bar,
+.sg-motion-row:hover .sg-motion-bar {
+  width: 25%;
+}
+
+.sg-motion-sample span {
+  font-size: var(--type-size-small);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
