@@ -44,6 +44,8 @@
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger {
   display: flex;
   align-items: center;
+  width: 44px;
+  min-width: 44px;
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn {

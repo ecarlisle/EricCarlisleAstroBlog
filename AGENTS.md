@@ -1,71 +1,59 @@
-# AGENTS.md
+# AstroBlog — Agent Instructions
 
-> Claude Code users: see [CLAUDE.md](./CLAUDE.md) for full guidance.
+**DO NOT modify this file.** It is a read-only runtime configuration.
 
-## Project
+## Stack & Tooling
 
-Astro 6 static blog — Markdown/MDX content collections, RSS, sitemap, local fonts.
+- **Astro 6** Static Site Generation, TypeScript 6, vanilla CSS with OKLCH custom properties, HTML5 semantics
+- **pnpm** — run `pnpm astro check` (typecheck) then `pnpm exec biome check .` (lint) before commits
+- **Path aliases**: `@styles/*`, `@components/*`, `@images/*` (configured in `astro.config.mjs` and `tsconfig.json`)
+- **No Tailwind** — pure CSS with design tokens in `src/styles/global.css`
+- **No test files exist** — vitest is installed but unused
+- **No CI workflows** — no `.github/workflows/` directory
 
-- Package manager: **pnpm** (required — do not use npm/yarn)
-- Node: `>=22.12.0`
+## Content Schema (`src/content.config.ts`)
 
-## Commands
+- `description`: max 165 chars
+- `pubDate`: `z.coerce.date()` accepts fuzzy locale dates
+- **Always format front-matter dates as ISO 8601 US Eastern timezone** (e.g. `2026-06-17T00:00:00-04:00`)
+- Blog posts are `.mdx` in `src/content/blog/`
+
+## Architecture Notes
+
+- **Single layout** (`src/layouts/BlogPost.astro`) is shared by articles, about, and style-guide pages. Gate article-only elements (reading progress bar, TOC, dates, pagination, tags) behind `{pageType === 'article' && ...}`.
+- **JSON-LD** lives in `src/components/SchemaOrg.astro` — one `<script type="application/ld+json">` block injected before `</head>`. Article schemas use `BlogPosting`.
+- **Pagefind** for full-text search, **Partytown** for GA4, **Expressive Code** for syntax highlighting
+- **Client-side tag filtering** via inline `<script is:inline>` on index + blog pages (not a separate `/tags/[tag]` route — that directory exists but is empty)
+- **Reading time** is computed server-side from body word count: `Math.ceil(wordCount / 200)`
+
+## Style Conventions
+
+- Biome config: single quotes, trailing commas (all), semicolons (always), LF line endings, 2-space indent
+- **Preserve double-trailing spaces in `.md` and `.mdx`** — formatters must not strip them (they create hard line breaks)
+- Never hard-code `px`/`rem` for metrics — use design tokens from `@styles/global.css`
+- Never target global HTML elements outside `<article>` blocks to avoid layout bleed
+- Image imports use `@images/` alias pointing to `src/assets/images/`
+- Author biography source of truth: `docs/author_profile.md`
+
+## Accessibility
+
+- No `--text-muted` on `--bg-surface-elevated` (WCAG AA contrast failure)
+- Minimum 44px touch targets (`--size-touch-target-min`)
+- `:focus-visible` with dashed outline tokens
+- Wrap custom animations in `@media (prefers-reduced-motion: reduce)`
+
+## Verified CLI Commands
 
 ```sh
-pnpm dev                  # dev server at localhost:4321
-pnpm build                # production build to ./dist/
-pnpm preview              # preview build output
-pnpm astro check          # type-check .astro files
-pnpm exec vitest          # run tests (none exist yet)
-pnpm exec biome check .   # lint
-pnpm exec biome format . --write  # format
-pnpm exec fallow dead-code --unused-files --unused-deps  # dead code analysis
+pnpm dev              # Dev server on localhost:4321
+pnpm build            # Build to ./dist/
+pnpm typecheck        # pnpm astro check
+pnpm lint             # pnpm exec biome check .
+pnpm format           # pnpm exec biome format . --write
+pnpm fallow:dead-code # npx fallow dead-code --unused-files --unused-deps
+pnpm fallow:audit     # npx fallow audit --changed-since main
 ```
 
-No `lint`/`test`/`format` scripts — use `pnpm exec` directly.
+## Stale Files
 
-## Key Files
-
-| Path | Purpose |
-|------|---------|
-| `astro.config.mjs` | Integrations (MDX, sitemap, Partytown), local font config |
-| `src/content.config.ts` | **Authoritative** blog frontmatter schema (Zod) |
-| `src/consts.ts` | Shared constants (title, social links, GA ID) |
-| `src/styles/global.css` | Design tokens + base styles — use tokens, not hardcoded values |
-| `src/styles/components.css` | Shared helpers (`.card`, `.tag`, `.callout`, `.grid`, `.meta`) |
-| `src/components/BaseHead.astro` | OG/Twitter tags, font loading, inline theme flash-guard |
-| `src/layouts/BlogPost.astro` | Wraps every post and the about page; gates article-only elements (date, reading time, progress bar, TOC, post-nav) behind `{pageType === 'article' && ...}` |
-| `src/pages/blog/[...slug].astro` | Renders individual posts; derives word count from `post.body` |
-
-## Path Aliases
-
-```
-@styles/*   → ./src/styles/*
-@images/*   → ./src/assets/images/*
-@components/* → ./src/components/*
-```
-
-## Architecture
-
-- **Routing**: file-based under `src/pages/`; `[...slug].astro` renders posts via `getStaticPaths()`
-- **Content**: `getCollection('blog')` from `src/content/blog/**/*.{md,mdx}`
-- **RSS/Sitemap**: auto-generated by integrations
-- **Word count**: derived at render time in `[...slug].astro:19-26` (strips frontmatter/HTML/code blocks)
-- **GA4**: offloaded to Partytown web worker; the same `<script type="text/partytown">` block is duplicated in every page — replicate on new pages
-
-## Non-Obvious Pitfalls
-
-1. **Docs are stale**: `docs/design_system_specification.md` uses `--step-1` / `--step-2` naming; `global.css` uses `--space-xs`/`--space-sm`. Trust `global.css`. The `docs/` dir also contains an outdated frontmatter snippet — use `src/content.config.ts`.
-2. **Social links are template defaults**: Header/Footer icons link to `m.webtoo.ls/@astro`, `twitter.com/astrodotbuild`, `github.com/withastro/astro` — placeholder accounts, not the author's.
-3. **No tests exist**: vitest is configured but `src/` has zero test files. Adding one requires creating a test.
-4. **Theme toggle exists**: `src/components/ThemeToggle.astro` is wired in `Header.astro`. No need to create one.
-5. **Site URL**: `astro.config.mjs` sets `site: 'https://ericcarlisle.com'` — don't change it; vitest uses the same value.
-6. **About page shares BlogPost layout**: `BlogPost.astro` conditionally renders article-only elements (reading progress bar, date/reading-time, back-link, tags, post-nav, TOC sidebar) behind `{pageType === 'article' && ...}` guards. About page passes `pageType="about"` to suppress these. If you add new article-only elements, gate them the same way.
-7. **Pagefind CSS needs high specificity**: Pagefind bundles its own CSS at `:root` specificity (0,1,0). To override, use `:root:root` (0,2,0) for theme vars and `:is(*,#\#):is(*,#\#):is(*,#\#) .my-class` for component overrides to beat `:where()` selectors.
-
-## Design Rules
-
-- Dark mode is the **default**; light mode via `html[data-theme="light"]`
-- Use CSS custom properties from `global.css` — no hardcoded colors, px/rem when tokens exist
-- Respect `@media (prefers-reduced-motion: reduce)` for animations
-- 44px minimum touch targets; `:focus-visible` on all interactive elements
+`.opencode/project-memory.md` references Tailwind CSS and Astro v5 — both incorrect. If used as project memory, replace with AGENTS.md content or delete.

@@ -32,6 +32,10 @@ const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
+const tagCounts: Record<string, number> = {};
+for (const t of allTags) {
+  tagCounts[t] = allPosts.filter((p) => p.data.tags?.includes(t)).length;
+}
 
 const tagPages: Record<string, number[]> = {};
 allPosts.forEach((post, i) => {
@@ -73,14 +77,14 @@ const paginationBase = page.currentPage === 2 ? '/blog' : `/blog/page/${page.cur
           <p class="feed-description">Page {page.currentPage} of {page.lastPage} ({page.total} total)</p>
         </header>
 
-        {allTags.length > 0 && (
-          <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
-            <a href={paginationBase} role="button">All</a>
-            {allTags.map((tag) => (
-              <a href={`${paginationBase}?tag=${tag}`} role="button">{tag}</a>
-            ))}
-          </div>
-        )}
+          {allTags.length > 0 && (
+            <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
+              <a href={paginationBase} role="button">All</a>
+              {allTags.map((tag) => (
+                <a href={`${paginationBase}?tag=${tag}`} role="button" data-count={tagCounts[tag]}>{tag}<sup>{tagCounts[tag]}</sup></a>
+              ))}
+            </div>
+          )}
 
         <p id="no-results" class="callout" style="display:none">
           No posts tagged "<strong></strong>" on this page.
@@ -130,6 +134,7 @@ const paginationBase = page.currentPage === 2 ? '/blog' : `/blog/page/${page.cur
       </section>
     </main>
     <Footer />
+    <pagefind-modal></pagefind-modal>
   </body>
 </html>
 

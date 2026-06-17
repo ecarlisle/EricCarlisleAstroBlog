@@ -36,12 +36,19 @@
   --bg-surface-elevated: oklch(0.2 0.025 280);
 
   --text-primary: oklch(0.95 0.008 280);
-  --text-secondary: oklch(0.75 0.015 280);
-  --text-muted: oklch(0.58 0.02 280);
+  --text-secondary: oklch(0.77 0.015 280);
+  --text-muted: oklch(0.72 0.02 280);
 
-  --brand-primary: oklch(0.7 0.18 70);
-  --brand-accent: oklch(0.65 0.2 30);
-  --brand-highlight: oklch(0.85 0.14 90);
+  /* Primary Amber */
+  --brand-primary: oklch(0.64 0.16 75);
+  /* Accent Coral */
+  --brand-accent: oklch(0.58 0.18 35);
+  /* Highlight Chartreuse */
+  --brand-highlight: oklch(0.81 0.15 110);
+  /* Anchor Slate */
+  --neutral-anchor: oklch(0.53 0.08 230);
+  /* Interaction Cerulean */
+  --accent-cold: oklch(0.69 0.15 250);
 
   --border-main: oklch(0.25 0.025 280);
   --border-muted: oklch(0.19 0.015 280);
@@ -83,7 +90,7 @@
 }
 
 /* ========================================================================
-   Light theme: explicit user toggle only.
+   Light theme: explicit user toggle.
    ======================================================================== */
 [data-theme="light"] {
   --bg-main: oklch(0.985 0.003 280);
@@ -94,13 +101,21 @@
   --text-secondary: oklch(0.25 0.02 280);
   --text-muted: oklch(0.38 0.025 280);
 
-  --brand-primary: oklch(0.48 0.2 70);
-  --brand-accent: oklch(0.42 0.22 30);
-  --brand-highlight: oklch(0.32 0.25 280);
+  /* Rich Amber */
+  --brand-primary: oklch(0.55 0.15 75);
+  /* Deep Coral */
+  --brand-accent: oklch(0.48 0.16 35);
+  /* High-Contrast Chartreuse */
+  --brand-highlight: oklch(0.45 0.14 110);
+  /* Dark Slate Anchor */
+  --neutral-anchor: oklch(0.35 0.06 230);
+  /* Deep Interactive Cerulean */
+  --accent-cold: oklch(0.52 0.14 250);
 
   --border-main: oklch(0.85 0.01 280);
   --border-muted: oklch(0.92 0.005 280);
 }
+
 
 html {
   box-sizing: border-box;
@@ -367,4 +382,14 @@ hr {
 
 .card-enter {
   animation: card-enter 0.4s ease-out both;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .card-enter {
+      animation: card-enter 0.6s ease-out both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 25%;
+    }
+  }
 }

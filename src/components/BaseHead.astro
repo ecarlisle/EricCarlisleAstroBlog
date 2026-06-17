@@ -51,8 +51,6 @@ const {
     var t = localStorage.getItem('theme');
     if (t === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
-    } else if (!t && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      document.documentElement.setAttribute('data-theme', 'light');
     }
   })();
 </script>
@@ -131,4 +129,3 @@ const {
   />
 )}
 <PagefindConfig />
-<pagefind-modal></pagefind-modal>

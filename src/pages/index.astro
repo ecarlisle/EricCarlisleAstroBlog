@@ -6,8 +6,8 @@ import Card from '@components/Card.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
 import {
-  AUTHOR_NAME,
   AUTHOR_JOB_TITLE,
+  AUTHOR_NAME,
   GA_MEASUREMENT_ID,
   SITE_DESCRIPTION,
   SITE_TITLE,
@@ -22,6 +22,12 @@ const allPosts = (await getCollection('blog')).sort(
 const posts = allPosts.slice(0, 6);
 const [featured] = allPosts;
 const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
+
+const tagCounts: Record<string, number> = {};
+for (const t of allTags) {
+  tagCounts[t] = allPosts.filter((p) => p.data.tags?.includes(t)).length;
+}
+
 const featuredWordCount =
   featured.body
     ?.replace(/^---[\s\S]*?---/, '')
@@ -111,14 +117,14 @@ allPosts.forEach((post, i) => {
           <p class="feed-description">Notes, ideas, experiments.</p>
         </header>
 
-        {allTags.length > 0 && (
-          <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
-            <a href="/" role="button">All</a>
-            {allTags.map((tag) => (
-              <a href={`/?tag=${tag}`} role="button">{tag}</a>
-            ))}
-          </div>
-        )}
+          {allTags.length > 0 && (
+            <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
+              <a href="/" role="button">All</a>
+              {allTags.map((tag) => (
+                <a href={`/?tag=${tag}`} role="button" data-count={tagCounts[tag]}>{tag}<sup>{tagCounts[tag]}</sup></a>
+              ))}
+            </div>
+          )}
 
         <p id="no-results" class="callout" style="display:none">
           No posts tagged "<strong></strong>" on the home page.
@@ -169,6 +175,7 @@ allPosts.forEach((post, i) => {
       </section>
     </main>
     <Footer />
+    <pagefind-modal></pagefind-modal>
   </body>
 </html>
 

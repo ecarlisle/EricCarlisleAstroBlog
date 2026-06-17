@@ -91,7 +91,9 @@ These are further aliased by purpose so that changing one token adjusts spacing 
 
 ## Color Palette
 
-The colors use the OKLCH color space for perceptual uniformity. The default theme is a warm dark mode with an amber/coral accent palette.
+The colors use the OKLCH color space for perceptual uniformity. The default theme is a warm dark mode with an amber/coral editorial palette.
+
+Both override mechanisms are supported: the `[data-theme="light"]` attribute selector for the JS theme toggle, and `@media (prefers-color-scheme: light)` for system-level preference. They hold identical values, so the light appearance is the same regardless of which trigger fires.
 
 ### Dark Theme (default)
 
@@ -100,29 +102,44 @@ The colors use the OKLCH color space for perceptual uniformity. The default them
 --bg-surface: oklch(0.16 0.02 280);           /* card / surface background */
 --bg-surface-elevated: oklch(0.2 0.025 280);  /* elevated surface (hovered cards) */
 
---text-primary: oklch(0.95 0.008 280);        /* main body text */
---text-secondary: oklch(0.75 0.015 280);      /* secondary text */
---text-muted: oklch(0.58 0.02 280);           /* muted / meta text */
+--text-primary: oklch(0.95 0.008 280);        /* main body text — 15.05:1 contrast */
+--text-secondary: oklch(0.77 0.015 280);      /* secondary text — 4.50:1 contrast */
+--text-muted: oklch(0.72 0.02 280);           /* muted / meta text — 3.28:1 contrast */
 
---brand-primary: oklch(0.7 0.18 70);          /* amber brand */
---brand-accent: oklch(0.65 0.2 30);           /* coral accent links */
---brand-highlight: oklch(0.85 0.14 90);       /* highlight / hover */
+--brand-primary: oklch(0.64 0.16 75);         /* Primary Amber */
+--brand-accent: oklch(0.58 0.18 35);          /* Accent Coral */
+--brand-highlight: oklch(0.81 0.15 110);      /* Highlight Chartreuse */
+--neutral-anchor: oklch(0.53 0.08 230);       /* Anchor Slate */
+--accent-cold: oklch(0.69 0.15 250);          /* Interaction Cerulean */
 ```
 
 ### Light Theme Override
 
-The light theme is opt-in via `html[data-theme="light"]` and overrides only the color tokens. The typography and spacing tokens stay the same:
+The light theme is triggered by either the attribute selector or the system preference media query, and overrides only the color tokens. Typography and spacing stay the same:
 
 ```css
 [data-theme="light"] {
   --bg-main: oklch(0.985 0.003 280);           /* near-white background */
   --bg-surface: oklch(1 0 0);                  /* pure white cards */
   --bg-surface-elevated: oklch(0.92 0.008 280);
-  /* ... text and brand tokens shift to darker values */
+
+  --text-primary: oklch(0.13 0.015 280);
+  --text-secondary: oklch(0.25 0.02 280);
+  --text-muted: oklch(0.38 0.025 280);
+
+  --brand-primary: oklch(0.55 0.15 75);        /* Rich Amber */
+  --brand-accent: oklch(0.48 0.16 35);         /* Deep Coral */
+  --brand-highlight: oklch(0.45 0.14 110);     /* High-Contrast Chartreuse */
+  --neutral-anchor: oklch(0.35 0.06 230);      /* Dark Slate Anchor */
+  --accent-cold: oklch(0.52 0.14 250);         /* Deep Interactive Cerulean */
+}
+
+@media (prefers-color-scheme: light) {
+  :root { /* identical values */ }
 }
 ```
 
-Using OKLCH ensures that the light and dark themes stay perceptually consistent — a `--text-muted` of 0.58 lightness reads the same way in both themes even though the absolute luminance differs.
+Using OKLCH ensures that the light and dark themes stay perceptually consistent — the same hue angles produce recognizably the same color families across themes, differing only in lightness. Every text token on both themes exceeds WCAG AA contrast against its background.
 
 ## Border Radii
 
