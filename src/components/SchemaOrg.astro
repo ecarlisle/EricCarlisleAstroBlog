@@ -1,11 +1,14 @@
 ---
 import {
   AUTHOR_AVATAR,
+  AUTHOR_BLUESKY,
   AUTHOR_GITHUB,
   AUTHOR_JOB_TITLE,
   AUTHOR_LINKEDIN,
+  AUTHOR_MASTODON,
   AUTHOR_NAME,
   AUTHOR_ORG,
+  AUTHOR_WEBSITE,
   SITE_TITLE,
 } from '../consts';
 
@@ -57,7 +60,7 @@ const personEntity = {
     '@id': `${siteUrl}/#personImage`,
     url: `${siteUrl}${AUTHOR_AVATAR}`,
   },
-  sameAs: [AUTHOR_LINKEDIN, AUTHOR_GITHUB],
+  sameAs: [AUTHOR_WEBSITE, AUTHOR_GITHUB, AUTHOR_LINKEDIN, AUTHOR_BLUESKY, AUTHOR_MASTODON],
   jobTitle: AUTHOR_JOB_TITLE,
   worksFor: {
     '@type': 'Organization',

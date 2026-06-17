@@ -422,6 +422,7 @@
   color: var(--brand-primary);
 }
 
+/* biome-ignore lint/style/noDescendingSpecificity: unrelated section from .toc nav a.active */
 .filter-bar a.active,
 .filter-bar button.active {
   background: var(--brand-primary);

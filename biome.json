@@ -16,7 +16,8 @@
         "useConst": "error"
       },
       "correctness": {
-        "noUnusedVariables": "off"
+        "noUnusedVariables": "off",
+        "noUnusedImports": "off"
       },
       "complexity": {
         "noImportantStyles": "off"

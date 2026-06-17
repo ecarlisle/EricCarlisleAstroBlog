@@ -43,3 +43,6 @@ lh-reports/
 
 .playwright-mcp/
 screenshots/
+
+.opencode/
+data/lighthouse/

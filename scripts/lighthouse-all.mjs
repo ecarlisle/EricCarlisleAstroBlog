@@ -31,7 +31,7 @@ function* walk(dir, prefix = '') {
 
 /** Map a file path like "about/index.html" to a URL path like "/about/". */
 function htmlPathToUrl(htmlPath) {
-  let url = '/' + htmlPath.replace(/\/?index\.html$/, '');
+  let url = `/${htmlPath.replace(/\/?index\.html$/, '')}`;
   if (!url.endsWith('/')) url += '/';
   return url;
 }

@@ -116,7 +116,6 @@
   --border-muted: oklch(0.92 0.005 280);
 }
 
-
 html {
   box-sizing: border-box;
   min-height: 100%;
@@ -261,13 +260,13 @@ a:hover {
   margin-inline: auto;
 }
 
+p {
+  margin-bottom: var(--space-component);
+}
+
 .prose p,
 .prose li {
   max-width: var(--layout-max-width);
-}
-
-p {
-  margin-bottom: var(--space-component);
 }
 
 .prose p {

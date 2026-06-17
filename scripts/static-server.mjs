@@ -2,8 +2,9 @@
  * Minimal static file server for Lighthouse audits.
  * Serves files from `dist/` with clean-URL support (/about/ → /about/index.html).
  */
-import http from 'node:http';
+
 import fs from 'node:fs';
+import http from 'node:http';
 import path from 'node:path';
 
 const ROOT = process.argv[2] || 'dist';
