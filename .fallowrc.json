@@ -6,7 +6,8 @@
     "lighthouserc.js",
     "formfiller.js",
     ".tools/**",
-    "scripts/static-server.mjs"
+    "scripts/static-server.mjs",
+    "scripts/lighthouse-all.mjs"
   ],
   "ignoreDependencies": ["@images/*", "@astrojs/mdx", "@astrojs/sitemap", "lighthouse"],
   "rules": {

@@ -190,6 +190,7 @@ const readingTimeMin = Math.ceil(wordCount / 200);
   const progressBar = document.getElementById('reading-progress') as HTMLDivElement;
 
   function updateProgress(): void {
+    if (!progressBar) return;
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
@@ -197,9 +198,11 @@ const readingTimeMin = Math.ceil(wordCount / 200);
     progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
   }
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress, { passive: true });
-  updateProgress();
+  if (progressBar) {
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+  }
 
   // Table of contents
   const article = document.querySelector('article');

@@ -480,7 +480,7 @@ html[data-theme="light"] .filter-bar sup {
   display: block;
   font-family: var(--font-mono);
   font-size: var(--type-size-small);
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-top: var(--space-xs);
 }
 

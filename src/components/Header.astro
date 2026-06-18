@@ -8,7 +8,7 @@ import ThemeToggle from './ThemeToggle.astro';
 <header id="site-header" class="site-header site-frame">
   <div class="header-inner">
     <nav aria-label="Main navigation">
-      <h2><a href="/">{SITE_TITLE}</a></h2>
+      <h2><a href="/">{SITE_TITLE.toLowerCase()}</a></h2>
       <div class="internal-links">
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
@@ -61,7 +61,7 @@ import ThemeToggle from './ThemeToggle.astro';
   nav {
     display: flex;
     align-items: center;
-    gap: var(--space-inline);
+    gap: var(--space-component);
   }
 
   h2 {
@@ -106,8 +106,26 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   @media (max-width: 720px) {
+    .internal-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 840px) {
     .social-links {
       display: none;
+    }
+
+    .nav-divider {
+      display: none;
+    }
+
+    .nav-controls {
+      gap: 2px;
+    }
+
+    .site-header {
+      border-bottom-color: var(--border-main);
     }
   }
 </style>

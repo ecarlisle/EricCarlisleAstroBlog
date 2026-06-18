@@ -1,0 +1,96 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - navigation "Main navigation" [ref=e5]:
+        - heading "eric carlisle" [level=2] [ref=e6]:
+          - link "eric carlisle" [ref=e7] [cursor=pointer]:
+            - /url: /
+        - generic [ref=e8]:
+          - link "Home" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - link "Blog" [ref=e10] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=e11] [cursor=pointer]:
+            - /url: /about
+      - generic [ref=e12]:
+        - button "search" [ref=e14] [cursor=pointer]
+        - button "Toggle light/dark theme" [ref=e16] [cursor=pointer]:
+          - img [ref=e96]
+        - generic [ref=e25]:
+          - link "Go to Eric Carlisle's GitHub profile (opens in new tab)" [ref=e26] [cursor=pointer]:
+            - /url: https://github.com/ecarlisle
+            - generic [ref=e27]: Go to Eric Carlisle's GitHub profile (opens in new tab)
+            - img [ref=e28]
+          - link "Go to Eric Carlisle's LinkedIn profile (opens in new tab)" [ref=e30] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/ericcarlisle/
+            - generic [ref=e31]: Go to Eric Carlisle's LinkedIn profile (opens in new tab)
+            - img [ref=e32]
+          - link "Go to Eric Carlisle's Bluesky profile (opens in new tab)" [ref=e34] [cursor=pointer]:
+            - /url: https://bsky.app/profile/ericcarlisle.bsky.social
+            - generic [ref=e35]: Go to Eric Carlisle's Bluesky profile (opens in new tab)
+            - img [ref=e36]
+          - link "Go to Eric Carlisle's Mastodon profile (opens in new tab)" [ref=e38] [cursor=pointer]:
+            - /url: https://fosstodon.org/@ericcarlisle
+            - generic [ref=e39]: Go to Eric Carlisle's Mastodon profile (opens in new tab)
+            - img [ref=e40]
+  - main [ref=e42]:
+    - article [ref=e43]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - heading "About Me" [level=1] [ref=e48]
+          - separator [ref=e49]
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: 15+
+            - generic [ref=e53]: Years Experience
+          - generic [ref=e54]:
+            - generic [ref=e55]: 40+
+            - generic [ref=e56]: Systems Shipped
+          - generic [ref=e57]:
+            - generic [ref=e58]: "99.9"
+            - generic [ref=e59]: SLA P99
+          - generic [ref=e60]:
+            - generic [ref=e61]: "12"
+            - generic [ref=e62]: Open Source
+        - paragraph [ref=e63]: I'm a principal full-stack engineer and UX architect with over a decade of experience building high-performance web applications. I specialize in front-end architecture, design systems, accessibility, and modern CSS — the kind of work that makes interfaces feel intentional rather than assembled.
+        - paragraph [ref=e64]: "I've spent my career straddling the line between engineering and design. That means I think in terms of systems, not pages: component libraries, design tokens, automated visual regression, custom Eleventy and Astro setups, performance budgets, and CI pipelines that catch regressions before they ship. I care about load times, color contrast ratios, keyboard flows, and what happens when a screen reader encounters a dynamically updated region."
+        - paragraph [ref=e65]:
+          - text: I'm also the principal behind
+          - strong [ref=e66]: Eric Carlisle Consulting
+          - text: ", where I partner with teams to improve their front-end infrastructure — auditing existing codebases, establishing design systems, introducing accessibility practices, and mentoring developers who want to level up their craft. Every engagement is different, but the goal is always the same: build experiences that are fast, durable, and usable by everyone."
+        - paragraph [ref=e67]: This blog is where I write about what I'm learning. You'll find deep dives into web performance and Core Web Vitals, practical guides on Astro, React, and CSS architecture, notes on accessibility patterns I've encountered in the wild, and reflections on systems design — both in software and in the teams that build it.
+        - paragraph [ref=e68]:
+          - text: When I'm not at a keyboard, I'm usually reading, hiking, or tinkering with something that has no deadline and no delivery date. If any of this resonates, I'd love to hear from you. The best way to reach me is through
+          - link "LinkedIn" [ref=e69] [cursor=pointer]:
+            - /url: https://linkedin.com/in/ericcarlisle
+          - text: or
+          - link "GitHub" [ref=e70] [cursor=pointer]:
+            - /url: https://github.com/ecarlisle
+          - text: .
+  - contentinfo [ref=e71]:
+    - generic [ref=e74]: "STATUS: PUBLISHING · 24 PAGES LIVE"
+    - text: © 2026 Eric Carlisle. All rights reserved.
+    - generic [ref=e75]:
+      - link "Go to Eric Carlisle's GitHub profile (opens in new tab)" [ref=e76] [cursor=pointer]:
+        - /url: https://github.com/ecarlisle
+        - generic [ref=e77]: Go to Eric Carlisle's GitHub profile (opens in new tab)
+        - img [ref=e78]
+      - link "Go to Eric Carlisle's LinkedIn profile (opens in new tab)" [ref=e80] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/ericcarlisle/
+        - generic [ref=e81]: Go to Eric Carlisle's LinkedIn profile (opens in new tab)
+        - img [ref=e82]
+      - link "Go to Eric Carlisle's Bluesky profile (opens in new tab)" [ref=e84] [cursor=pointer]:
+        - /url: https://bsky.app/profile/ericcarlisle.bsky.social
+        - generic [ref=e85]: Go to Eric Carlisle's Bluesky profile (opens in new tab)
+        - img [ref=e86]
+      - link "Go to Eric Carlisle's Mastodon profile (opens in new tab)" [ref=e88] [cursor=pointer]:
+        - /url: https://fosstodon.org/@ericcarlisle
+        - generic [ref=e89]: Go to Eric Carlisle's Mastodon profile (opens in new tab)
+        - img [ref=e90]
+  - generic:
+    - status [ref=e92]
+    - status [ref=e93]
+    - status [ref=e94]
+    - status [ref=e95]

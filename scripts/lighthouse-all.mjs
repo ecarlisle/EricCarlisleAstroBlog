@@ -18,9 +18,13 @@ const PORT = '4321';
 const BASE = `http://localhost:${PORT}`;
 
 /** Walk a directory recursively, yielding relative file paths. */
+function joinPath(prefix, name) {
+  return prefix ? `${prefix}/${name}` : name;
+}
+
 function* walk(dir, prefix = '') {
   for (const entry of readdirSync(join(dir, prefix), { withFileTypes: true })) {
-    const path = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const path = joinPath(prefix, entry.name);
     if (entry.isDirectory()) {
       yield* walk(dir, path);
     } else if (entry.name.endsWith('.html')) {
@@ -107,7 +111,7 @@ mkdirSync(REPORTS, { recursive: true });
 let passed = 0;
 let failed = 0;
 
-for (const { url, file } of pages) {
+for (const { url } of pages) {
   const slug = slugFromUrl(url);
   const reportPath = join(REPORTS, `${slug}.html`);
   const fullUrl = BASE + url;
