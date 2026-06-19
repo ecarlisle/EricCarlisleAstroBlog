@@ -8,6 +8,21 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
 
+const DEFAULT_STYLE =
+  'Editorial photography style, high contrast, minimalist composition, warm amber and charcoal tones, cinematic lighting, professional blog cover image, sharp focus, rich textures, sophisticated atmosphere';
+
+function resolvePostPath(input) {
+  const blogDir = resolve(repoRoot, 'src/content/blog');
+  const candidates = [resolve(input)];
+  if (!input.includes('/')) {
+    candidates.push(resolve(blogDir, input));
+    if (!input.endsWith('.mdx')) {
+      candidates.push(resolve(blogDir, input + '.mdx'));
+    }
+  }
+  return candidates.find(existsSync);
+}
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const opts = { width: 1200, height: 675 };
@@ -15,10 +30,13 @@ function parseArgs() {
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
       case '--post': case '-p':
-        opts.post = resolve(args[++i]);
+        opts.post = resolvePostPath(args[++i]);
         break;
       case '--prompt':
         opts.prompt = args[++i];
+        break;
+      case '--style':
+        opts.style = args[++i];
         break;
       case '--width':
         opts.width = parseInt(args[++i], 10);
@@ -34,13 +52,18 @@ function parseArgs() {
         break;
       default:
         if (!opts.post && !args[i].startsWith('--')) {
-          opts.post = resolve(args[i]);
+          opts.post = resolvePostPath(args[i]);
         }
     }
   }
 
   if (!opts.post) {
-    console.error('Usage: node scripts/generate-hero-image.mjs --post <mdx-file> [--prompt "..."] [--width] [--height] [--seed] [--dry-run]');
+    console.error('Usage: node scripts/generate-hero-image.mjs [--post] <slug> [options]');
+    console.error('  --prompt <text>     Subject override (default: derived from frontmatter)');
+    console.error('  --style <text>      Visual direction (default: editorial photography style)');
+    console.error('  --seed <n>          Random seed for reproducibility');
+    console.error('  --dry-run           Preview only');
+    console.error('  Defaults: 1200x675, post assumed under src/content/blog/');
     process.exit(1);
   }
 
@@ -68,20 +91,19 @@ function parseFrontmatter(content) {
   return { fields, raw, fullMatch: match[0], prefix: match[0].length };
 }
 
-function buildPrompt(fields, override) {
+function buildSubject(fields, override) {
   if (override) return override;
 
   const title = fields.title || 'Blog post';
   const description = fields.description || '';
 
-  let prompt = `Blog article about ${title}`;
+  let subject = `Blog article about ${title}`;
   if (description) {
     const desc = description.length > 120 ? description.slice(0, 120) + '...' : description;
-    prompt += `. ${desc}`;
+    subject += `. ${desc}`;
   }
-  prompt += '. Editorial photography style, high contrast, minimalist composition, warm amber and charcoal tones, cinematic lighting, professional blog cover image, sharp focus, rich textures, sophisticated atmosphere';
 
-  return prompt;
+  return subject;
 }
 
 function getSlug(postPath) {
@@ -110,7 +132,11 @@ async function main() {
   const content = readFileSync(opts.post, 'utf-8');
   const { fields } = parseFrontmatter(content);
   const slug = getSlug(opts.post);
-  const prompt = buildPrompt(fields, opts.prompt);
+
+  const subject = buildSubject(fields, opts.prompt);
+  const style = opts.style ?? DEFAULT_STYLE;
+  const prompt = style ? `${subject}. ${style}` : subject;
+
   const outputPath = resolve(repoRoot, 'src', 'assets', 'images', `${slug}-hero.jpg`);
   const relOutput = `src/assets/images/${slug}-hero.jpg`;
 
@@ -118,7 +144,8 @@ async function main() {
   console.log(`  Slug:    ${slug}`);
   console.log(`  Image:   ${relOutput}`);
   console.log(`  Size:    ${opts.width}x${opts.height}`);
-  console.log(`  Prompt:  ${prompt.slice(0, 100)}...`);
+  console.log(`  Subject: ${subject.slice(0, 100)}...`);
+  console.log(`  Style:   ${style.slice(0, 100)}...`);
   console.log();
 
   if (opts.dryRun) {
