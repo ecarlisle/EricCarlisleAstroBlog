@@ -116,7 +116,7 @@ function getSlug(postPath) {
 }
 
 function updateFrontmatter(content, slug) {
-  const heroLine = `heroImage: '@images/${slug}-hero.jpg'`;
+  const heroLine = `heroImage: '@images/${slug}-hero.webp'`;
 
   if (/^heroImage:/m.test(content)) {
     return content.replace(/^heroImage:.*$/m, heroLine);
@@ -141,8 +141,8 @@ async function main() {
   const style = opts.style ?? DEFAULT_STYLE;
   const prompt = style ? `${subject}. ${style}` : subject;
 
-  const outputPath = resolve(repoRoot, 'src', 'assets', 'images', `${slug}-hero.jpg`);
-  const relOutput = `src/assets/images/${slug}-hero.jpg`;
+  const outputPath = resolve(repoRoot, 'src', 'assets', 'images', `${slug}-hero.webp`);
+  const relOutput = `src/assets/images/${slug}-hero.webp`;
 
   console.log(`\n  Post:    ${opts.post}`);
   console.log(`  Slug:    ${slug}`);
