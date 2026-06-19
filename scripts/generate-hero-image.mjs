@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
 
 const DEFAULT_STYLE =
-  'New Yorker cartoon style, loose ink line art, gestural drawing, witty single-panel gag composition, subtle watercolor wash in warm amber coral and charcoal tones, full bleed no border, sophisticated humor, editorial illustration, clever visual metaphor';
+  'New Yorker cartoon style, loose ink line art, gestural drawing, witty single-panel gag composition, no text or letters, single full-bleed illustration no grid no cells no border, subtle watercolor wash in warm amber coral and charcoal tones, full bleed no border, sophisticated humor, editorial illustration, clever visual metaphor';
 
 function resolvePostPath(input) {
   const blogDir = resolve(repoRoot, 'src/content/blog');
@@ -167,6 +167,7 @@ async function main() {
     '--model', 'filipstrand/Z-Image-Turbo-mflux-4bit',
     '--low-ram',
     '--prompt', prompt,
+    '--negative-prompt', 'text, letters, speech bubble, caption, title, multiple panels, comic strip, grid layout, frame border, cells, watermark, signature, overlay, label',
     '--output', outputPath,
     '--width', String(opts.width),
     '--height', String(opts.height),
