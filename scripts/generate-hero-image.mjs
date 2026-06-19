@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
 
 const DEFAULT_STYLE =
-  'Editorial photography style, high contrast, minimalist composition, warm amber and charcoal tones, cinematic lighting, professional blog cover image, sharp focus, rich textures, sophisticated atmosphere';
+  'New Yorker cartoon style, loose ink line art, gestural drawing, witty single-panel gag composition, subtle watercolor wash in warm amber coral and charcoal tones, full bleed no border, sophisticated humor, editorial illustration, clever visual metaphor';
 
 function resolvePostPath(input) {
   const blogDir = resolve(repoRoot, 'src/content/blog');
