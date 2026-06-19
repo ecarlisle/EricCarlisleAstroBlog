@@ -25,7 +25,7 @@ function resolvePostPath(input) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { width: 1200, height: 675 };
+  const opts = { width: 1200, height: 675, steps: 9 };
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
@@ -44,6 +44,9 @@ function parseArgs() {
       case '--height':
         opts.height = parseInt(args[++i], 10);
         break;
+      case '--steps':
+        opts.steps = parseInt(args[++i], 10);
+        break;
       case '--seed':
         opts.seed = parseInt(args[++i], 10);
         break;
@@ -60,10 +63,11 @@ function parseArgs() {
   if (!opts.post) {
     console.error('Usage: node scripts/generate-hero-image.mjs [--post] <slug> [options]');
     console.error('  --prompt <text>     Subject override (default: derived from frontmatter)');
-    console.error('  --style <text>      Visual direction (default: editorial photography style)');
+    console.error('  --style <text>      Visual direction (default: New Yorker cartoon)');
+    console.error('  --steps <n>         Inference steps (default: 9)');
     console.error('  --seed <n>          Random seed for reproducibility');
     console.error('  --dry-run           Preview only');
-    console.error('  Defaults: 1200x675, post assumed under src/content/blog/');
+    console.error('  Model: filipstrand/Z-Image-Turbo-mflux-4bit, low-ram mode, 1200x675');
     process.exit(1);
   }
 
@@ -143,7 +147,7 @@ async function main() {
   console.log(`\n  Post:    ${opts.post}`);
   console.log(`  Slug:    ${slug}`);
   console.log(`  Image:   ${relOutput}`);
-  console.log(`  Size:    ${opts.width}x${opts.height}`);
+  console.log(`  Size:    ${opts.width}x${opts.height}, ${opts.steps} steps`);
   console.log(`  Subject: ${subject.slice(0, 100)}...`);
   console.log(`  Style:   ${style.slice(0, 100)}...`);
   console.log();
@@ -160,10 +164,13 @@ async function main() {
 
   const scriptPath = resolve(__dirname, 'mflux-generate-image');
   const mfluxArgs = [
+    '--model', 'filipstrand/Z-Image-Turbo-mflux-4bit',
+    '--low-ram',
     '--prompt', prompt,
     '--output', outputPath,
     '--width', String(opts.width),
     '--height', String(opts.height),
+    '--steps', String(opts.steps),
   ];
   if (opts.seed) {
     mfluxArgs.push('--seed', String(opts.seed));
