@@ -1,23 +1,24 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
-import { resolve, dirname, basename } from 'node:path';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '..');
 
+//const DEFAULT_STYLE =
+//  'Minimalist vector line art, crisp ink illustration style, high contrast, clean solid dark gray background, precise geometric line weights, modern tech editorial vignette';
 const DEFAULT_STYLE =
-  'New Yorker cartoon style, loose ink line art, gestural drawing, witty single-panel gag composition, no text or letters, single full-bleed illustration no grid no cells no border, subtle watercolor wash in warm amber coral and charcoal tones, full bleed no border, sophisticated humor, editorial illustration, clever visual metaphor';
-
+  'Tech Noir flat vector illustration, corporate minimalism, color palette of deep charcoal gray and stark white with amber orange accents, sharp hard shadows, isometric composition, clean vector execution.';
 function resolvePostPath(input) {
   const blogDir = resolve(repoRoot, 'src/content/blog');
   const candidates = [resolve(input)];
   if (!input.includes('/')) {
     candidates.push(resolve(blogDir, input));
     if (!input.endsWith('.mdx')) {
-      candidates.push(resolve(blogDir, input + '.mdx'));
+      candidates.push(resolve(blogDir, `${input}.mdx`));
     }
   }
   return candidates.find(existsSync);
@@ -25,11 +26,12 @@ function resolvePostPath(input) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { width: 1200, height: 675, steps: 9 };
+  const opts = { width: 1152, height: 640, steps: 9 };
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
-      case '--post': case '-p':
+      case '--post':
+      case '-p':
         opts.post = resolvePostPath(args[++i]);
         break;
       case '--prompt':
@@ -62,12 +64,12 @@ function parseArgs() {
 
   if (!opts.post) {
     console.error('Usage: node scripts/generate-hero-image.mjs [--post] <slug> [options]');
-    console.error('  --prompt <text>     Subject override (default: derived from frontmatter)');
+    console.error('  --prompt <text>     Subject override (default: generic scene; avoid literal text)');
     console.error('  --style <text>      Visual direction (default: New Yorker cartoon)');
     console.error('  --steps <n>         Inference steps (default: 9)');
     console.error('  --seed <n>          Random seed for reproducibility');
     console.error('  --dry-run           Preview only');
-    console.error('  Model: filipstrand/Z-Image-Turbo-mflux-4bit, low-ram mode, 1200x675');
+    console.error('  Model: flux_2_klein_4b_q6p.ckpt (draw-things-cli), 1152x640');
     process.exit(1);
   }
 
@@ -88,26 +90,19 @@ function parseFrontmatter(content) {
     const sep = line.search(/:\s*/);
     if (sep === -1) continue;
     const key = line.slice(0, sep).trim();
-    const val = line.slice(sep + 1).trim().replace(/^['"]|['"]$/g, '');
+    const val = line
+      .slice(sep + 1)
+      .trim()
+      .replace(/^['"]|['"]$/g, '');
     fields[key] = val;
   }
 
   return { fields, raw, fullMatch: match[0], prefix: match[0].length };
 }
 
-function buildSubject(fields, override) {
+function buildSubject(_fields, override) {
   if (override) return override;
-
-  const title = fields.title || 'Blog post';
-  const description = fields.description || '';
-
-  let subject = `Blog article about ${title}`;
-  if (description) {
-    const desc = description.length > 120 ? description.slice(0, 120) + '...' : description;
-    subject += `. ${desc}`;
-  }
-
-  return subject;
+  return 'A witty editorial illustration';
 }
 
 function getSlug(postPath) {
@@ -158,28 +153,31 @@ async function main() {
   }
 
   if (existsSync(outputPath)) {
-    console.log(`  Image already exists at ${relOutput}. Delete it first to regenerate.\n`);
-    process.exit(0);
+    console.log(`  Overwriting existing image at ${relOutput}.\n`);
   }
 
   const scriptPath = resolve(__dirname, 'mflux-generate-image');
-  const mfluxArgs = [
-    '--model', 'filipstrand/Z-Image-Turbo-mflux-4bit',
-    '--low-ram',
-    '--prompt', prompt,
-    '--negative-prompt', 'text, letters, speech bubble, caption, title, multiple panels, comic strip, grid layout, frame border, cells, watermark, signature, overlay, label',
-    '--output', outputPath,
-    '--width', String(opts.width),
-    '--height', String(opts.height),
-    '--steps', String(opts.steps),
+  const generateArgs = [
+    '--prompt',
+    prompt,
+    '--negative-prompt',
+    'text, letters, speech bubble, caption, title, multiple panels, comic strip, grid layout, frame border, cells, watermark, signature, overlay, label',
+    '--output',
+    outputPath,
+    '--width',
+    String(opts.width),
+    '--height',
+    String(opts.height),
+    '--steps',
+    String(opts.steps),
   ];
   if (opts.seed) {
-    mfluxArgs.push('--seed', String(opts.seed));
+    generateArgs.push('--seed', String(opts.seed));
   }
 
   console.log('  Generating image...');
   try {
-    execSync(`${scriptPath} ${mfluxArgs.map(a => `"${a}"`).join(' ')}`, {
+    execSync(`${scriptPath} ${generateArgs.map((a) => `"${a.replace(/"/g, '\\"')}"`).join(' ')}`, {
       stdio: 'inherit',
       timeout: 600000,
     });

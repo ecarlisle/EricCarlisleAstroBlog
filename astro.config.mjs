@@ -1,7 +1,6 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import compress from '@playform/compress';
 import { defineConfig } from 'astro/config';
@@ -35,11 +34,6 @@ export default defineConfig({
     pagefind(),
     sitemap(),
     compress(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-      },
-    }),
   ],
   vite: {
     resolve: {

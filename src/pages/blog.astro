@@ -34,10 +34,10 @@ allPosts.forEach((post, i) => {
     <BaseHead title={`Blog — ${SITE_TITLE}`} description="All blog posts" pageType="collection" />
 
     <script
-      type="text/partytown"
+      async
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
     ></script>
-    <script type="text/partytown">
+    <script define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);

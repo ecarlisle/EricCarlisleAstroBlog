@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Card from '@components/Card.astro';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import { AUTHOR_NAME, SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags ?? []))].sort();
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.params;
+const allPosts = (await getCollection('blog'))
+  .filter((p) => p.data.tags?.includes(tag ?? ''))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const title = `Tagged: ${tag}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${title} — ${SITE_TITLE}`} description={`Posts tagged with "${tag}"`} pageType="collection" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <section class="feed">
+        <header class="feed-header">
+          <h1>{title}</h1>
+          <p class="feed-description">{allPosts.length} post{allPosts.length !== 1 ? 's' : ''}</p>
+        </header>
+
+        <ul class="grid grid--cards">
+          {allPosts.map((post, i) => {
+            const wc =
+              post.body
+                ?.replace(/^---[\s\S]*?---/, '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/```[\s\S]*?```/g, '')
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean).length ?? 0;
+            return (
+              <Card
+                as="li"
+                title={post.data.title}
+                href={`/blog/${post.id}/`}
+                author={AUTHOR_NAME}
+                pubDate={post.data.pubDate}
+                tags={post.data.tags}
+                readingTime={wc}
+                index={i}
+              >
+                {post.data.heroImage && (
+                  <Image
+                    slot="image"
+                    src={post.data.heroImage}
+                    alt={post.data.coverAlt || post.data.title}
+                    width={720}
+                    height={360}
+                  />
+                )}
+                <p>{post.data.description}</p>
+              </Card>
+            );
+          })}
+        </ul>
+
+        {allPosts.length === 0 && (
+          <p class="callout">No posts found with tag "{tag}".</p>
+        )}
+      </section>
+    </main>
+    <Footer />
+    <pagefind-modal></pagefind-modal>
+  </body>
+</html>
+
+<style>
+  .feed-header {
+    margin-bottom: var(--space-component-lg);
+  }
+
+  .feed-description {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  ul.grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+</style>

@@ -49,7 +49,7 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
     {tags && tags.length > 0 && (
       <p class="meta" style="margin-top: var(--space-inline);">
         {tags.slice(0, 3).map((tag: string) => (
-          <a href={`/blog?tag=${tag}`} class="tag">{tag}</a>
+          <a href={`/tags/${tag}/`} class="tag">{tag}</a>
         ))}
       </p>
     )}

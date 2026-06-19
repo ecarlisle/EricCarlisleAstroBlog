@@ -1,3 +1,9 @@
+/* Reserve space to prevent CLS before Pagefind hydrates */
+pagefind-modal {
+  display: block;
+  min-height: 0;
+}
+
 /* ========================================================================
    Pagefind Component UI — map --pf-* vars to design tokens
    Uses :root:root to beat Pagefind's own :root and [data-pf-theme="dark"]
