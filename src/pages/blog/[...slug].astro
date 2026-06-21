@@ -1,5 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { computeTagData } from '@lib/blog-utils';
+import { fetchWebmentions } from '@lib/webmentions';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
@@ -39,8 +41,14 @@ const nextPost =
   currentIndex > 0
     ? { title: allPosts[currentIndex - 1].data.title, slug: allPosts[currentIndex - 1].id }
     : undefined;
+
+const tagData = computeTagData(allPosts);
+
+// Fetch webmentions for this post at build time
+const pageUrl = `${import.meta.env.SITE ?? 'https://ericcarlisle.com'}/blog/${post.id}/`;
+const webmentions = await fetchWebmentions(pageUrl);
 ---
 
-<BlogPost {...post.data} wordCount={wordCount} prevPost={prevPost} nextPost={nextPost}>
+<BlogPost {...post.data} wordCount={wordCount} prevPost={prevPost} nextPost={nextPost} tagData={tagData} webmentions={webmentions}>
 	<Content />
 </BlogPost>

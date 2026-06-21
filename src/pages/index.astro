@@ -1,10 +1,17 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import BaseHead from '@components/BaseHead.astro';
-import Card from '@components/Card.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import PostGrid from '@components/PostGrid.astro';
+import TagFilterBar from '@components/TagFilterBar.astro';
+import '@styles/feed.css';
+import {
+  computeTagData,
+  formatWordCount,
+  getPostWordCount,
+  getSortedPosts,
+  getTotalWordCount,
+} from '@lib/blog-utils';
 import {
   AUTHOR_JOB_TITLE,
   AUTHOR_NAME,
@@ -13,51 +20,15 @@ import {
   SITE_TITLE,
 } from '../consts';
 
-const PAGE_SIZE = 10;
-
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
-
+const allPosts = await getSortedPosts();
 const posts = allPosts.slice(0, 6);
 const [featured] = allPosts;
-const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags ?? []))].sort();
 
-const tagCounts: Record<string, number> = {};
-for (const t of allTags) {
-  tagCounts[t] = allPosts.filter((p) => p.data.tags?.includes(t)).length;
-}
+const tagData = computeTagData(allPosts);
+const totalWords = getTotalWordCount(allPosts);
+const totalWordsK = formatWordCount(totalWords);
 
-const featuredWordCount =
-  featured.body
-    ?.replace(/^---[\s\S]*?---/, '')
-    .replace(/<[^>]*>/g, '')
-    .replace(/```[\s\S]*?```/g, '')
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length ?? 0;
-
-const totalWords = allPosts.reduce((sum, p) => {
-  const count =
-    p.body
-      ?.replace(/^---[\s\S]*?---/, '')
-      .replace(/<[^>]*>/g, '')
-      .replace(/```[\s\S]*?```/g, '')
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length ?? 0;
-  return sum + count;
-}, 0);
-const totalWordsK = totalWords >= 1000 ? `${(totalWords / 1000).toFixed(0)}K` : `${totalWords}`;
-
-const tagPages: Record<string, number[]> = {};
-allPosts.forEach((post, i) => {
-  const page = Math.floor(i / PAGE_SIZE) + 1;
-  for (const tag of post.data.tags ?? []) {
-    if (!tagPages[tag]) tagPages[tag] = [];
-    if (!tagPages[tag].includes(page)) tagPages[tag].push(page);
-  }
-});
+const featuredWordCount = getPostWordCount(featured);
 ---
 
 <!doctype html>
@@ -65,11 +36,11 @@ allPosts.forEach((post, i) => {
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} pageType="homepage" />
 
-    <script
+    <script is:inline
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
     ></script>
-    <script define:vars={{ GA_MEASUREMENT_ID }}>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -95,7 +66,7 @@ allPosts.forEach((post, i) => {
           </div>
         </div>
 
-        <div class="featured-post">
+        <article class="featured-post">
           <p class="featured-post-label">Latest post</p>
           <h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2>
           <p>{featured.data.description}</p>
@@ -114,58 +85,14 @@ allPosts.forEach((post, i) => {
           <p class="feed-description">Notes, ideas, experiments.</p>
         </header>
 
-          {allTags.length > 0 && (
-            <div class="filter-bar" role="group" aria-label="Filter posts by tag" data-tag-pages={JSON.stringify(tagPages)}>
-              <a href="/" role="button">All</a>
-              {allTags.map((tag) => (
-                <a href={`/?tag=${tag}`} role="button" data-count={tagCounts[tag]}>{tag}<sup>{tagCounts[tag]}</sup></a>
-              ))}
-            </div>
-          )}
+        <TagFilterBar
+          tagData={tagData}
+        />
 
-        <p id="no-results" class="callout" style="display:none">
-          No posts tagged "<strong></strong>" on the home page.
-          <span>Visit <span class="page-links"></span> on the blog.</span>
-        </p>
-
-        <ul class="grid grid--cards" id="post-grid">
-          {posts.map((post, i) => {
-            const wc =
-              post.body
-                ?.replace(/^---[\s\S]*?---/, '')
-                .replace(/<[^>]*>/g, '')
-                .replace(/```[\s\S]*?```/g, '')
-                .trim()
-                .split(/\s+/)
-                .filter(Boolean).length ?? 0;
-            return (
-              <Card
-                as="li"
-                title={post.data.title}
-                href={`/blog/${post.id}/`}
-                author={AUTHOR_NAME}
-                pubDate={post.data.pubDate}
-                tags={post.data.tags}
-                readingTime={wc}
-                index={i}
-              >
-                {post.data.heroImage && (
-                  <Image
-                    slot="image"
-                    src={post.data.heroImage}
-                    alt={post.data.coverAlt || post.data.title}
-                    width={720}
-                    height={360}
-                  />
-                )}
-                <p>{post.data.description}</p>
-              </Card>
-            );
-          })}
-        </ul>
+        <PostGrid posts={posts} author={AUTHOR_NAME} headingLevel="h3" />
 
         {allPosts.length > 6 && (
-          <p style="text-align:center;margin-top:var(--space-section)">
+          <p class="view-all">
             <a href="/blog" class="button">View all posts</a>
           </p>
         )}
@@ -177,87 +104,8 @@ allPosts.forEach((post, i) => {
 </html>
 
 <style>
-  .feed-header {
-    margin-bottom: var(--space-component-lg);
-  }
-
-  .feed-description {
-    color: var(--text-secondary);
-    margin-bottom: 0;
-  }
-
-  ul.grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  #no-results {
+  .view-all {
     text-align: center;
-    margin-bottom: var(--space-component);
+    margin-top: var(--space-section);
   }
 </style>
-
-<script is:inline>
-  const filterBar = document.querySelector('.filter-bar');
-  if (filterBar) {
-    const tagPagesData = JSON.parse(filterBar.dataset.tagPages);
-    const links = filterBar.querySelectorAll('a');
-    const cards = document.querySelectorAll('#post-grid .card');
-    const noResults = document.getElementById('no-results');
-
-    function filterByTag(tag) {
-      links.forEach((a) => {
-        const href = a.getAttribute('href');
-        a.classList.toggle('active', tag === 'all' ? href === '/' : href.includes(`?tag=${tag}`));
-      });
-
-      let visibleCount = 0;
-      cards.forEach((card) => {
-        const cardTags = card.getAttribute('data-tags');
-        if (tag === 'all' || (cardTags && cardTags.includes(tag))) {
-          card.style.display = '';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (noResults) {
-        if (tag !== 'all' && visibleCount === 0) {
-          const nameEl = noResults.querySelector('strong');
-          if (nameEl) nameEl.textContent = tag;
-          const pageLinks = noResults.querySelector('.page-links');
-          if (pageLinks) {
-            const pages = tagPagesData[tag];
-            if (pages && pages.length > 0) {
-              pageLinks.innerHTML = pages
-                .map((p) => `<a href="/blog/page/${p}?tag=${tag}">page ${p}</a>`)
-                .join(', ');
-            } else {
-              pageLinks.innerHTML = 'the blog';
-            }
-          }
-          noResults.style.display = '';
-        } else {
-          noResults.style.display = 'none';
-        }
-      }
-    }
-
-    links.forEach((a) => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const url = new URL(a.href);
-        const tag = url.searchParams.get('tag') || 'all';
-        filterByTag(tag);
-        window.history.replaceState(null, '', a.href);
-      });
-    });
-
-    const urlTag = new URLSearchParams(window.location.search).get('tag');
-    if (urlTag && [...links].some((a) => a.href.includes(`?tag=${urlTag}`))) {
-      filterByTag(urlTag);
-    }
-  }
-</script>

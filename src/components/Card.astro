@@ -1,4 +1,6 @@
 ---
+type TagType = 'div' | 'li';
+
 const {
   as: Tag = 'div',
   href,
@@ -9,7 +11,19 @@ const {
   tags,
   readingTime,
   index = 0,
-} = Astro.props;
+  headingLevel: HeadingTag = 'h2',
+} = Astro.props as {
+  as?: TagType;
+  href?: string;
+  title?: string;
+  class?: string;
+  author?: string;
+  pubDate?: Date;
+  tags?: string[];
+  readingTime?: number;
+  index?: number;
+  headingLevel?: 'h2' | 'h3' | 'h4';
+};
 
 const hasImage = Astro.slots.has('image');
 const hasFooter = Astro.slots.has('footer');
@@ -32,11 +46,11 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
 
   <div class="prose">
     {title && href && (
-      <h2 class="card-title">
+      <HeadingTag class="card-title">
         <a href={href} class="card-link">{title}</a>
-      </h2>
+      </HeadingTag>
     )}
-    {title && !href && <h2 class="card-title">{title}</h2>}
+    {title && !href && <HeadingTag class="card-title">{title}</HeadingTag>}
 
     <slot />
 
@@ -47,7 +61,7 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
     </p>
 
     {tags && tags.length > 0 && (
-      <p class="meta" style="margin-top: var(--space-inline);">
+      <p class="meta meta-tags">
         {tags.slice(0, 3).map((tag: string) => (
           <a href={`/tags/${tag}/`} class="tag">{tag}</a>
         ))}
@@ -92,5 +106,9 @@ const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
   .tag {
     position: relative;
     z-index: 1;
+  }
+
+  .meta-tags {
+    margin-top: var(--space-inline);
   }
 </style>

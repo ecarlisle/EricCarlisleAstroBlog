@@ -22,6 +22,11 @@
 
   /* Line heights */
   --line-height-body: 1.65;
+  --line-height-h1: 1.3;
+  --line-height-h2: 1.35;
+  --line-height-h3: 1.45;
+  --line-height-h4: 1.55;
+  --line-height-h5: 1.6;
 
   /* Radii */
   --radius-sm: 4px;
@@ -208,30 +213,30 @@ h6 {
 
 h1 {
   font-size: var(--type-size-h1);
-  line-height: calc(var(--rhythm) * 3);
+  line-height: var(--line-height-h1);
   margin-bottom: calc(var(--rhythm) * 1);
 }
 h2 {
   font-size: var(--type-size-h2);
-  line-height: calc(var(--rhythm) * 2);
+  line-height: var(--line-height-h2);
   margin-top: calc(var(--rhythm) * 2);
   margin-bottom: calc(var(--rhythm) * 1);
 }
 h3 {
   font-size: var(--type-size-h3);
-  line-height: calc(var(--rhythm) * 2);
+  line-height: var(--line-height-h3);
   margin-top: calc(var(--rhythm) * 1.5);
   margin-bottom: calc(var(--rhythm) * 0.5);
 }
 h4 {
   font-size: var(--type-size-h4);
-  line-height: calc(var(--rhythm) * 1.5);
+  line-height: var(--line-height-h4);
   margin-top: calc(var(--rhythm) * 1.5);
   margin-bottom: calc(var(--rhythm) * 0.5);
 }
 h5 {
   font-size: var(--type-size-h5);
-  line-height: calc(var(--rhythm) * 1.25);
+  line-height: var(--line-height-h5);
   margin-top: calc(var(--rhythm) * 1);
   margin-bottom: calc(var(--rhythm) * 0.5);
 }
@@ -359,7 +364,7 @@ hr {
   left: 0;
   z-index: 101;
   height: 3px;
-  background: var(--brand-primary);
+  background: var(--brand-accent);
   width: 0%;
   pointer-events: none;
   transition: width 50ms linear;

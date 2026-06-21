@@ -6,6 +6,11 @@ import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
 import Header from '@components/Header.astro';
 import PaginationNav from '@components/PaginationNav.astro';
+import ShareStrip from '@components/ShareStrip.astro';
+import TagFilterBar from '@components/TagFilterBar.astro';
+import Webmentions from '@components/Webmentions.astro';
+import type { TagData } from '@lib/blog-utils';
+import type { Webmention } from '@lib/webmentions';
 import { GA_MEASUREMENT_ID } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
@@ -13,6 +18,8 @@ type Props = CollectionEntry<'blog'>['data'] & {
   wordCount?: number;
   prevPost?: { title: string; slug: string };
   nextPost?: { title: string; slug: string };
+  tagData?: TagData;
+  webmentions?: Webmention[];
 };
 
 const {
@@ -28,6 +35,8 @@ const {
   prevPost,
   nextPost,
   share,
+  tagData,
+  webmentions,
 } = Astro.props;
 
 const readingTimeMin = Math.ceil(wordCount / 200);
@@ -38,11 +47,11 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 	<head>
 		<BaseHead title={title} description={description} image={heroImage} pageType={pageType} pubDate={pubDate} updatedDate={updatedDate} tags={tags} wordCount={wordCount} />
 
-		<script
+		<script is:inline
 			async
 			src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
 		></script>
-		<script define:vars={{ GA_MEASUREMENT_ID }}>
+		<script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -82,9 +91,20 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 				grid-column: 2;
 			}
 
-			.toc {
+			.post-sidebar-inner {
 				position: sticky;
 				top: var(--space-component-lg);
+			}
+
+			.sidebar-share {
+				padding: var(--space-component) 0 var(--space-component);
+				margin-bottom: var(--space-component);
+				border-bottom: var(--size-border-pixel) solid var(--border-main);
+			}
+
+			.sidebar-share :global(.share) {
+				padding: 0;
+				justify-content: flex-start;
 			}
 		}
 
@@ -114,50 +134,11 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       width: 100%;
 		}
 
-    .share {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-component);
-      margin-top: var(--space-section);
-      padding: var(--space-component) 0;
+    .article-tags {
+      margin-top: var(--space-sm);
+      text-align: center;
     }
 
-    .share-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-size-small);
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .share-links {
-      display: flex;
-      gap: var(--space-inline);
-    }
-
-    .share-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--size-touch-target-min);
-      height: var(--size-touch-target-min);
-      color: var(--text-secondary);
-      border: var(--size-border-pixel) solid var(--border-muted);
-      border-radius: var(--radius-sm);
-      transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
-    }
-
-    .share-links a:hover {
-      color: var(--brand-accent);
-      border-color: var(--brand-accent);
-      background: var(--bg-surface);
-    }
-
-    .share-links a:focus-visible {
-      outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
-      outline-offset: var(--focus-outline-offset);
-    }
 	</style>
 	</head>
 
@@ -179,7 +160,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 					<div class="post-content">
 						<div class="prose">
 							<div class="title">
-                {pageType === 'article' && (
+{pageType !== 'contact' && (
                   <div class="date">
                     <FormattedDate date={pubDate} />
                     {readingTimeMin > 0 && <span class="reading-time">{readingTimeMin} min read</span>}
@@ -197,44 +178,8 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 						</div>
 
             {pageType === 'article' && tags && tags.length > 0 && (
-              <div class="prose" style="margin-top:var(--space-section)">
-                <p class="meta" style="justify-content:center">
-                  {tags.map((tag) => (
-                    <a href={`/tags/${tag}/`} class="tag">{tag}</a>
-                  ))}
-                </p>
-              </div>
-            )}
-
-            {pageType === 'article' && share?.enabled !== false && (
-              <div class="share">
-                <span class="share-label">Share</span>
-                <div class="share-links">
-                  <a
-                    href={`https://bsky.app/intent/compose?text=${encodeURIComponent(title)}%20${encodeURIComponent(pageUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Share on Bluesky"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 15.2c-1.6-1.4-4.2-3.9-5.6-4.8C4.8 9.5 3 9.8 3 11.2c0 .3.3 1.4 1.5 3.8C5.6 16.9 7 17.2 8 17c2 0 3.5-1.8 4-2.8.5 1 2 2.8 4 2.8 1 0 2.4-.3 3.5-2C20 12.6 20.3 11.5 20.3 11c0-1.4-1.8-1.7-3.4-.7-1.4.9-4 3.4-5.6 4.8l-.2.2Z"/></svg>
-                  </a>
-                  <a
-                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(pageUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Share on X / Twitter"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  </a>
-                  <a
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Share on LinkedIn"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
+              <div class="prose article-tags">
+                <TagFilterBar tags={tags} tagData={tagData} />
               </div>
             )}
 
@@ -244,15 +189,26 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
                 next={nextPost ? { url: `/blog/${nextPost.slug}/`, label: 'Next →', title: nextPost.title } : undefined}
               />
             )}
+
+            {pageType === 'article' && webmentions && (
+              <Webmentions mentions={webmentions} />
+            )}
 					</div>
 
           {pageType === 'article' && (
             <aside class="post-sidebar">
-              <div class="toc" id="table-of-contents">
-                <h3>On this page</h3>
-                <nav aria-label="Table of contents">
-                  <ul id="toc-list"></ul>
-                </nav>
+              <div class="post-sidebar-inner">
+                {share?.enabled !== false && (
+                  <div class="sidebar-share">
+                    <ShareStrip {title} {pageUrl} />
+                  </div>
+                )}
+                <div class="toc" id="table-of-contents">
+                  <h3>On this page</h3>
+                  <nav aria-label="Table of contents">
+                    <ul id="toc-list"></ul>
+                  </nav>
+                </div>
               </div>
             </aside>
           )}
