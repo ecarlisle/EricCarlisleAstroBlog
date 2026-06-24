@@ -8,5 +8,261 @@ import Layout from '../layouts/BlogPost.astro';
   pubDate={new Date('January 01 2025')}
   pageType="portfolio"
 >
-  <p>Coming soon.</p>
+  <h1>Selected Work</h1>
+
+  <p>
+    Much of my work has been delivered inside enterprise environments where
+    source code and internal systems cannot be publicly shared.
+  </p>
+
+  <p>
+    These case studies focus on architecture, product decisions, constraints,
+    and outcomes rather than implementation details.
+  </p>
+
+  <p>
+    Across healthcare, digital media, retail, and platform engineering, I build
+    systems that are scalable, maintainable, accessible, and useful.
+  </p>
+
+  <hr>
+
+  <h2>Scaling Multi-Tenant Frontend Systems</h2>
+
+  <p class="meta">
+    <strong>Principal Software Engineer</strong>
+    Arc XP &middot; 2018-2022
+  </p>
+
+  <p>
+    Architected reusable frontend patterns and platform standards across
+    enterprise publishing environments supporting many client implementations.
+  </p>
+
+  <p>
+    Focused on creating systems that balanced flexibility and governance while
+    improving delivery velocity and maintaining performance at scale.
+  </p>
+
+  <h3>Focus Areas</h3>
+
+  <div class="tags">
+    <span class="tag">React</span>
+    <span class="tag">Component Architecture</span>
+    <span class="tag">Design Systems</span>
+    <span class="tag">Performance</span>
+    <span class="tag">Migration</span>
+  </div>
+
+  <h3>Highlights</h3>
+
+  <ul>
+    <li>Designed reusable frontend architecture patterns</li>
+    <li>Supported large-scale platform migrations</li>
+    <li>Improved maintainability across multi-tenant environments</li>
+    <li>Bridged engineering and design system implementation</li>
+  </ul>
+
+  <a class="case-study-link" href="/portfolio/scaling-multi-tenant-frontends"
+    >Read Case Study &rarr;</a
+  >
+
+  <hr>
+
+  <h2>Reengineering Enterprise Commerce Performance</h2>
+
+  <p class="meta">
+    <strong>Senior UX Engineer</strong>
+    Under Armour
+  </p>
+
+  <p>
+    Led UI optimization efforts during a major site reengineering initiative
+    focused on improving customer experience, delivery quality, and frontend
+    performance.
+  </p>
+
+  <p>
+    This engagement emphasized measurable business outcomes through architecture
+    simplification, performance tuning, and experience improvements.
+  </p>
+
+  <h3>Focus Areas</h3>
+
+  <div class="tags">
+    <span class="tag">Performance</span>
+    <span class="tag">UX Engineering</span>
+    <span class="tag">Optimization</span>
+    <span class="tag">Accessibility</span>
+    <span class="tag">Delivery</span>
+  </div>
+
+  <h3>Highlights</h3>
+
+  <ul>
+    <li>Modernized frontend implementation approaches</li>
+    <li>Improved customer experience through targeted optimization</li>
+    <li>Balanced business priorities with technical constraints</li>
+    <li>Established scalable patterns for future development</li>
+  </ul>
+
+  <a
+    class="case-study-link"
+    href="/portfolio/reengineering-for-performance-at-enterprise-scale"
+    >Read Case Study &rarr;</a
+  >
+
+  <hr>
+
+  <h2>Building Integration Layers for Product Teams</h2>
+
+  <p class="meta">
+    <strong>Full Stack Engineer</strong>
+    Blue Cross NC &middot; 2024-2025
+  </p>
+
+  <p>
+    Designed an integration architecture that simplified complex service
+    interactions and enabled frontend teams to move faster with fewer
+    dependencies.
+  </p>
+
+  <p>
+    Focused on reducing system friction while improving consistency, resilience,
+    and delivery confidence.
+  </p>
+
+  <h3>Focus Areas</h3>
+
+  <div class="tags">
+    <span class="tag">GraphQL</span>
+    <span class="tag">Integration Architecture</span>
+    <span class="tag">Feature Flags</span>
+    <span class="tag">Vue</span>
+    <span class="tag">Web Components</span>
+  </div>
+
+  <h3>Highlights</h3>
+
+  <ul>
+    <li>Introduced service abstraction patterns</li>
+    <li>Reduced complexity across upstream integrations</li>
+    <li>Improved deployment confidence through controlled releases</li>
+    <li>Enabled cross-framework component strategies</li>
+  </ul>
+
+  <a class="case-study-link" href="/portfolio/building-an-integration-layer"
+    >Read Case Study &rarr;</a
+  >
+
+  <hr>
+
+  <h2>Designing Interactive Decision Experiences</h2>
+
+  <p class="meta">
+    <strong>Frontend Engineer / UX Architect</strong>
+    Aspida &middot; 2025-2026
+  </p>
+
+  <p>
+    Created an interactive decision experience that transformed complex
+    actuarial data into an approachable and engaging user journey.
+  </p>
+
+  <p>
+    This engagement combined architecture, interaction design, visualization,
+    and behavioral feedback systems.
+  </p>
+
+  <h3>Focus Areas</h3>
+
+  <div class="tags">
+    <span class="tag">React</span>
+    <span class="tag">State Machines</span>
+    <span class="tag">Data Visualization</span>
+    <span class="tag">Interaction Design</span>
+    <span class="tag">Animation</span>
+  </div>
+
+  <h3>Highlights</h3>
+
+  <ul>
+    <li>Designed non-linear interaction flows</li>
+    <li>Built resilient state management patterns</li>
+    <li>Integrated animation as product feedback</li>
+    <li>Balanced engagement with clarity and trust</li>
+  </ul>
+
+  <a class="case-study-link" href="/portfolio/designing-an-interactive-risk-model"
+    >Read Case Study &rarr;</a
+  >
+
+  <hr>
+
+  <h2>How I Work</h2>
+
+  <p>
+    The common thread across these engagements is not a specific framework or
+    language.
+  </p>
+
+  <p>
+    I focus on identifying constraints, simplifying complexity, aligning
+    stakeholders, and creating systems that help teams move faster while
+    improving outcomes for users.
+  </p>
+
+  <p>
+    If any of these case studies connect with the problems your team is solving,
+    I'd welcome a
+    <a href="/contact">conversation</a>.
+  </p>
 </Layout>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-inline);
+    margin-bottom: var(--space-component);
+  }
+
+  .tags .tag {
+    font-size: 0.875em;
+  }
+
+  .case-study-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-weight: 600;
+    color: var(--brand-primary);
+    text-decoration: none;
+    margin-top: var(--space-component);
+    transition: color var(--transition-fast);
+  }
+
+  .case-study-link:hover {
+    color: var(--brand-highlight);
+  }
+
+  ul {
+    padding-inline-start: 1.25em;
+    margin-bottom: 0;
+  }
+
+  ul li {
+    margin-bottom: var(--space-xs);
+  }
+
+  ul li::marker {
+    color: var(--brand-accent);
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--border-muted);
+    margin: var(--space-section) 0;
+  }
+</style>
