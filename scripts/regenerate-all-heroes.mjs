@@ -1,60 +1,60 @@
 #!/usr/bin/env node
 
 import { execSync } from 'node:child_process';
-import { resolve, dirname } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const prompts = {
   'accessible-forms':
-    'A person in a wheelchair navigating a maddening infinite maze of identical gray corridors, each ending at a tiny unreachable button, a faint hopeful glow far in the distance',
+    'A person carefully testing a door handle from a seated position, checking that it opens with a closed fist, while another person glides past through an open doorway they had not noticed before, natural daylight filling the hall',
   'astro-view-transitions':
-    'A stage magician mid-act where the rabbit is caught halfway through the hat and halfway through the table, the assistant half-visible, everything in a state of partial dissolve',
+    'A person flipping through a well-worn flipbook where the drawings between pages have begun reaching out to gently adjust the next frame before it lands, the sequence flowing smoother than paper should allow',
   'building-component-library':
-    'An architect slumped at a desk strewn with mismatched broken toy blocks, a single elegant tower standing amid the wreckage, a coffee mug with a crack',
+    'Someone standing in front of a pegboard where every tool hangs on its own labeled hook in graduated sizes, except one drawer marked "miscellaneous" that refuses to close fully, a single screw on the floor nearby',
   'choosing-a-color-palette':
-    'A figure standing in a dim room where one wall glows cold sterile blue and the opposite wall glows warm amber, a bare bulb on a string flickering between them',
+    'A person in a paint aisle holding two warm beige swatches that are objectively the same color, while all the blue paint cans in their shopping cart lean against each other looking increasingly embarrassed',
   'core-web-vitals':
-    'A patient strapped to a chair with three monitors showing wildly jagged vital signs, a doctor in a white coat holding a tiny band-aid, looking hopeless',
+    'Someone tuning a vintage radio by lamplight, carefully adjusting three dials, static crackling between stations, a faint warm glow emerging as the signal comes into focus',
   'css-container-queries':
-    'A tiny cactus in a modest pot standing upright and smug while a giant overwatered fern in an oversized pot droops and wilts dramatically beside it, rulers on the wall behind',
+    'A gardener repotting plants into individual containers, each with its own small handwritten watering schedule taped to the side, an old garden hose labeled "viewport width" coiled in the corner gathering dust',
   'css-grid-layouts':
-    'A figure desperately cramming oversized mismatched furniture into a room where a perfect grid of perfectly-sized alcoves sits empty and unused against the far wall',
+    'A chessboard where pieces stand in perfect alignment, each square precisely sized, while off to the side a single knight sits on an open meadow looking back at the grid with mild regret',
   'design-token-workflows':
-    'Factory workers on a pristine assembly line handing identical small metal gears from one to the next, each holding their gear with a slightly different grip, a lone broken gear on the floor',
+    'A kitchen pantry where every jar wears the same clean label in the same typeface, arranged alphabetically from allspice to zaatar, while the cook has given up measuring and works from a single unlabeled jar held to the light',
   'design-tokens':
-    'A relaxed figure seated on a throne of small neat boxes while absolute chaos of scattered loose parts surrounds them just beyond the box perimeter',
+    'A reference library where every book spine bears its exact classification in neat hand-lettering, and a reading desk sits at the center of a perfect spiral of shelves, morning light falling across open pages',
   'error-monitoring':
-    'A person sitting calmly at a desk reading paperwork while the entire room around them burns, a single comically small fire extinguisher on the corner of the desk',
+    'Someone at a desk facing a single blinking amber light, watching it with calm attention, while behind them an enormous pile of identical unplugged blinking lights rises to the ceiling, dust settling on the stack',
   'first-post':
-    'A proud figure standing beside a clumsily hammered-together wooden structure with one slightly protruding plank, the rest of the frame crooked but standing',
+    'A person placing the first few books onto a very tall empty bookshelf, the upper shelves disappearing into soft fog, a sturdy stepladder labeled "drafts" still folded nearby',
   'image-optimization':
-    'A traveler at an airport struggling to jam an enormous bulging suitcase into a tiny overhead compartment while holding an identical folded miniature version of the same bag in the other hand',
+    'A person sitting cross-legged on the floor, having just compressed a giant fluffy comforter into a tiny vacuum-sealed bag, holding it up with quiet pride while an identical uncompressed comforter takes up the entire couch behind them',
   'markdown-style-guide':
-    'A librarian surrounded by towering stacks of books, every single book completely blank, a tiny index card pinched between fingers, a look of dawning horror',
+    'A typewriter whose keys are labeled with markup symbols, a sheet of paper curling from the roller showing cleanly formatted text that looks almost too perfectly arranged to be real',
   'modern-css-reset':
-    'A figure frantically mashing a giant red reset button while cables and plugs fly out of various devices around the room, a cat sitting unaffected in the corner',
+    'A person clearing out a cluttered garage workshop, placing old spray cans labeled "float left" and "clearfix" into a recycling bin, arranging a handful of streamlined essential tools neatly across a clean pegboard in morning light',
   'personal-knowledge-management':
-    'A figure submerged up to the chin in a sea of crumpled sticky notes and paper scraps, holding a single pristine blank page above the surface like a lifeline',
+    'A person standing at the center of a room lined with filing cabinets, holding one index card that reads "see cabinet 7, drawer B, folder 3", their expression quietly certain, knowing exactly where everything lives',
   'react-server-components':
-    'A chef in a pristine dining room sending plates of food through a service window, the kitchen entirely invisible behind a heavy curtain, diners looking confused',
+    'A kitchen pass-through window where a beautifully plated dish sits on the counter, but when someone reaches for it they find only a handwritten recipe card and a note reading "prepared when ordered"',
   'schema-org-microdata':
-    'A librarian carefully attaching tiny handwritten tags to books while above them an enormous complex spiderweb spans the ceiling with spiders working at each junction',
+    'Someone placing small museum labels next to everyday objects around their home — a coffee mug tagged "container: beverage", a window tagged "aperture: light" — fine invisible threads connecting each label upward into a soft glow',
   'second-post':
-    'A figure placing one potted plant inside a slightly larger potted plant, which goes inside yet another pot, an infinite regression of nested containers trailing off into the distance',
+    'A person standing at an easel holding a second drawing, noticeably more confident than the first one pinned on the wall behind them, a set of measuring calipers and color test swatches spread across the table nearby',
   'static-site-search':
-    'A person with a weak flashlight standing at the entrance of an enormous dark library with towering shelves vanishing into darkness, no card catalog or librarian in sight',
+    'Someone at a reading desk with three books open, each using a different system — sticky tabs, margin annotations, a hand-written index tucked into the back cover — comparing approaches with a thoughtful expression',
   'style-guide':
-    'A person standing in a walk-in closet where every single item is an identical gray garment on a hanger, holding one item with a slightly different shade, squinting',
+    'A room where every surface is the same quiet warm gray — walls, floor, furniture, objects — except for a single small bright coral note card placed on a desk, the only spot of color in the entire space',
   'third-post':
-    'A painter at an easel with only three squeezed-out tubes of paint staring at a vast perfect multicolored color wheel on the wall, one brush suspended in hesitation',
+    'A painter holding up three color test swatches in sequence: first a flat muddy gray, then a slightly warmer brown, then a soft radiant amber that catches the light, a quiet look of discovery on their face',
   'typescript-react-patterns':
-    'A figure in a workshop welding two completely different metal pipes together while holding a blueprint that has caught fire at one edge, unfazed',
+    'Someone assembling flat-pack furniture where every piece fits together exactly one way, no extra screws left over, the instructions so clear they barely need to look at them, just the quiet satisfaction of things lining up',
   'web-accessibility-auditing':
-    'A person peering through an enormous magnifying glass at a wheelchair ramp that leads directly to a door that is comically half the normal width',
+    'A person walking slowly through a building, running a hand along each wall, checking every doorway width, testing the weight of every door handle — not because something is broken, but because they want everyone to be able to pass through',
   'web-performance-budgets':
-    'A shopper at a grocery checkout where the conveyor belt overflows with items, holding a tiny coin purse with one visible coin, the cashier waiting expectantly',
+    'Someone at a grocery checkout carefully placing items from their cart back onto the conveyor belt, a small calculator in hand, the running total just under the line, each item they keep exactly what they need, nothing wasted',
 };
 
 const slugs = Object.keys(prompts);

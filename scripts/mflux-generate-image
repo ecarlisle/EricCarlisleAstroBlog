@@ -6,10 +6,12 @@ DRAW_THINGS="draw-things-cli"
 PROMPT=""
 NEGATIVE=""
 OUTPUT=""
-WIDTH=""
-HEIGHT=""
+WIDTH="1216"
+HEIGHT="640"
 STEPS=""
 SEED=""
+OG_WIDTH="1200"
+OG_HEIGHT="630"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -57,12 +59,26 @@ DT_ARGS=(
 echo "  draw-things-cli generate ..."
 "$DRAW_THINGS" generate "${DT_ARGS[@]}"
 
-if [[ "$GEN_OUTPUT" != "$OUTPUT" ]]; then
+# Crop to OG size (1200×630) using a center crop
+CROPPED="${GEN_OUTPUT%.png}-cropped.png"
+if ! command -v sips &>/dev/null; then
+  echo "  sips not found – skipping crop" >&2
+  CROPPED="$GEN_OUTPUT"
+else
+  echo "  Cropping to ${OG_WIDTH}x${OG_HEIGHT}..."
+  sips --cropToHeightWidth "$OG_HEIGHT" "$OG_WIDTH" "$GEN_OUTPUT" --out "$CROPPED" &>/dev/null
+fi
+
+if [[ "$CROPPED" != "$OUTPUT" ]]; then
   if command -v cwebp &>/dev/null; then
     echo "  Converting to WebP..."
-    cwebp -quiet -q 85 "$GEN_OUTPUT" -o "$OUTPUT"
-    rm "$GEN_OUTPUT"
+    cwebp -quiet -q 85 "$CROPPED" -o "$OUTPUT"
+    rm -f "$GEN_OUTPUT" "$CROPPED"
   else
-    echo "  cwebp not found, keeping PNG at $GEN_OUTPUT"
+    echo "  cwebp not found, keeping PNG at $CROPPED"
+    if [[ "$CROPPED" != "$GEN_OUTPUT" ]]; then
+      mv "$CROPPED" "${OUTPUT%.webp}.png"
+      rm -f "$GEN_OUTPUT"
+    fi
   fi
 fi

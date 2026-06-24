@@ -11,7 +11,7 @@ const repoRoot = resolve(__dirname, '..');
 //const DEFAULT_STYLE =
 //  'Minimalist vector line art, crisp ink illustration style, high contrast, clean solid dark gray background, precise geometric line weights, modern tech editorial vignette';
 const DEFAULT_STYLE =
-  'Tech Noir flat vector illustration, corporate minimalism, color palette of deep charcoal gray and stark white with amber orange accents, sharp hard shadows, isometric composition, clean vector execution.';
+  'Create an illustration with bold, sweeping lines and dynamic color gradients, evoking a modern, vibrant energy. Use a fluid, organic line style with no rigid grids, ensuring a full-bleed composition that harmonizes with a warm, dark palette of amber, coral, and chartreuse accents. Keep the mood playful yet sophisticated, with no borders and a smooth, immersive flow.';
 function resolvePostPath(input) {
   const blogDir = resolve(repoRoot, 'src/content/blog');
   const candidates = [resolve(input)];
@@ -26,7 +26,7 @@ function resolvePostPath(input) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { width: 1152, height: 640, steps: 9 };
+  const opts = { width: 1216, height: 640, steps: 9 };
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
@@ -64,12 +64,16 @@ function parseArgs() {
 
   if (!opts.post) {
     console.error('Usage: node scripts/generate-hero-image.mjs [--post] <slug> [options]');
-    console.error('  --prompt <text>     Subject override (default: generic scene; avoid literal text)');
+    console.error(
+      '  --prompt <text>     Subject override (default: generic scene; avoid literal text)',
+    );
     console.error('  --style <text>      Visual direction (default: New Yorker cartoon)');
     console.error('  --steps <n>         Inference steps (default: 9)');
     console.error('  --seed <n>          Random seed for reproducibility');
     console.error('  --dry-run           Preview only');
-    console.error('  Model: flux_2_klein_4b_q6p.ckpt (draw-things-cli), 1152x640');
+    console.error(
+      '  Model: flux_2_klein_4b_q6p.ckpt (draw-things-cli), 1216x640 → cropped to 1200x630',
+    );
     process.exit(1);
   }
 
