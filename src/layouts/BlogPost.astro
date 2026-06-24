@@ -13,8 +13,9 @@ import type { TagData } from '@lib/blog-utils';
 import type { Webmention } from '@lib/webmentions';
 import { GA_MEASUREMENT_ID } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'] & {
+type Props = Omit<CollectionEntry<'blog'>['data'], 'pubDate'> & {
   pageType?: 'article' | 'about' | 'contact' | 'portfolio';
+  pubDate?: Date;
   wordCount?: number;
   prevPost?: { title: string; slug: string };
   nextPost?: { title: string; slug: string };
@@ -160,7 +161,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 					<div class="post-content">
 						<div class="prose">
 							<div class="title">
-{pageType !== 'contact' && (
+{pageType === 'article' && pubDate && (
                   <div class="date">
                     <FormattedDate date={pubDate} />
                     {readingTimeMin > 0 && <span class="reading-time">{readingTimeMin} min read</span>}
