@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Card from '@components/Card.astro';
-import { getPostWordCount } from '@lib/blog-utils';
+import { getPostWordCount } from '@lib/word-count';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];

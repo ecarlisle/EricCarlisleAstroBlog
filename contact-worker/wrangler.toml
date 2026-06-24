@@ -1,0 +1,12 @@
+name = "ericcarlisle-contact"
+main = "src/index.ts"
+compatibility_date = "2025-06-01"
+
+[vars]
+# Public env vars (not secrets) can go here if needed
+
+[[env.development]]
+name = "ericcarlisle-contact-dev"
+
+[[env.production]]
+name = "ericcarlisle-contact"

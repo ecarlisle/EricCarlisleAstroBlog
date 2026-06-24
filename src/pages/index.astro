@@ -5,13 +5,8 @@ import Header from '@components/Header.astro';
 import PostGrid from '@components/PostGrid.astro';
 import TagFilterBar from '@components/TagFilterBar.astro';
 import '@styles/feed.css';
-import {
-  computeTagData,
-  formatWordCount,
-  getPostWordCount,
-  getSortedPosts,
-  getTotalWordCount,
-} from '@lib/blog-utils';
+import { computeTagData, getSortedPosts } from '@lib/blog-utils';
+import { formatWordCount, getPostWordCount, getTotalWordCount } from '@lib/word-count';
 import {
   AUTHOR_JOB_TITLE,
   AUTHOR_NAME,
@@ -76,7 +71,7 @@ const featuredWordCount = getPostWordCount(featured);
             </time>
             <span class="reading-time">{Math.ceil(featuredWordCount / 200)} min read</span>
           </p>
-        </div>
+        </article>
       </section>
 
       <section class="feed">

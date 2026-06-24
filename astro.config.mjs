@@ -41,6 +41,7 @@ export default defineConfig({
         '@styles': '/src/styles',
         '@images': '/src/assets/images',
         '@components': '/src/components',
+        '@lib': '/src/lib',
       },
     },
   },

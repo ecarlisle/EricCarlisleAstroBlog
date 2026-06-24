@@ -77,7 +77,8 @@ pagefind-modal {
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:focus-visible {
-  outline: none;
+  outline: var(--size-border-pixel) dashed var(--brand-accent);
+  outline-offset: 3px;
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-icon {

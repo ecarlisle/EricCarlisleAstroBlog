@@ -490,26 +490,6 @@ html[data-theme="light"] .filter-bar sup {
   }
 }
 
-.site-status {
-  font-family: var(--font-mono);
-  font-size: var(--type-size-small);
-  color: var(--text-muted);
-  margin-top: var(--space-component);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-inline);
-}
-
-.site-status-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--brand-primary);
-  animation: status-pulse 2s ease-in-out infinite;
-}
-
 @keyframes status-pulse {
   0%,
   100% {

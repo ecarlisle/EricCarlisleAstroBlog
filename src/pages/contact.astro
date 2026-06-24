@@ -62,7 +62,7 @@ const sent = Astro.url.searchParams.get('sent') === '1';
 
             try {
               const formData = new FormData(form);
-              const resp = await fetch('/api/contact', {
+              const resp = await fetch(import.meta.env.PUBLIC_CONTACT_API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.fromEntries(formData)),

@@ -10,11 +10,11 @@ import { GA_MEASUREMENT_ID, SITE_TITLE } from '../consts';
   <head>
     <BaseHead title={`404 — ${SITE_TITLE}`} description="Page not found." pageType="collection" robots="noindex" />
 
-    <script
+    <script is:inline
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
     ></script>
-    <script define:vars={{ GA_MEASUREMENT_ID }}>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
