@@ -9,7 +9,6 @@ import {
   AUTHOR_NAME,
   AUTHOR_ORG,
   AUTHOR_WEBSITE,
-  SITE_TITLE,
 } from '../consts';
 
 type PostItem = {
@@ -103,7 +102,7 @@ switch (type) {
         '@type': 'BreadcrumbList',
         '@id': `${pageUrl}/#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
           { '@type': 'ListItem', position: 2, name: 'Tags', item: `${siteUrl}/tags` },
           { '@type': 'ListItem', position: 3, name: tagName, item: url },
         ],
@@ -113,7 +112,7 @@ switch (type) {
         '@type': 'BreadcrumbList',
         '@id': `${pageUrl}/#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
           { '@type': 'ListItem', position: 2, name: 'Tags', item: `${siteUrl}/tags` },
         ],
       };
@@ -122,7 +121,7 @@ switch (type) {
         '@type': 'BreadcrumbList',
         '@id': `${pageUrl}/#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
           { '@type': 'ListItem', position: 2, name: 'Blog', item: url },
         ],
       };
@@ -150,7 +149,7 @@ switch (type) {
       '@type': 'BreadcrumbList',
       '@id': `${pageUrl}/#breadcrumb`,
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
         { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
         { '@type': 'ListItem', position: 3, name: title, item: url },
       ],
@@ -158,18 +157,9 @@ switch (type) {
 
     graphArray.push(
       {
-        '@type': 'WebPage',
-        '@id': `${pageUrl}/#webpage`,
-        url,
-        name: title,
-        description,
-        isPartOf: { '@id': `${siteUrl}/#website` },
-        mainEntity: { '@id': `${pageUrl}/#article` },
-      },
-      {
         '@type': 'BlogPosting',
         '@id': `${pageUrl}/#article`,
-        mainEntityOfPage: { '@id': `${pageUrl}/#webpage` },
+        mainEntityOfPage: url,
         headline: title,
         description,
         datePublished: pubDate ? pubDate.toISOString() : new Date().toISOString(),
@@ -177,17 +167,8 @@ switch (type) {
         ...(tags && tags.length > 0 && { articleSection: tags.join(', ') }),
         ...(wordCount && { wordCount }),
         ...(wordCount && { timeRequired: `PT${Math.ceil(wordCount / 200)}M` }),
-        author: {
-          '@type': 'Person',
-          name: AUTHOR_NAME,
-          url: siteUrl,
-          '@id': `${siteUrl}/#person`,
-        },
-        publisher: {
-          '@type': 'Person',
-          name: AUTHOR_NAME,
-          '@id': `${siteUrl}/#person`,
-        },
+        author: { '@id': `${siteUrl}/#person` },
+        publisher: { '@id': `${siteUrl}/#person` },
         image: {
           '@type': 'ImageObject',
           '@id': `${pageUrl}/#primaryimage`,
@@ -210,16 +191,7 @@ switch (type) {
       url,
       name: title,
       description,
-      isPartOf: { '@id': `${siteUrl}/#website` },
       mainEntity: { '@id': `${siteUrl}/#person` },
-    });
-    graphArray.push({
-      '@type': 'BreadcrumbList',
-      '@id': `${pageUrl}/#breadcrumb`,
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
-        { '@type': 'ListItem', position: 2, name: title, item: url },
-      ],
     });
     break;
 
@@ -230,20 +202,11 @@ switch (type) {
       url,
       name: title,
       description,
-      isPartOf: { '@id': `${siteUrl}/#website` },
       mainEntity: {
         '@type': 'CreativeWork',
         name: title,
         author: { '@id': `${siteUrl}/#person` },
       },
-    });
-    graphArray.push({
-      '@type': 'BreadcrumbList',
-      '@id': `${pageUrl}/#breadcrumb`,
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: SITE_TITLE, item: siteUrl },
-        { '@type': 'ListItem', position: 2, name: title, item: url },
-      ],
     });
     break;
 }

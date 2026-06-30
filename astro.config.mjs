@@ -1,6 +1,7 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
+import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import compress from '@playform/compress';
 import { defineConfig } from 'astro/config';
@@ -11,6 +12,11 @@ import pagefind from 'astro-pagefind';
 export default defineConfig({
   site: 'https://ericcarlisle.com',
   integrations: [
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
     expressiveCode({
       themes: ['dark-plus'],
       styleOverrides: {

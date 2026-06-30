@@ -8,7 +8,7 @@ This document serves as the authoritative source of truth for the author's ident
 * **Job Title**: Principal Full-Stack Engineer & UX Architect
 * **Organization**: Eric Carlisle Consulting
 * **Primary Domain**: https://ericcarlisle.com
-* **Avatar Image Asset**: https://ericcarlisle.com/images/eric-avatar.jpg
+* **Avatar Image Asset**: https://ericcarlisle.com/eric-carlisle.webp
 * **Author Schema ID**: `https://ericcarlisle.com/#person`
 
 ## Verified Social Channels

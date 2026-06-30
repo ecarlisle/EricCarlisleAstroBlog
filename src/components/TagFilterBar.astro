@@ -18,12 +18,9 @@ const hasTags = tags && tags.length > 0;
     role="group"
     aria-label="Filter posts by tag"
   >
-    <a href="/blog" role="button">All</a>
+    <a href="/blog">All</a>
     {tagData.allTags.map((tag) => (
-      <a
-        href={`/tags/${tag}`}
-        role="button"
-      >
+      <a href={`/tags/${tag}`}>
         {tag}
         <sup>{tagData.tagCounts[tag]}</sup>
       </a>
@@ -34,10 +31,7 @@ const hasTags = tags && tags.length > 0;
 {hasTags && (
   <div class="filter-bar">
     {tags.map((tag) => (
-      <a
-        href={`/tags/${tag}`}
-        role="button"
-      >
+      <a href={`/tags/${tag}`}>
         {tag}
         {tagData?.tagCounts[tag] != null && <sup>{tagData.tagCounts[tag]}</sup>}
       </a>

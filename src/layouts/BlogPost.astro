@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
 import BaseHead from '@components/BaseHead.astro';
 import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
@@ -11,7 +10,7 @@ import TagFilterBar from '@components/TagFilterBar.astro';
 import Webmentions from '@components/Webmentions.astro';
 import type { TagData } from '@lib/blog-utils';
 import type { Webmention } from '@lib/webmentions';
-import { GA_MEASUREMENT_ID } from '../consts';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
@@ -22,6 +21,10 @@ interface Props {
   heroImage?: ImageMetadata;
   coverAlt?: string;
   tags?: string[];
+  socialTitle?: string;
+  socialDescription?: string;
+  socialImage?: ImageMetadata;
+  twitterHandle?: string;
   share?: { enabled?: boolean; networks?: string[]; scheduledFor?: Date };
   wordCount?: number;
   prevPost?: { title: string; slug: string };
@@ -38,6 +41,10 @@ const {
   heroImage,
   coverAlt,
   tags,
+  socialTitle,
+  socialDescription,
+  socialImage,
+  twitterHandle,
   wordCount = 0,
   pageType = 'article',
   prevPost,
@@ -53,20 +60,19 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} pageType={pageType} pubDate={pubDate} updatedDate={updatedDate} tags={tags} wordCount={wordCount} />
-
-		<script is:inline
-			async
-			src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-		></script>
-		<script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-			gtag('config', GA_MEASUREMENT_ID);
-		</script>
+		<BaseHead
+      {title}
+      {description}
+      {socialTitle}
+      {socialDescription}
+      image={socialImage ?? heroImage}
+      {pageType}
+      {pubDate}
+      {updatedDate}
+      {tags}
+      {wordCount}
+      {twitterHandle}
+    />
 	<style>
 		.hero-image {
 			width: 100%;
@@ -146,7 +152,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       margin-top: var(--space-sm);
       text-align: center;
     }
-
 	</style>
 	</head>
 
@@ -162,13 +167,22 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       )}
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt={coverAlt || title} widths={[510, 765, 1020]} sizes="(min-width: 1200px) 1020px, (min-width: 720px) calc(100vw - 3.5rem), calc(100vw - 3rem)" />}
+					{heroImage && (
+            <Image
+              width={1020}
+              height={510}
+              src={heroImage}
+              alt={coverAlt || title}
+              widths={[510, 765, 1020]}
+              sizes="(min-width: 1200px) 1020px, (min-width: 720px) calc(100vw - 3.5rem), calc(100vw - 3rem)"
+            />
+          )}
 				</div>
 				<div class="post-layout">
 					<div class="post-content">
 						<div class="prose">
 							<div class="title">
-{pageType === 'article' && pubDate && (
+                {pageType === 'article' && pubDate && (
                   <div class="date">
                     <FormattedDate date={pubDate} />
                     {readingTimeMin > 0 && <span class="reading-time">{readingTimeMin} min read</span>}
@@ -229,7 +243,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 </html>
 
 <script>
-  // Reading progress bar
   const progressBar = document.getElementById('reading-progress') as HTMLDivElement;
 
   function updateProgress(): void {
@@ -247,7 +260,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
     updateProgress();
   }
 
-  // Table of contents
   const article = document.querySelector('article');
   const tocList = document.getElementById('toc-list');
   if (article && tocList) {
@@ -256,7 +268,11 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 
     headings.forEach((heading) => {
       if (!heading.id) {
-        heading.id = heading.textContent?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || '';
+        heading.id =
+          heading.textContent
+            ?.toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '') || '';
       }
       items.push({
         id: heading.id,
@@ -268,23 +284,22 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
     if (items.length > 0) {
       items.forEach((item) => {
         const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${item.id}`;
-        a.textContent = item.text;
+        const link = document.createElement('a');
+        link.href = `#${item.id}`;
+        link.textContent = item.text;
         if (item.level === 3) {
-          a.style.paddingLeft = 'var(--space-component)';
+          link.style.paddingLeft = 'var(--space-component)';
         }
-        li.appendChild(a);
+        li.appendChild(link);
         tocList.appendChild(li);
       });
 
-      // Highlight active TOC item on scroll
       const tocLinks = tocList.querySelectorAll('a');
       function updateActiveToc(): void {
         let currentId = '';
         items.forEach((item) => {
-          const el = document.getElementById(item.id);
-          if (el && el.getBoundingClientRect().top < 100) {
+          const element = document.getElementById(item.id);
+          if (element && element.getBoundingClientRect().top < 100) {
             currentId = item.id;
           }
         });

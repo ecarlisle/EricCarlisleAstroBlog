@@ -1,5 +1,5 @@
 ---
-type TagType = 'div' | 'li';
+type TagType = 'div' | 'article' | 'li';
 
 const {
   as: Tag = 'div',
@@ -37,7 +37,11 @@ const dateDisplay = pubDate?.toLocaleDateString('en-US', {
 const readingTimeMin = readingTime ? Math.ceil(readingTime / 200) : undefined;
 ---
 
-<Tag class:list={['card', className, 'card-enter']} data-tags={tags?.join(',')} style={`animation-delay: ${index * 0.08}s`}>
+<Tag
+  class:list={['card', className, 'card-enter']}
+  data-tags={tags?.join(',')}
+  style={`animation-delay: ${index * 0.08}s`}
+>
   {hasImage && (
     <div class="card-image">
       <slot name="image" />

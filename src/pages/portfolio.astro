@@ -5,11 +5,8 @@ import Layout from '../layouts/BlogPost.astro';
 <Layout
   title="Portfolio"
   description="Selected projects and work by Principal Full-Stack Engineer Eric Carlisle."
-  pubDate={new Date('January 01 2025')}
   pageType="portfolio"
 >
-  <h1>Selected Work</h1>
-
   <p>
     Much of my work has been delivered inside enterprise environments where
     source code and internal systems cannot be publicly shared.
@@ -63,10 +60,6 @@ import Layout from '../layouts/BlogPost.astro';
     <li>Bridged engineering and design system implementation</li>
   </ul>
 
-  <a class="case-study-link" href="/portfolio/scaling-multi-tenant-frontends"
-    >Read Case Study &rarr;</a
-  >
-
   <hr>
 
   <h2>Reengineering Enterprise Commerce Performance</h2>
@@ -105,12 +98,6 @@ import Layout from '../layouts/BlogPost.astro';
     <li>Balanced business priorities with technical constraints</li>
     <li>Established scalable patterns for future development</li>
   </ul>
-
-  <a
-    class="case-study-link"
-    href="/portfolio/reengineering-for-performance-at-enterprise-scale"
-    >Read Case Study &rarr;</a
-  >
 
   <hr>
 
@@ -151,10 +138,6 @@ import Layout from '../layouts/BlogPost.astro';
     <li>Enabled cross-framework component strategies</li>
   </ul>
 
-  <a class="case-study-link" href="/portfolio/building-an-integration-layer"
-    >Read Case Study &rarr;</a
-  >
-
   <hr>
 
   <h2>Designing Interactive Decision Experiences</h2>
@@ -193,10 +176,6 @@ import Layout from '../layouts/BlogPost.astro';
     <li>Balanced engagement with clarity and trust</li>
   </ul>
 
-  <a class="case-study-link" href="/portfolio/designing-an-interactive-risk-model"
-    >Read Case Study &rarr;</a
-  >
-
   <hr>
 
   <h2>How I Work</h2>
@@ -229,21 +208,6 @@ import Layout from '../layouts/BlogPost.astro';
 
   .tags .tag {
     font-size: 0.875em;
-  }
-
-  .case-study-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-weight: 600;
-    color: var(--brand-primary);
-    text-decoration: none;
-    margin-top: var(--space-component);
-    transition: color var(--transition-fast);
-  }
-
-  .case-study-link:hover {
-    color: var(--brand-highlight);
   }
 
   ul {

@@ -7,6 +7,28 @@ interface Props {
 
 const { mentions } = Astro.props;
 
+function safeHttpUrl(value?: string): string | undefined {
+  if (!value) return undefined;
+
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function toPlainText(content?: Webmention['content']): string {
+  if (content?.text) return content.text;
+
+  return (
+    content?.html
+      ?.replace(/<[^>]*>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim() ?? ''
+  );
+}
+
 const replies = mentions.filter(
   (m) => m['wm-property'] === 'in-reply-to' || m['wm-property'] === 'mention-of',
 );
@@ -23,14 +45,14 @@ if (mentions.length === 0) return;
     <div class="wm-reactions">
       {reposts.map((m) => (
         <a
-          href={m.author?.url || m.url}
+          href={safeHttpUrl(m.author?.url || m.url)}
           target="_blank"
           rel="noopener noreferrer"
           class="wm-avatar"
           title={m.author?.name ? `Reposted by ${m.author.name}` : 'Repost'}
         >
-          {m.author?.photo
-            ? <img src={m.author.photo} alt="" width="28" height="28" loading="lazy" />
+          {safeHttpUrl(m.author?.photo)
+            ? <img src={safeHttpUrl(m.author?.photo)} alt="" width="28" height="28" loading="lazy" />
             : <span class="wm-avatar-fallback">R</span>}
         </a>
       ))}
@@ -42,14 +64,14 @@ if (mentions.length === 0) return;
     <div class="wm-reactions">
       {likes.map((m) => (
         <a
-          href={m.author?.url || m.url}
+          href={safeHttpUrl(m.author?.url || m.url)}
           target="_blank"
           rel="noopener noreferrer"
           class="wm-avatar"
           title={m.author?.name ? `Liked by ${m.author.name}` : 'Like'}
         >
-          {m.author?.photo
-            ? <img src={m.author.photo} alt="" width="28" height="28" loading="lazy" />
+          {safeHttpUrl(m.author?.photo)
+            ? <img src={safeHttpUrl(m.author?.photo)} alt="" width="28" height="28" loading="lazy" />
             : <span class="wm-avatar-fallback">L</span>}
         </a>
       ))}
@@ -59,9 +81,9 @@ if (mentions.length === 0) return;
 
   {replies.map((m) => {
     const authorName = m.author?.name || 'Anonymous';
-    const authorPhoto = m.author?.photo;
-    const authorUrl = m.author?.url || m.url;
-    const contentHtml = m.content?.html || m.content?.text || '';
+    const authorPhoto = safeHttpUrl(m.author?.photo);
+    const authorUrl = safeHttpUrl(m.author?.url || m.url);
+    const contentText = toPlainText(m.content);
 
     return (
       <article class="wm-reply">
@@ -73,7 +95,7 @@ if (mentions.length === 0) return;
             {authorName}
           </a>
         </div>
-        {contentHtml && <div class="wm-reply-content" set:html={contentHtml} />}
+        {contentText && <p class="wm-reply-content">{contentText}</p>}
       </article>
     );
   })}
@@ -178,11 +200,7 @@ if (mentions.length === 0) return;
     color: var(--text-primary);
   }
 
-  .wm-reply-content p {
+  .wm-reply-content {
     margin: 0;
-  }
-
-  .wm-reply-content p + p {
-    margin-top: var(--space-sm);
   }
 </style>

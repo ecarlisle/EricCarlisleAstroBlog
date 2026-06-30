@@ -57,6 +57,7 @@
 
   --border-main: oklch(0.25 0.025 280);
   --border-muted: oklch(0.19 0.015 280);
+  --border-control: oklch(0.52 0.04 280);
 
   /* Vertical rhythm: base unit = one line of body text */
   --rhythm: calc(var(--line-height-body) * 1rem);
@@ -119,6 +120,7 @@
 
   --border-main: oklch(0.85 0.01 280);
   --border-muted: oklch(0.92 0.005 280);
+  --border-control: oklch(0.62 0.03 280);
 }
 
 html {

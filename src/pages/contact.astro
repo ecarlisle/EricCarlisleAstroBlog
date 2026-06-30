@@ -4,7 +4,7 @@ import Layout from '../layouts/BlogPost.astro';
 const sent = Astro.url.searchParams.get('sent') === '1';
 ---
 
-<Layout pageType="contact" title="Contact" description="Get in touch with the blog author." pubDate={new Date()}>
+<Layout pageType="contact" title="Contact" description="Get in touch with the blog author.">
   {sent ? (
     <p class="contact-success">Your message has been sent! Thank you for reaching out.</p>
   ) : (
@@ -39,7 +39,7 @@ const sent = Astro.url.searchParams.get('sent') === '1';
 
         <button type="submit" class="button contact-submit">Send Message</button>
 
-        <p class="contact-error" id="contact-error" hidden></p>
+        <p class="contact-error" id="contact-error" role="alert" hidden></p>
       </form>
 
       <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -116,7 +116,7 @@ const sent = Astro.url.searchParams.get('sent') === '1';
     font-size: var(--type-size-body);
     color: var(--text-primary);
     background: var(--bg-surface);
-    border: var(--size-border-pixel) solid var(--border-main);
+    border: var(--size-border-pixel) solid var(--border-control);
     border-radius: var(--radius-sm);
     transition: border-color var(--transition-fast);
   }

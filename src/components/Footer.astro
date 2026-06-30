@@ -5,10 +5,10 @@ const today = new Date();
 ---
 
 <footer class="site-frame">
-	&copy; {today.getFullYear()} Eric Carlisle. All rights reserved.
-	<div class="social-links">
-		<SocialLinks />
-	</div>
+		&copy; {today.getFullYear()} Eric Carlisle. All rights reserved.
+		<div class="social-links">
+			<SocialLinks />
+		</div>
 </footer>
 <style>
 footer {
@@ -16,6 +16,7 @@ footer {
   color: var(--text-secondary);
 }
 
+/* social links layout only */
 .social-links {
   display: flex;
   justify-content: center;
@@ -25,12 +26,6 @@ footer {
 
 .social-links a {
   text-decoration: none;
-  color: var(--text-secondary);
-  transition: color var(--transition-fast);
+  color: inherit;
 }
-
-.social-links a:hover {
-  color: var(--brand-primary);
-}
-
 </style>

@@ -23,6 +23,6 @@ export function computeTagData(allPosts: CollectionEntry<'blog'>[]): TagData {
 
 export async function getSortedPosts(): Promise<CollectionEntry<'blog'>[]> {
   const { getCollection } = await import('astro:content');
-  const allPosts = await getCollection('blog');
+  const allPosts = await getCollection('blog', ({ data }) => data.draft !== true);
   return allPosts.toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }

@@ -1,106 +1,71 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
-import Footer from '@components/Footer.astro';
-import Header from '@components/Header.astro';
-import PostGrid from '@components/PostGrid.astro';
-import TagFilterBar from '@components/TagFilterBar.astro';
-import '@styles/feed.css';
-import { computeTagData, getSortedPosts } from '@lib/blog-utils';
-import { formatWordCount, getPostWordCount, getTotalWordCount } from '@lib/word-count';
-import {
-  AUTHOR_JOB_TITLE,
-  AUTHOR_NAME,
-  GA_MEASUREMENT_ID,
-  SITE_DESCRIPTION,
-  SITE_TITLE,
-} from '../consts';
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Card from '../components/Card.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getSortedPosts } from '../lib/blog-utils';
 
-const allPosts = await getSortedPosts();
-const posts = allPosts.slice(0, 6);
-const [featured] = allPosts;
-
-const tagData = computeTagData(allPosts);
-const totalWords = getTotalWordCount(allPosts);
-const totalWordsK = formatWordCount(totalWords);
-
-const featuredWordCount = getPostWordCount(featured);
+const posts = (await getSortedPosts()).slice(0, 6);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} pageType="homepage" />
-
-    <script is:inline
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-    ></script>
-    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', GA_MEASUREMENT_ID);
-    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     <main id="main-content" tabindex="-1">
-      <section class="hero-section">
-        <div class="hero-intro">
-          <div class="hero-avatar" aria-hidden="true">
-            <img src="/eric-carlisle.webp" alt="" width="120" height="120" />
-          </div>
-          <div class="hero-text">
-            <p class="hero-tagline">{AUTHOR_JOB_TITLE}</p>
-            <h1>{SITE_TITLE}</h1>
-            <p>{SITE_DESCRIPTION}</p>
-            <p class="hero-status">// {allPosts.length} POSTS · ~{totalWordsK} WORDS</p>
-          </div>
-        </div>
-
-        <article class="featured-post">
-          <p class="featured-post-label">Latest post</p>
-          <h2><a href={`/blog/${featured.id}/`}>{featured.data.title}</a></h2>
-          <p>{featured.data.description}</p>
-          <p class="meta">
-            <time datetime={featured.data.pubDate.toISOString()}>
-              {featured.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-            </time>
-            <span class="reading-time">{Math.ceil(featuredWordCount / 200)} min read</span>
-          </p>
-        </article>
-      </section>
-
       <section class="feed">
         <header class="feed-header">
-          <h2>All posts</h2>
+          <h1>Blog</h1>
           <p class="feed-description">Notes, ideas, experiments.</p>
         </header>
-
-        <TagFilterBar
-          tagData={tagData}
-        />
-
-        <PostGrid posts={posts} author={AUTHOR_NAME} headingLevel="h3" />
-
-        {allPosts.length > 6 && (
-          <p class="view-all">
-            <a href="/blog" class="button">View all posts</a>
-          </p>
-        )}
+        <ul class="grid grid--cards">
+          {posts.map((post) => (
+            <Card
+              as="li"
+              title={post.data.title}
+              href={`/blog/${post.id}/`}
+              author={AUTHOR_NAME}
+              pubDate={post.data.pubDate}
+            >
+              {post.data.heroImage && (
+                <Image
+                  slot="image"
+                  src={post.data.heroImage}
+                  alt={post.data.coverAlt || post.data.title}
+                  width={720}
+                  height={360}
+                />
+              )}
+              <p>{post.data.description}</p>
+            </Card>
+          ))}
+        </ul>
       </section>
     </main>
     <Footer />
-    <pagefind-modal></pagefind-modal>
   </body>
 </html>
 
 <style>
-  .view-all {
-    text-align: center;
-    margin-top: var(--space-section);
+  .feed-header {
+    margin-bottom: var(--space-component-lg);
+  }
+
+  .feed-description {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  /* Reset <ul> list chrome; grid layout is handled by .grid--cards */
+  ul.grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 </style>

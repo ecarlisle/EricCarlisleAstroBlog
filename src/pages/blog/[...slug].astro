@@ -1,11 +1,11 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import { computeTagData } from '@lib/blog-utils';
+import { type CollectionEntry, render } from 'astro:content';
+import { computeTagData, getSortedPosts } from '@lib/blog-utils';
 import { fetchWebmentions } from '@lib/webmentions';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getSortedPosts();
   return posts.map((post) => ({
     params: { slug: post.id },
     props: post,
@@ -28,9 +28,7 @@ const wordCount =
     .filter(Boolean).length ?? 0;
 
 // Find adjacent posts for end-of-post navigation
-const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const allPosts = await getSortedPosts();
 
 const currentIndex = allPosts.findIndex((p) => p.id === post.id);
 const prevPost =

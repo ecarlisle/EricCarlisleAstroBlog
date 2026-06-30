@@ -1,16 +1,18 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '@styles/global.css';
+import '../styles/global.css';
 import FallbackImage from '@images/og-image.jpg';
 import type { ImageMetadata } from 'astro';
 import PagefindConfig from 'astro-pagefind/components/PagefindConfig.astro';
 import { AUTHOR_GITHUB, SITE_TITLE, WEBMENTION_IO_DOMAIN } from '../consts';
+import GoogleAnalytics from './GoogleAnalytics.astro';
 import SchemaOrg from './SchemaOrg.astro';
 
 interface Props {
   title: string;
   description: string;
+  socialTitle?: string;
   socialDescription?: string;
   image?: ImageMetadata;
   pageType?: 'homepage' | 'about' | 'contact' | 'portfolio' | 'article' | 'collection';
@@ -30,6 +32,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
   description,
+  socialTitle,
   socialDescription,
   image = FallbackImage,
   pageType,
@@ -49,17 +52,15 @@ const {
 <script is:inline>
   (function () {
     var t = localStorage.getItem('theme');
-    if (t === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
+    if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
   })();
 </script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" href="/favicon.ico" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="webmention" href={`https://webmention.io/${WEBMENTION_IO_DOMAIN}/webmention`} />
@@ -71,6 +72,7 @@ const {
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<GoogleAnalytics />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -92,24 +94,27 @@ const {
   <meta property="article:modified_time" content={updatedDate.toISOString()} />
 )}
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={socialDescription ? socialDescription : description} />
+<meta property="og:title" content={socialTitle ?? title} />
+<meta property="og:description" content={socialDescription ?? description} />
 <meta property="og:image" content={new URL(image.src, Astro.url)} />
 <meta property="og:image:width" content={String(image.width)} />
 <meta property="og:image:height" content={String(image.height)} />
 {pageType === 'article' && (<meta property="article:author" content="Eric Carlisle" />)}
-{pageType === 'article' && tags && tags.length > 0 && (<meta property="article:section" content={tags[0]} />)}
+{pageType === 'article' && tags && tags.length > 0 && (
+  <meta property="article:section" content={tags[0]} />
+)}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={socialDescription ? socialDescription : description} />
+<meta property="twitter:title" content={socialTitle ?? title} />
+<meta property="twitter:description" content={socialDescription ?? description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 {twitterHandle && (<meta property="twitter:site" content={twitterHandle} />)}
-{twitterHandle && pageType === 'article' && (<meta property="twitter:creator" content={twitterHandle} />)}
+{twitterHandle && pageType === 'article' && (
+  <meta property="twitter:creator" content={twitterHandle} />
+)}
 
-<!-- Article tags -->
 {pageType === 'article' && tags && tags.map((tag) => (
   <meta property="article:tag" content={tag} />
 ))}
@@ -119,7 +124,7 @@ const {
   <SchemaOrg
     type={pageType}
     title={title}
-    description={socialDescription ? socialDescription : description}
+    description={socialDescription ?? description}
     url={canonicalURL.toString()}
     image={new URL(image.src, Astro.url).toString()}
     collectionType={collectionType}

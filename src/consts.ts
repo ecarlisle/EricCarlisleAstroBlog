@@ -15,7 +15,4 @@ export const AUTHOR_AVATAR = '/eric-carlisle.webp';
 export const AUTHOR_JOB_TITLE = 'Principal Full-Stack Engineer & UX Architect';
 export const AUTHOR_ORG = 'Eric Carlisle Consulting';
 export const GA_MEASUREMENT_ID = 'G-70E1BWCFJ3';
-
-// Webmention.io
 export const WEBMENTION_IO_DOMAIN = 'ericcarlisle.com';
-// Token goes in .env: WEBMENTION_IO_TOKEN
