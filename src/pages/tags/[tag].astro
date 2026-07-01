@@ -4,6 +4,7 @@ import BaseHead from '@components/BaseHead.astro';
 import Card from '@components/Card.astro';
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import '@styles/feed.css';
 import { getSortedPosts } from '@lib/blog-utils';
 import { AUTHOR_NAME, SITE_TITLE } from '../../consts';
 
@@ -32,9 +33,9 @@ const title = `Tagged: ${tag}`;
     <Header />
     <main id="main-content" tabindex="-1">
       <section class="feed">
-        <header class="feed-header">
+        <header class="collection-header">
           <h1>{title}</h1>
-          <p class="feed-description">{allPosts.length} post{allPosts.length !== 1 ? 's' : ''}</p>
+          <p class="collection-description">{allPosts.length} post{allPosts.length !== 1 ? 's' : ''}</p>
         </header>
 
         <ul class="grid grid--cards">
@@ -82,20 +83,3 @@ const title = `Tagged: ${tag}`;
     <pagefind-modal></pagefind-modal>
   </body>
 </html>
-
-<style>
-  .feed-header {
-    margin-bottom: var(--space-component-lg);
-  }
-
-  .feed-description {
-    color: var(--text-secondary);
-    margin-bottom: 0;
-  }
-
-  ul.grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-</style>

@@ -10,10 +10,23 @@
     border-color var(--transition-normal);
 }
 
+.card .card-title {
+  margin: 0;
+  font-size: var(--type-size-card-title);
+  line-height: 1.2;
+}
+
+.card .prose > p:not(.meta) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px oklch(0 0 0 / 0.15);
-  border-color: var(--brand-primary);
+  border-color: var(--color-action);
 }
 
 .card > * + * {
@@ -41,7 +54,7 @@
 
 .callout {
   padding: var(--space-component);
-  border-left: var(--size-border-thick) solid var(--brand-accent);
+  border-left: var(--size-border-thick) solid var(--color-link);
   background: var(--bg-surface);
   border-radius: var(--radius-md);
   color: var(--text-secondary);
@@ -67,7 +80,7 @@
 }
 
 .tag:hover {
-  background: var(--brand-primary);
+  background: var(--color-action);
   color: var(--bg-main);
 }
 
@@ -105,6 +118,23 @@
   grid-column: 1 / -1;
 }
 
+.grid--cards > :first-child .card-title {
+  font-size: var(--type-size-featured-card-title);
+}
+
+.collection-header {
+  margin-bottom: var(--space-component-lg);
+}
+
+.collection-header h1 {
+  margin-bottom: var(--space-inline);
+}
+
+.collection-description {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+
 @media (max-width: 720px) {
   .grid--cards {
     grid-template-columns: 1fr;
@@ -121,7 +151,7 @@
   justify-content: center;
   padding: var(--space-inline) var(--space-component);
   border-radius: var(--radius-md);
-  background: var(--brand-primary);
+  background: var(--color-action);
   color: var(--bg-surface);
   border: none;
   text-decoration: none;
@@ -133,7 +163,7 @@
 }
 
 .button:hover {
-  background: var(--brand-highlight);
+  background: var(--color-action-hover);
   transform: translateY(-1px);
 }
 
@@ -227,8 +257,8 @@
 
 .toc nav a:hover,
 .toc nav a.active {
-  color: var(--brand-primary);
-  border-left-color: var(--brand-primary);
+  color: var(--color-action);
+  border-left-color: var(--color-action);
 }
 
 .back-link {
@@ -243,7 +273,7 @@
 }
 
 .back-link:hover {
-  color: var(--brand-accent);
+  color: var(--color-link);
 }
 
 .reading-time {
@@ -276,7 +306,7 @@
 
 .stat-value {
   display: block;
-  color: var(--brand-primary);
+  color: var(--color-action);
   font-family: var(--font-mono);
   font-size: var(--type-size-h3);
   font-weight: 700;

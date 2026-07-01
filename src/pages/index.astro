@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import '@styles/feed.css';
 import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getSortedPosts } from '../lib/blog-utils';
 
@@ -19,10 +20,16 @@ const posts = (await getSortedPosts()).slice(0, 6);
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     <main id="main-content" tabindex="-1">
-      <section class="feed">
-        <header class="feed-header">
-          <h1>Blog</h1>
-          <p class="feed-description">Notes, ideas, experiments.</p>
+      <header class="home-intro">
+        <h1>Designing better systems for the web.</h1>
+        <p>
+          Writing on frontend architecture, design systems, accessibility, and performance by Eric Carlisle.
+        </p>
+      </header>
+      <section class="feed" aria-labelledby="latest-writing">
+        <header class="collection-header feed-heading">
+          <h2 id="latest-writing">Latest writing</h2>
+          <a href="/blog">Browse all articles <span aria-hidden="true">→</span></a>
         </header>
         <ul class="grid grid--cards">
           {posts.map((post) => (
@@ -32,6 +39,7 @@ const posts = (await getSortedPosts()).slice(0, 6);
               href={`/blog/${post.id}/`}
               author={AUTHOR_NAME}
               pubDate={post.data.pubDate}
+              headingLevel="h3"
             >
               {post.data.heroImage && (
                 <Image
@@ -53,19 +61,42 @@ const posts = (await getSortedPosts()).slice(0, 6);
 </html>
 
 <style>
-  .feed-header {
-    margin-bottom: var(--space-component-lg);
+  .home-intro {
+    max-width: 54rem;
+    margin-bottom: var(--space-section);
   }
 
-  .feed-description {
-    color: var(--text-secondary);
+  .home-intro h1 {
+    max-width: 15ch;
+  }
+
+  .home-intro p {
+    max-width: 62ch;
     margin-bottom: 0;
+    color: var(--text-secondary);
+    font-size: var(--type-size-large);
   }
 
-  /* Reset <ul> list chrome; grid layout is handled by .grid--cards */
-  ul.grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .feed-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-component);
+  }
+
+  .feed-heading h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .feed-heading a {
+    flex: none;
+  }
+
+  @media (max-width: 600px) {
+    .feed-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 </style>

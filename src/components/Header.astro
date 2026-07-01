@@ -8,7 +8,7 @@ import ThemeToggle from './ThemeToggle.astro';
 <header id="site-header" class="site-header site-frame">
   <nav aria-label="Main navigation">
     <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
+    <div class="internal-links" id="primary-navigation">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
@@ -16,6 +16,14 @@ import ThemeToggle from './ThemeToggle.astro';
       <HeaderLink href="/contact">Contact</HeaderLink>
     </div>
     <div class="nav-controls">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        Menu
+      </button>
       <ThemeToggle />
       <div class="social-links">
         <SocialLinks />
@@ -36,6 +44,7 @@ import ThemeToggle from './ThemeToggle.astro';
     border-bottom: 1px solid var(--border-muted);
     will-change: transform;
     transition: transform 0.3s ease-in-out;
+    padding-block: 0;
   }
 
   /* translateY(-100%) is self-measuring: always equals the exact rendered height. */
@@ -53,10 +62,17 @@ import ThemeToggle from './ThemeToggle.astro';
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 4.5rem;
+    max-width: var(--layout-max-width-wide);
+    margin-inline: auto;
+    position: relative;
   }
 
   h2 {
     margin: 0;
+    font-size: var(--type-size-h4);
+    line-height: 1.1;
+    white-space: nowrap;
   }
 
   h2 a {
@@ -72,7 +88,12 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   nav a.active {
-    border-bottom-color: var(--brand-accent);
+    border-bottom-color: var(--color-link);
+  }
+
+  .internal-links {
+    display: flex;
+    align-items: center;
   }
 
   .nav-controls {
@@ -86,9 +107,67 @@ import ThemeToggle from './ThemeToggle.astro';
     gap: var(--space-inline);
   }
 
-  @media (max-width: 720px) {
+  .menu-toggle {
+    display: none;
+    min-width: var(--size-touch-target-min);
+    min-height: var(--size-touch-target-min);
+    padding-inline: var(--space-inline);
+    border: 1px solid var(--border-main);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-primary);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1024px) {
     .social-links {
       display: none;
+    }
+  }
+
+  @media (max-width: 840px) {
+    nav {
+      min-height: 4rem;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-controls {
+      margin-left: auto;
+    }
+
+    .internal-links {
+      position: absolute;
+      top: 100%;
+      left: calc(-1 * var(--space-component));
+      right: calc(-1 * var(--space-component));
+      display: none;
+      padding: var(--space-inline) var(--space-component) var(--space-component);
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-main);
+      box-shadow: 0 12px 24px oklch(0 0 0 / 0.2);
+    }
+
+    .site-header[data-menu-open] .internal-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .internal-links :global(a) {
+      min-height: var(--size-touch-target-min);
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    h2 {
+      font-size: var(--type-size-h5);
     }
   }
 </style>
@@ -108,6 +187,33 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <script>
   const header = document.getElementById('site-header') as HTMLElement;
+  const menuToggle = header.querySelector('.menu-toggle') as HTMLButtonElement;
+  const menu = header.querySelector('.internal-links') as HTMLElement;
+
+  function setMenuOpen(open: boolean): void {
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.textContent = open ? 'Close' : 'Menu';
+    header.toggleAttribute('data-menu-open', open);
+  }
+
+  menuToggle.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  menu.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) setMenuOpen(false);
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuOpen(false);
+      menuToggle.focus();
+    }
+  });
+
+  window.matchMedia('(min-width: 841px)').addEventListener('change', (event) => {
+    if (event.matches) setMenuOpen(false);
+  });
 
   // --- Body offset calibration -----------------------------------------
   // Measure the actual rendered header height and publish it as a CSS custom
@@ -137,7 +243,7 @@ import ThemeToggle from './ThemeToggle.astro';
   function updateHeaderVisibility(): void {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY <= 0) {
+    if (header.hasAttribute('data-menu-open') || currentScrollY <= 0) {
       // Absolute page top: always show regardless of scroll direction.
       // Covers rubber-band over-scroll on iOS that can produce negative values.
       header.classList.remove('header--hidden');

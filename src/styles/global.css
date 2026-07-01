@@ -18,6 +18,10 @@
   --type-size-h3: clamp(1.375rem, calc(1.14vw + 1.15rem), 2rem); /* 22px -> 32px */
   --type-size-h4: clamp(1.125rem, calc(0.57vw + 1.07rem), 1.5rem); /* 18px -> 24px */
   --type-size-h5: clamp(1rem, calc(0.28vw + 0.94rem), 1.1875rem); /* 16px -> 19px */
+  --type-size-base: var(--type-size-body);
+  --type-size-large: clamp(1.125rem, calc(0.35vw + 1.05rem), 1.375rem);
+  --type-size-card-title: clamp(1.375rem, calc(0.7vw + 1.2rem), 2rem);
+  --type-size-featured-card-title: clamp(1.75rem, calc(1.25vw + 1.45rem), 2.75rem);
   --type-size-blockquote: 1.1em;
 
   /* Line heights */
@@ -59,8 +63,8 @@
   --border-muted: oklch(0.19 0.015 280);
   --border-control: oklch(0.52 0.04 280);
 
-  /* Vertical rhythm: base unit = one line of body text */
-  --rhythm: calc(var(--line-height-body) * 1rem);
+  /* Vertical rhythm follows the fluid body line box: 26.4px -> 33px. */
+  --rhythm: clamp(1.65rem, calc(0.75vw + 1.5rem), 2.0625rem);
 
   /* Spacing — clean multiples of the baseline rhythm */
   --space-xs: calc(var(--rhythm) * 0.5);
@@ -74,8 +78,21 @@
   --space-inline-strong: var(--space-sm);
   --space-component: var(--space-md);
   --space-component-lg: var(--space-lg);
-  --space-section: var(--space-lg);
-  --space-layout: var(--space-lg);
+  --space-section: calc(var(--rhythm) * 2.5);
+  --space-layout: calc(var(--rhythm) * 3);
+
+  /* Semantic color roles */
+  --color-link: var(--brand-accent);
+  --color-link-hover: var(--brand-highlight);
+  --color-action: var(--brand-primary);
+  --color-action-hover: var(--brand-highlight);
+  --color-focus: var(--brand-accent);
+  --color-success: var(--brand-highlight);
+
+  --focus-outline-width: var(--size-border-pixel);
+  --focus-outline-style: dashed;
+  --focus-outline-color: var(--color-focus);
+  --focus-outline-offset: 4px;
 
   /* Transition & motion tokens */
   --transition-fast: 0.15s ease-out;
@@ -182,13 +199,13 @@ body {
 
 main {
   max-width: var(--layout-max-width-wide);
-  margin: auto;
+  margin-inline: auto;
   padding: var(--space-layout) var(--space-component);
   flex: 1;
 }
 
 :focus-visible {
-  outline: var(--size-border-pixel) dashed var(--brand-accent);
+  outline: var(--size-border-pixel) dashed var(--color-focus);
   outline-offset: 4px;
 }
 
@@ -253,14 +270,14 @@ i {
 }
 
 a {
-  color: var(--brand-accent);
+  color: var(--color-link);
   text-decoration: underline;
   text-underline-offset: 0.15em;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--brand-highlight);
+  color: var(--color-link-hover);
 }
 
 .prose {
@@ -307,7 +324,7 @@ div.expressive-code {
 }
 
 blockquote {
-  border-left: 4px solid var(--brand-accent);
+  border-left: 4px solid var(--color-link);
   padding: 0 var(--space-component);
   margin: var(--space-section) 0;
   font-size: var(--type-size-blockquote);
@@ -334,7 +351,7 @@ hr {
   padding: var(--space-inline) var(--space-component);
   background: var(--bg-surface);
   color: var(--text-primary);
-  border: var(--size-border-pixel) solid var(--brand-accent);
+  border: var(--size-border-pixel) solid var(--color-focus);
   font-weight: 700;
   text-decoration: none;
   transition: top var(--transition-normal);
@@ -366,7 +383,7 @@ hr {
   left: 0;
   z-index: 101;
   height: 3px;
-  background: var(--brand-accent);
+  background: var(--color-link);
   width: 0%;
   pointer-events: none;
   transition: width 50ms linear;

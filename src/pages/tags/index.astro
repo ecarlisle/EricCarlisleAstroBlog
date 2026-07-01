@@ -39,9 +39,9 @@ const schemaPosts = posts.map((p) => ({
     <Header />
     <main id="main-content" tabindex="-1">
       <section class="tags-index">
-        <header class="tags-index-header">
+        <header class="collection-header">
           <h1>{title}</h1>
-          <p class="tags-index-meta">
+          <p class="collection-description">
             {allTags.length} tag{allTags.length !== 1 ? 's' : ''} across {posts.length} post{posts.length !== 1 ? 's' : ''}
           </p>
         </header>
@@ -69,23 +69,7 @@ const schemaPosts = posts.map((p) => ({
 
 <style>
   .tags-index {
-    max-width: var(--layout-max-width-wide, 75rem);
     margin-inline: auto;
-    padding: var(--space-layout) var(--space-component);
-  }
-
-  .tags-index-header {
-    margin-bottom: var(--space-section);
-  }
-
-  .tags-index-header h1 {
-    margin-bottom: var(--space-inline);
-  }
-
-  .tags-index-meta {
-    color: var(--text-secondary);
-    font-size: var(--type-size-small);
-    margin-bottom: 0;
   }
 
   .tags-index-list {
@@ -116,7 +100,7 @@ const schemaPosts = posts.map((p) => ({
   }
 
   .tag-card:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--color-action);
     transform: translateY(-2px);
     box-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
   }
@@ -125,7 +109,7 @@ const schemaPosts = posts.map((p) => ({
     font-family: var(--font-headers);
     font-weight: 600;
     font-size: var(--type-size-h4);
-    color: var(--brand-primary);
+    color: var(--color-action);
   }
 
   .tag-card-count {

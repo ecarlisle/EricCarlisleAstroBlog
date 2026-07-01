@@ -124,8 +124,8 @@ const sent = Astro.url.searchParams.get('sent') === '1';
   .contact-form input:focus,
   .contact-form textarea:focus {
     outline: none;
-    border-color: var(--brand-primary);
-    box-shadow: 0 0 0 1px var(--brand-primary);
+    border-color: var(--color-action);
+    box-shadow: 0 0 0 1px var(--color-action);
   }
 
   .contact-form .honeypot {
@@ -149,7 +149,7 @@ const sent = Astro.url.searchParams.get('sent') === '1';
 
   .contact-error {
     font-size: var(--type-size-small);
-    color: var(--brand-accent);
+    color: var(--color-link);
     margin: 0;
   }
 
@@ -157,6 +157,6 @@ const sent = Astro.url.searchParams.get('sent') === '1';
     font-size: var(--type-size-large);
     margin-top: var(--space-section);
     text-align: center;
-    color: var(--brand-highlight);
+    color: var(--color-success);
   }
 </style>

@@ -1,12 +1,3 @@
-.feed-header {
-  margin-bottom: var(--space-component-lg);
-}
-
-.feed-description {
-  color: var(--text-secondary);
-  margin-bottom: 0;
-}
-
 ul.grid {
   list-style: none;
   padding: 0;

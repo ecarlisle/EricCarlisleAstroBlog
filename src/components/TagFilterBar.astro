@@ -60,13 +60,15 @@ const hasTags = tags && tags.length > 0;
     color: var(--text-primary);
     font-size: var(--type-size-small);
     text-decoration: none;
-    transition: all var(--transition-fast);
+    transition:
+      border-color var(--transition-fast),
+      background var(--transition-fast);
     white-space: nowrap;
   }
 
   .filter-bar a:hover,
   .filter-bar a:focus-visible {
-    border-color: var(--brand-accent);
+    border-color: var(--color-link);
     background: var(--bg-surface-elevated);
   }
 
