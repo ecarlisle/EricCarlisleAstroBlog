@@ -17,7 +17,9 @@
     "lint": "biome check .",
     "format": "biome format . --write",
     "typecheck": "astro check",
-    "lighthouse:all": "node scripts/lighthouse-all.mjs"
+    "lighthouse:all": "node scripts/lighthouse-all.mjs",
+    "structured-data:report": "pnpm build && node scripts/jsonld-report.mjs",
+    "jsonld:report": "pnpm structured-data:report"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
