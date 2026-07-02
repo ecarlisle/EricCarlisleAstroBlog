@@ -17,7 +17,7 @@ type PostItem = {
 };
 
 type Props = {
-  type: 'homepage' | 'about' | 'contact' | 'portfolio' | 'article' | 'collection';
+  type: 'homepage' | 'about' | 'contact' | 'portfolio' | 'article' | 'collection' | 'not-found';
   title: string;
   description: string;
   url: string;
@@ -67,7 +67,15 @@ const personEntity = {
   },
 };
 
-const graphArray: object[] = [personEntity];
+const websiteEntity = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  url: siteUrl,
+  name: AUTHOR_NAME,
+  publisher: { '@id': `${siteUrl}/#person` },
+};
+
+const graphArray: object[] = [personEntity, websiteEntity];
 
 switch (type) {
   case 'homepage':
@@ -85,17 +93,6 @@ switch (type) {
       description,
       isPartOf: { '@id': `${siteUrl}/#website` },
     };
-
-    if (type === 'homepage') {
-      const websiteEntity: Record<string, unknown> = {
-        '@type': 'WebSite',
-        '@id': `${siteUrl}/#website`,
-        url: siteUrl,
-        name: AUTHOR_NAME,
-        publisher: { '@id': `${siteUrl}/#person` },
-      };
-      graphArray.push(websiteEntity);
-    }
 
     if (collectionType === 'tag-filter' && tagName) {
       collectionPageEntity.breadcrumb = {
@@ -186,7 +183,7 @@ switch (type) {
   case 'about':
   case 'contact':
     graphArray.push({
-      '@type': type === 'about' ? 'AboutPage' : 'ContactPage',
+      '@type': type === 'about' ? 'ProfilePage' : 'ContactPage',
       '@id': `${pageUrl}/#webpage`,
       url,
       name: title,
@@ -205,9 +202,24 @@ switch (type) {
       mainEntity: {
         '@type': 'CreativeWork',
         name: title,
+        description,
+        url,
         author: { '@id': `${siteUrl}/#person` },
+        creator: { '@id': `${siteUrl}/#person` },
+        inLanguage: 'en-US',
+        about: [
+          'Frontend engineering',
+          'UX architecture',
+          'Design systems',
+          'Web performance',
+          'Accessibility',
+          'Technical leadership',
+        ].map((topic) => ({ '@type': 'Thing', name: topic })),
       },
     });
+    break;
+
+  case 'not-found':
     break;
 }
 

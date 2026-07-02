@@ -1,0 +1,142 @@
+.
+├── AGENTS.md
+├── astro.config.mjs
+├── biome.json
+├── contact-worker
+│   ├── package.json
+│   ├── src
+│   │   └── index.ts
+│   ├── tsconfig.json
+│   └── wrangler.toml
+├── data
+├── docs
+│   ├── author_profile.md
+│   ├── context
+│   │   └── tree.txt
+│   └── todo.md
+├── h1-check.png
+├── headers-check.png
+├── lighthouserc.js
+├── mobile-nav-fixed-final.png
+├── mobile-nav-fixed.png
+├── mobile-nav-test.png
+├── opencode.json
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── public
+│   ├── apple-touch-icon.png
+│   ├── eric-carlisle.webp
+│   ├── favicon.ico
+│   └── favicon.svg
+├── README.txt
+├── scripts
+│   ├── create-context-snapshot.sh
+│   ├── generate-hero-image.mjs
+│   ├── lighthouse-all.mjs
+│   ├── mflux-generate-image
+│   ├── regenerate-all-heroes.mjs
+│   └── static-server.mjs
+├── src
+│   ├── assets
+│   │   └── images
+│   │       ├── accessible-forms-hero.webp
+│   │       ├── astro-view-transitions-hero.webp
+│   │       ├── blog-placeholder-about.jpg
+│   │       ├── building-component-library-hero.webp
+│   │       ├── choosing-a-color-palette-hero.webp
+│   │       ├── core-web-vitals-hero.webp
+│   │       ├── css-container-queries-hero.webp
+│   │       ├── css-grid-layouts-hero.webp
+│   │       ├── design-token-workflows-hero.webp
+│   │       ├── design-tokens-hero.webp
+│   │       ├── error-monitoring-hero.webp
+│   │       ├── first-post-hero.webp
+│   │       ├── image-optimization-hero.webp
+│   │       ├── markdown-style-guide-hero.webp
+│   │       ├── modern-css-reset-hero.webp
+│   │       ├── og-image.jpg
+│   │       ├── personal-knowledge-management-hero.webp
+│   │       ├── react-server-components-hero.webp
+│   │       ├── schema-org-microdata-hero.webp
+│   │       ├── second-post-hero.webp
+│   │       ├── static-site-search-hero.webp
+│   │       ├── style-guide-hero.webp
+│   │       ├── third-post-hero.webp
+│   │       ├── typescript-react-patterns-hero.webp
+│   │       ├── web-accessibility-auditing-hero.webp
+│   │       └── web-performance-budgets-hero.webp
+│   ├── components
+│   │   ├── BaseHead.astro
+│   │   ├── Card.astro
+│   │   ├── Footer.astro
+│   │   ├── FormattedDate.astro
+│   │   ├── GoogleAnalytics.astro
+│   │   ├── Header.astro
+│   │   ├── HeaderLink.astro
+│   │   ├── PaginationNav.astro
+│   │   ├── PostGrid.astro
+│   │   ├── SchemaOrg.astro
+│   │   ├── ShareStrip.astro
+│   │   ├── SocialLinks.astro
+│   │   ├── TagFilterBar.astro
+│   │   ├── ThemeToggle.astro
+│   │   └── Webmentions.astro
+│   ├── consts.ts
+│   ├── content
+│   │   └── blog
+│   │       ├── accessible-forms.mdx
+│   │       ├── astro-view-transitions.mdx
+│   │       ├── building-component-library.mdx
+│   │       ├── choosing-a-color-palette.mdx
+│   │       ├── core-web-vitals.mdx
+│   │       ├── css-container-queries.mdx
+│   │       ├── css-grid-layouts.mdx
+│   │       ├── design-token-workflows.mdx
+│   │       ├── design-tokens.mdx
+│   │       ├── error-monitoring.mdx
+│   │       ├── first-post.mdx
+│   │       ├── image-optimization.mdx
+│   │       ├── markdown-style-guide.mdx
+│   │       ├── modern-css-reset.mdx
+│   │       ├── personal-knowledge-management.mdx
+│   │       ├── react-server-components.mdx
+│   │       ├── schema-org-microdata.mdx
+│   │       ├── second-post.mdx
+│   │       ├── static-site-search.mdx
+│   │       ├── style-guide.mdx
+│   │       ├── third-post.mdx
+│   │       ├── typescript-react-patterns.mdx
+│   │       ├── web-accessibility-auditing.mdx
+│   │       ├── web-performance-budgets.mdx
+│   │       └── working-with-id-without-losing-ourselves.mdx
+│   ├── content.config.ts
+│   ├── layouts
+│   │   └── BlogPost.astro
+│   ├── lib
+│   │   ├── blog-utils.ts
+│   │   ├── webmentions.ts
+│   │   └── word-count.ts
+│   ├── pages
+│   │   ├── 404.astro
+│   │   ├── about.astro
+│   │   ├── blog
+│   │   │   ├── [...slug].astro
+│   │   │   └── page
+│   │   │       └── [page].astro
+│   │   ├── blog.astro
+│   │   ├── contact.astro
+│   │   ├── index.astro
+│   │   ├── portfolio.astro
+│   │   ├── rss.xml.js
+│   │   └── tags
+│   │       ├── [tag].astro
+│   │       └── index.astro
+│   └── styles
+│       ├── components.css
+│       ├── feed.css
+│       ├── global.css
+│       └── pagefind.css
+└── tsconfig.json
+
+21 directories, 119 files

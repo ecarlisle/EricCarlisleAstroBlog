@@ -1,7 +1,7 @@
 Eric Carlisle — AstroBlog
 ==========================
 
-Personal blog at https://ericcarlisle.com. Built with Astro 6 static site
+Personal blog at https://ericcarlisle.com. Built with Astro 7 static site
 generation. Technical deep-dives on web performance, accessibility, React,
 and modern CSS architecture.
 
@@ -9,7 +9,7 @@ and modern CSS architecture.
 Stack
 -----
 
-Framework:  Astro 6.4 (SSG, output: "static")
+Framework:  Astro 7 (SSG, output: "static")
 Language:   TypeScript 6.0
 Styling:    Vanilla CSS with OKLCH design tokens — no Tailwind
 Package:    pnpm (>=22.12.0 Node)
@@ -101,11 +101,12 @@ CLI Commands
 
 pnpm dev              Dev server on localhost:4321
 pnpm build            Build to ./dist/ (includes Pagefind indexing)
+pnpm preview          Preview production build locally
 pnpm typecheck        pnpm astro check
 pnpm lint             pnpm exec biome check .
 pnpm format           pnpm exec biome format . --write
-pnpm fallow:dead-code npx fallow dead-code --unused-files --unused-deps
-pnpm fallow:audit     npx fallow audit --changed-since main
+pnpm fallow:dead-code   Dead code analysis (unused files, deps)
+pnpm fallow:audit       Audit changed files since main
 pnpm lighthouse:all   node scripts/lighthouse-all.mjs
 
 

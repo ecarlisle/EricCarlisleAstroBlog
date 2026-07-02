@@ -15,7 +15,14 @@ interface Props {
   socialTitle?: string;
   socialDescription?: string;
   image?: ImageMetadata;
-  pageType?: 'homepage' | 'about' | 'contact' | 'portfolio' | 'article' | 'collection';
+  pageType?:
+    | 'homepage'
+    | 'about'
+    | 'contact'
+    | 'portfolio'
+    | 'article'
+    | 'collection'
+    | 'not-found';
   collectionType?: 'main-feed' | 'tag-filter' | 'tags-index';
   tagName?: string;
   posts?: Array<{ title: string; url: string }>;
