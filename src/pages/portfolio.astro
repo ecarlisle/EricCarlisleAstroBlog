@@ -46,6 +46,16 @@ import Layout from '../layouts/BlogPost.astro';
           while improving delivery velocity and maintaining performance at
           scale.
         </p>
+        <div class="repo-links">
+          <h4 class="repo-links-label">Public repositories</h4>
+          <p class="repo-links-intro">Public repositories connected to this work.</p>
+          <ul class="repo-list">
+            <li class="repo-item">
+              <a href="https://github.com/washingtonpost/arcads" target="_blank" rel="noopener noreferrer" class="repo-link">washingtonpost/arcads</a>
+              <span class="repo-context">Washington Post &middot; Arc Ads</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="case-study-details">
         <div>
@@ -307,6 +317,68 @@ import Layout from '../layouts/BlogPost.astro';
 
   ul li::marker {
     color: var(--color-link);
+  }
+
+  /* ── Repository links ── */
+  .repo-links {
+    margin-top: var(--space-component-lg);
+  }
+
+  .repo-links-label {
+    font-size: var(--type-size-small);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-inline);
+  }
+
+  .repo-links-intro {
+    font-size: var(--type-size-small);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-inline);
+  }
+
+  .repo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .repo-item {
+    padding-left: calc(1.25em + var(--space-inline));
+    position: relative;
+    margin-bottom: var(--space-component);
+  }
+
+  .repo-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .repo-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.15em;
+    width: 1em;
+    height: 1em;
+    background-image: url('/icons/github.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+  }
+
+  .repo-link {
+    font-size: var(--type-size-small);
+    font-family: var(--font-mono);
+    color: var(--color-link);
+    word-break: break-all;
+  }
+
+  .repo-context {
+    display: block;
+    font-size: var(--type-size-small);
+    color: var(--text-muted);
+    margin-top: 0.15em;
   }
 
   .work-method {
