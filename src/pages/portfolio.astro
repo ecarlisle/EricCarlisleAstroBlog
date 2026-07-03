@@ -345,8 +345,10 @@ import Layout from '../layouts/BlogPost.astro';
   }
 
   .repo-item {
-    padding-left: calc(1.25em + var(--space-inline));
-    position: relative;
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    column-gap: var(--space-inline);
+    align-items: start;
     margin-bottom: var(--space-component);
   }
 
@@ -356,18 +358,24 @@ import Layout from '../layouts/BlogPost.astro';
 
   .repo-item::before {
     content: '';
-    position: absolute;
-    left: 0;
-    top: 0.15em;
-    width: 1em;
-    height: 1em;
-    background-image: url('/icons/github.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.7;
+    display: block;
+    grid-row: 1;
+    grid-column: 1;
+    width: 1rem;
+    height: 1rem;
+    margin-block-start: 0.2em;
+    background-color: var(--text-muted);
+    mask-image: url('/icons/github.svg');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: url('/icons/github.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
   }
 
   .repo-link {
+    grid-row: 1;
+    grid-column: 2;
     font-size: var(--type-size-small);
     font-family: var(--font-mono);
     color: var(--color-link);
@@ -375,10 +383,11 @@ import Layout from '../layouts/BlogPost.astro';
   }
 
   .repo-context {
-    display: block;
+    grid-row: 2;
+    grid-column: 2;
     font-size: var(--type-size-small);
     color: var(--text-muted);
-    margin-top: 0.15em;
+    margin-block-start: 0.15em;
   }
 
   .work-method {
