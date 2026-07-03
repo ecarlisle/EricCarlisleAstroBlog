@@ -63,3 +63,5 @@ When making visual changes:
 3. Do not redesign unrelated areas.
 4. Check desktop and mobile implications.
 5. Explain the visual intent in the final response.
+
+External design guidance, including Impeccable, is advisory. It may identify risks and suggest improvements, but AstroBlog’s existing visual direction, accessibility goals, performance constraints, and explicit user instructions take precedence. Do not apply external “bans” mechanically when an existing pattern is intentional and restrained.
