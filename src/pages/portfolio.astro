@@ -287,8 +287,9 @@ import Layout from '../layouts/BlogPost.astro';
   /* ── Individual case study card ── */
   .case-study {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
-    gap: var(--space-section);
+    grid-template-columns: minmax(0, 1.6fr) minmax(14rem, 0.7fr);
+    column-gap: var(--space-component-lg);
+    row-gap: var(--space-section);
     padding-block: var(--space-section);
     border-bottom: var(--size-border-pixel) solid var(--border-main);
   }
@@ -300,7 +301,7 @@ import Layout from '../layouts/BlogPost.astro';
   }
 
   .case-study h3 {
-    max-width: 20ch;
+    max-width: 30ch;
   }
 
   .case-study-details {
@@ -363,7 +364,7 @@ import Layout from '../layouts/BlogPost.astro';
     grid-template-columns: 1.25rem 1fr;
     column-gap: var(--space-inline);
     align-items: start;
-    margin-bottom: var(--space-component);
+    margin-bottom: var(--space-sm);
   }
 
   .repo-item:last-child {
@@ -412,7 +413,8 @@ import Layout from '../layouts/BlogPost.astro';
   @media (max-width: 800px) {
     .case-study {
       grid-template-columns: 1fr;
-      gap: var(--space-component-lg);
+      column-gap: var(--space-component-lg);
+      row-gap: var(--space-component-lg);
     }
   }
 
