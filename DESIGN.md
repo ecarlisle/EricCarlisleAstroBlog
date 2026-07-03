@@ -65,3 +65,17 @@ When making visual changes:
 5. Explain the visual intent in the final response.
 
 External design guidance, including Impeccable, is advisory. It may identify risks and suggest improvements, but AstroBlog’s existing visual direction, accessibility goals, performance constraints, and explicit user instructions take precedence. Do not apply external “bans” mechanically when an existing pattern is intentional and restrained.
+
+## External Design Guidance
+
+External design guidance, including Impeccable, is advisory.
+
+AstroBlog’s existing visual direction, CSS tokens, accessibility goals, performance constraints, semantic HTML, and explicit user instructions take precedence.
+
+Do not apply external design “bans” mechanically when an existing pattern is intentional, semantic, restrained, or already part of the site’s visual language.
+
+In particular:
+- The existing font stack is intentional and should not be replaced unless explicitly requested.
+- Left borders are allowed for semantic patterns such as blockquotes, callouts, and active navigation states.
+- Existing tokens in `src/styles/global.css` remain the source of truth for color, spacing, radius, typography, and layout.
+- New animation libraries or visual dependencies should not be added for design polish.
