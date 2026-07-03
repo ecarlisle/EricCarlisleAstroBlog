@@ -211,11 +211,16 @@ import Layout from '../layouts/BlogPost.astro';
 <style>
   /* ── Portfolio hero / intro ── */
   .portfolio-hero {
-    max-width: var(--layout-max-width);
-    margin-inline: auto;
     margin-bottom: var(--space-section);
     padding-bottom: var(--space-component-lg);
     border-bottom: var(--size-border-pixel) solid var(--border-main);
+  }
+
+  /* Constrain hero text to readable width so the border below spans
+     the same full width as .case-studies dividers */
+  .portfolio-hero > * {
+    max-width: var(--layout-max-width);
+    margin-inline: auto;
   }
 
   .portfolio-hero h1 {
