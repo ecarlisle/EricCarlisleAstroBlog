@@ -90,9 +90,9 @@ import ThemeToggle from './ThemeToggle.astro';
     padding-inline: 0;
     font-family: var(--font-headers);
     font-weight: 900;
-    font-size: clamp(1.125rem, 0.45vw + 1rem, 1.45rem);
+    font-size: clamp(1.25rem, 0.55vw + 1.1rem, 1.65rem);
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     color: var(--text-primary);
     text-decoration: none;
     transition: color var(--transition-fast);
@@ -176,6 +176,7 @@ import ThemeToggle from './ThemeToggle.astro';
   .social-links {
     display: flex;
     gap: var(--space-inline);
+    margin-inline-start: var(--space-inline-strong);
   }
 
   .menu-toggle {

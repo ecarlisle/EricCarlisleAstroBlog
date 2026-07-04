@@ -47,16 +47,18 @@ const posts = (await getSortedPosts()).slice(0, 6);
           </ul>
         </div>
         <div class="home-hero-avatar">
-          <Image
-            src={avatarImage}
-            alt="Eric Carlisle"
-            width={320}
-            height={320}
-            quality={85}
-            loading="eager"
-            decoding="async"
-            class="avatar-img"
-          />
+          <div class="avatar-card">
+            <Image
+              src={avatarImage}
+              alt="Eric Carlisle"
+              width={320}
+              height={320}
+              quality={85}
+              loading="eager"
+              decoding="async"
+              class="avatar-img"
+            />
+          </div>
         </div>
       </header>
       <section class="feed" aria-labelledby="latest-writing">
@@ -160,19 +162,29 @@ const posts = (await getSortedPosts()).slice(0, 6);
     gap: var(--space-inline);
   }
 
-  /* ── Avatar ── */
+  /* ── Avatar card: quiet frame around the portrait ── */
   .home-hero-avatar {
     display: flex;
     justify-content: center;
   }
 
+  .avatar-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-component);
+    background: var(--bg-surface);
+    border: var(--size-border-pixel) solid var(--border-muted);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.08);
+  }
+
   .avatar-img {
     display: block;
     border-radius: 50%;
-    width: 260px;
-    height: 260px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    border: var(--size-border-pixel) solid var(--border-muted);
     box-shadow: 0 4px 24px oklch(0 0 0 / 0.25);
   }
 
@@ -222,8 +234,12 @@ const posts = (await getSortedPosts()).slice(0, 6);
     }
 
     .avatar-img {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
+    }
+
+    .avatar-card {
+      padding: var(--space-inline-strong);
     }
   }
 
@@ -236,6 +252,10 @@ const posts = (await getSortedPosts()).slice(0, 6);
     .avatar-img {
       width: 140px;
       height: 140px;
+    }
+
+    .avatar-card {
+      padding: var(--space-inline);
     }
   }
 </style>
