@@ -225,11 +225,14 @@ import Layout from '../layouts/BlogPost.astro';
 <style>
   /* ── Portfolio hero / intro ── */
   .portfolio-hero {
-    max-width: var(--layout-max-width);
-    margin-inline: auto;
     margin-bottom: var(--space-component-lg);
     padding-bottom: var(--space-component);
     border-bottom: var(--size-border-pixel) solid var(--border-main);
+  }
+
+  .portfolio-hero > * {
+    max-width: var(--layout-max-width);
+    margin-inline: 0;
   }
 
   .portfolio-hero h1 {

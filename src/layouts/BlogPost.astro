@@ -146,6 +146,10 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       max-width: 1020px;
     }
 
+    .page-header--portfolio {
+      max-width: none;
+    }
+
     .page-header h1 {
       max-width: 20ch;
     }
@@ -188,6 +192,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
           class:list={[
             'page-header',
             pageType === 'article' ? 'page-header--article' : 'page-header--standard',
+            pageType === 'portfolio' && 'page-header--portfolio',
           ]}
         >
           {pageType === 'article' && pubDate && (
