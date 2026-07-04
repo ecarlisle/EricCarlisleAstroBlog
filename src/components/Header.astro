@@ -75,18 +75,43 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   .site-title {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--size-touch-target-min);
+    padding-inline: 0;
     font-family: var(--font-headers);
-    font-weight: 800;
-    font-size: clamp(1rem, 0.35vw + 0.95rem, 1.25rem);
-    letter-spacing: -0.025em;
-    text-decoration: none;
+    font-weight: 900;
+    font-size: clamp(1.125rem, 0.45vw + 1rem, 1.45rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--text-primary);
+    text-decoration: none;
     transition: color var(--transition-fast);
+  }
+
+  .site-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.35rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--brand-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-fast);
   }
 
   .site-title:hover,
   .site-title:focus-visible {
-    color: var(--brand-primary);
+    color: var(--text-primary);
+  }
+
+  .site-title:hover::after,
+  .site-title:focus-visible::after {
+    transform: scaleX(1);
   }
 
   nav a {
