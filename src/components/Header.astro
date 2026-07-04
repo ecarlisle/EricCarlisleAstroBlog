@@ -144,6 +144,35 @@ import ThemeToggle from './ThemeToggle.astro';
     gap: var(--space-inline);
   }
 
+  .utility-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-inline);
+  }
+
+  .search-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--size-touch-target-min);
+    min-height: var(--size-touch-target-min);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    text-decoration: none;
+    line-height: 0;
+    transition: color var(--transition-fast);
+  }
+
+  .search-link:hover,
+  .search-link:focus-visible {
+    color: var(--color-link-hover);
+  }
+
+  .search-link:focus-visible {
+    outline: var(--size-border-pixel) dashed var(--color-focus);
+    outline-offset: 3px;
+  }
+
   .social-links {
     display: flex;
     gap: var(--space-inline);
@@ -163,30 +192,7 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   @media (max-width: 1024px) {
-  .utility-links {
-    display: flex;
-    align-items: center;
-    gap: var(--space-inline);
-  }
-
-  .search-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: var(--size-touch-target-min);
-    min-height: var(--size-touch-target-min);
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    transition: color var(--transition-fast);
-  }
-
-  .search-link:hover,
-  .search-link:focus-visible {
-    color: var(--color-link-hover);
-  }
-
-  .social-links {
+    .social-links {
       display: none;
     }
   }
