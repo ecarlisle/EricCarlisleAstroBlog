@@ -178,7 +178,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
     )}
 		<a href="#main-content" class="skip-link">Skip to main content</a>
 		<Header />
-		<main id="main-content" tabindex="-1">
+		<main id="main-content" tabindex="-1" data-pagefind-body>
       {pageType === 'article' && (
         <a href="/blog" class="back-link">&larr; Back to all posts</a>
       )}
@@ -241,7 +241,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 					</div>
 
           {pageType === 'article' && (
-            <aside class="post-sidebar">
+            <aside class="post-sidebar" data-pagefind-ignore>
               <div class="post-sidebar-inner">
                 {share?.enabled !== false && (
                   <div class="sidebar-share">
@@ -261,7 +261,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 			</article>
 		</main>
 		<Footer />
-		<pagefind-modal></pagefind-modal>
 	</body>
 </html>
 

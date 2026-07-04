@@ -1,11 +1,5 @@
-/* Reserve space to prevent CLS before Pagefind hydrates */
-pagefind-modal {
-  display: block;
-  min-height: 0;
-}
-
 /* ========================================================================
-   Pagefind Component UI — map --pf-* vars to design tokens
+   Pagefind — --pf-* token mapping
    Uses :root:root to beat Pagefind's own :root and [data-pf-theme="dark"]
    specificity (0,2,0 vs 0,1,1).
    ======================================================================== */
@@ -28,7 +22,7 @@ pagefind-modal {
 
   --pf-outline-focus: var(--color-focus);
   --pf-modal-backdrop: rgba(0, 0, 0, 0.7);
-  --pf-border-radius: var(--radius-lg);
+  --pf-border-radius: var(--radius-md);
   --pf-font: var(--font-copy);
   --pf-modal-max-width: 640px;
 }
@@ -43,53 +37,164 @@ pagefind-modal {
   --pf-modal-backdrop: rgba(0, 0, 0, 0.5);
 }
 
-/* Header search trigger — match theme toggle styling.
-   Pagefind uses :is(*,#\#):is(*,#\#):is(*,#\#) for (0,3,0). Match it. */
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger {
-  display: flex;
-  align-items: center;
-  width: 44px;
-  min-width: 44px;
-}
+/* ========================================================================
+   Search page — pagefind-search inline UI
+   Uses :root pagefind-search (0,2,0) to beat Pagefind's Shadow DOM default.
+   ======================================================================== */
 
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
+/* Input bar container */
+:root pagefind-search .pagefind-ui__search-bar {
   padding: 0;
-  background: transparent;
   border: none;
-  border-radius: var(--radius-md);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
-}
-
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:hover {
-  color: var(--color-link);
   background: transparent;
 }
 
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:focus-visible {
+:root pagefind-search .pagefind-ui__search-input {
+  width: 100%;
+  padding: var(--space-component) var(--space-component-lg);
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: clamp(1rem, 0.3vw + 0.9rem, 1.125rem);
+}
+
+:root pagefind-search .pagefind-ui__search-input::placeholder {
+  color: var(--text-muted);
+}
+
+:root pagefind-search .pagefind-ui__search-input:focus {
+  border-color: var(--color-focus);
   outline: var(--size-border-pixel) dashed var(--color-focus);
   outline-offset: 3px;
 }
 
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-icon {
-  width: 20px;
-  height: 20px;
-  background: currentColor;
-  -webkit-mask-image: var(--pf-icon-search);
-  mask-image: var(--pf-icon-search);
-  -webkit-mask-size: 100%;
-  mask-size: 100%;
+/* Magnifier icon */
+:root pagefind-search .pagefind-ui__search-clear {
+  display: none;
 }
 
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-text,
-:is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-shortcut {
+/* Result list area */
+:root pagefind-search .pagefind-ui__drawer {
+  padding: 0;
+}
+
+:root pagefind-search .pagefind-ui__results-area {
+  margin-top: var(--space-component-lg);
+}
+
+/* Each result card */
+:root pagefind-search .pagefind-ui__result {
+  padding: var(--space-component) var(--space-component-lg);
+  margin-bottom: var(--space-component);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
+:root pagefind-search .pagefind-ui__result::after {
   display: none;
+}
+
+:root pagefind-search .pagefind-ui__result-title {
+  color: var(--brand-primary);
+  font-family: var(--font-headers);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.3vw + 0.9rem, 1.125rem);
+  line-height: 1.35;
+  margin-bottom: var(--space-xs);
+}
+
+:root pagefind-search .pagefind-ui__result-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root pagefind-search .pagefind-ui__result-title a:hover {
+  text-decoration: underline;
+}
+
+:root pagefind-search .pagefind-ui__result-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-xs);
+}
+
+:root pagefind-search .pagefind-ui__result-excerpt mark,
+:root pagefind-search .pagefind-ui__result-excerpt .pagefind-ui__highlight {
+  background: var(--pf-mark);
+  color: var(--text-primary);
+  padding: 0.05em 0.15em;
+  border-radius: 2px;
+}
+
+:root pagefind-search .pagefind-ui__result-tag {
+  display: inline-flex;
+  padding: 0.15em 0.5em;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+}
+
+/* Result metadata (URL, score) */
+:root pagefind-search .pagefind-ui__result-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+/* Loading skeleton */
+:root pagefind-search .pagefind-ui__loading-message {
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-component-lg);
+}
+
+/* Empty / error states */
+:root pagefind-search .pagefind-ui__message {
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-component-lg);
+}
+
+/* Filter bar (tag pills) */
+:root pagefind-search .pagefind-ui__filter {
+  margin-bottom: var(--space-component);
+}
+
+:root pagefind-search .pagefind-ui__filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35em 0.75em;
+  margin: 0.15em;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-control);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+:root pagefind-search .pagefind-ui__filter-pill:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
+:root pagefind-search .pagefind-ui__filter-pill[data-pf-active="true"] {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--bg-main);
+}
+
+/* Pagefind input for light theme */
+:root:root[data-theme="light"] pagefind-search .pagefind-ui__search-input {
+  background: var(--bg-surface);
+  color: var(--text-primary);
 }

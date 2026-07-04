@@ -31,7 +31,7 @@ const title = `Tagged: ${tag}`;
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" tabindex="-1" data-pagefind-body>
       <section class="feed">
         <header class="collection-header">
           <h1>{title}</h1>
@@ -80,6 +80,5 @@ const title = `Tagged: ${tag}`;
       </section>
     </main>
     <Footer />
-    <pagefind-modal></pagefind-modal>
   </body>
 </html>

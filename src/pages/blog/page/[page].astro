@@ -37,7 +37,7 @@ const tagData = computeTagData(allPosts);
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" tabindex="-1" data-pagefind-body>
       <section class="feed">
         <header class="collection-header">
           <h1>Blog</h1>
@@ -57,6 +57,5 @@ const tagData = computeTagData(allPosts);
       </section>
     </main>
     <Footer />
-    <pagefind-modal></pagefind-modal>
   </body>
 </html>

@@ -72,8 +72,6 @@ Use the **lightest** validation that proves a change.
 `dist/` · `node_modules/` · `.astro/` · `lh-reports/` · `docs/context/` · `.playwright-mcp/`
 
 ## Workflow
-
-## Workflow
 1. Read this file + relevant docs.
 2. `git status --short` — preserve existing changes.
 3. Inspect related files, state the plan.
@@ -98,4 +96,19 @@ Do not edit the following files unless the user explicitly asks for changes to t
 
 If a requested task appears to require changes to one of these files, stop and ask first.
 
+## Skills
 
+For implementation work, always consult:
+- .skills/agent-safe-change.md
+- .skills/astro-static-implementation.md
+- .skills/performance-budget.md
+
+For UI work, also consult:
+- .skills/accessibility-review.md
+- .skills/design-system-css.md
+
+For search work, also consult:
+- .skills/pagefind-search.md
+
+For metadata/content routes, also consult:
+- .skills/seo-content-metadata.md
