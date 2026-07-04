@@ -215,7 +215,7 @@ When making visual changes:
 
 ## External Design Guidance
 
-External design guidance, including Impeccable, is advisory.
+External design guidance is advisory.
 
 AstroBlog's existing visual direction, CSS tokens, accessibility goals, performance constraints, semantic HTML, and explicit user instructions take precedence.
 
