@@ -107,6 +107,10 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 				grid-column: 2;
 			}
 
+			.post-layout--no-sidebar {
+				grid-template-columns: 1fr;
+			}
+
 			.post-sidebar-inner {
 				position: sticky;
 				top: var(--space-component-lg);
@@ -212,7 +216,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
             />
           </div>
         )}
-				<div class="post-layout">
+				<div class:list={['post-layout', pageType !== 'article' && 'post-layout--no-sidebar']}>
 					<div class="post-content">
 						<div class:list={['prose', pageType === 'portfolio' && 'prose--portfolio']}>
 							<slot />
