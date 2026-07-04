@@ -7,6 +7,7 @@ import Header from '../components/Header.astro';
 import '@styles/feed.css';
 import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getSortedPosts } from '../lib/blog-utils';
+import avatarImage from '@images/eric-carlisle.png';
 
 const posts = (await getSortedPosts()).slice(0, 6);
 ---
@@ -20,11 +21,42 @@ const posts = (await getSortedPosts()).slice(0, 6);
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     <main id="main-content" tabindex="-1" data-pagefind-body>
-      <header class="home-intro">
-        <h1>Designing better systems for the web.</h1>
-        <p>
-          Writing on frontend architecture, design systems, accessibility, and performance by Eric Carlisle.
-        </p>
+      <header class="home-hero">
+        <div class="home-hero-content">
+          <h1>Hi, I&rsquo;m Eric Carlisle.</h1>
+          <p class="home-hero-lede">
+            I&rsquo;m a Principal Frontend Engineer &amp; UX Architect who helps teams build
+            better web experiences: accessible interfaces, scalable frontend systems,
+            thoughtful design systems, and performance-minded architecture.
+          </p>
+          <p class="home-hero-sub">
+            I bring together engineering depth, UX judgment, and a practical sense for
+            what teams can maintain.
+          </p>
+          <div class="home-hero-actions">
+            <a href="/portfolio" class="button">View portfolio <span aria-hidden="true">→</span></a>
+            <a href="/blog" class="button button--outline">Read the blog <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="home-hero-chips" aria-label="Areas of focus">
+            <li>Frontend architecture</li>
+            <li>Design systems</li>
+            <li>Accessibility</li>
+            <li>Performance</li>
+            <li>UX strategy</li>
+          </ul>
+        </div>
+        <div class="home-hero-avatar">
+          <Image
+            src={avatarImage}
+            alt="Eric Carlisle"
+            width={240}
+            height={240}
+            quality={85}
+            loading="eager"
+            decoding="async"
+            class="avatar-img"
+          />
+        </div>
       </header>
       <section class="feed" aria-labelledby="latest-writing">
         <header class="collection-header feed-heading">
@@ -61,22 +93,90 @@ const posts = (await getSortedPosts()).slice(0, 6);
 </html>
 
 <style>
-  .home-intro {
-    max-width: 54rem;
+  /* ── Hero grid: two-column on desktop, stack on mobile ── */
+  .home-hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-section) var(--space-component-lg);
+    align-items: center;
     margin-bottom: var(--space-section);
   }
 
-  .home-intro h1 {
-    max-width: 15ch;
+  .home-hero-content {
+    max-width: var(--layout-rail-prose);
   }
 
-  .home-intro p {
-    max-width: 62ch;
-    margin-bottom: 0;
-    color: var(--text-secondary);
+  .home-hero h1 {
+    margin-bottom: var(--space-md);
+  }
+
+  .home-hero-lede {
     font-size: var(--type-size-large);
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
   }
 
+  .home-hero-sub {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-component);
+  }
+
+  /* ── Action buttons ── */
+  .home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-component);
+    margin-bottom: var(--space-component);
+  }
+
+  .button--outline {
+    background: transparent;
+    color: var(--color-action);
+    border: var(--size-border-pixel) solid var(--color-action);
+  }
+
+  .button--outline:hover {
+    background: var(--color-action);
+    color: var(--bg-surface);
+  }
+
+  /* ── Identity chips ── */
+  .home-hero-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .home-hero-chips li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2em 0.6em;
+    font-family: var(--font-mono);
+    font-size: var(--type-size-small);
+    border-radius: 999px;
+    background: var(--bg-surface-elevated);
+    color: var(--text-secondary);
+  }
+
+  /* ── Avatar ── */
+  .home-hero-avatar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar-img {
+    display: block;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.25);
+  }
+
+  /* ── Feed heading ── */
   .feed-heading {
     display: flex;
     align-items: end;
@@ -93,10 +193,52 @@ const posts = (await getSortedPosts()).slice(0, 6);
     flex: none;
   }
 
+  /* ── Mobile ── */
+  @media (max-width: 800px) {
+    .home-hero {
+      grid-template-columns: 1fr;
+      gap: var(--space-component-lg);
+    }
+
+    .home-hero-content {
+      max-width: none;
+    }
+
+    .home-hero h1 {
+      max-width: 15ch;
+    }
+
+    .home-hero-actions {
+      justify-content: center;
+    }
+
+    .home-hero-chips {
+      justify-content: center;
+    }
+
+    .home-hero-avatar {
+      order: -1;
+    }
+
+    .avatar-img {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
   @media (max-width: 600px) {
     .feed-heading {
       align-items: flex-start;
       flex-direction: column;
+    }
+
+    .home-hero {
+      margin-bottom: var(--space-component-lg);
+    }
+
+    .avatar-img {
+      width: 120px;
+      height: 120px;
     }
   }
 </style>
