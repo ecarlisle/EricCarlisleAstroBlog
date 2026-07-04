@@ -97,9 +97,10 @@
   --size-border-thick: 4px;
   --size-touch-target-min: 44px;
 
-  /* Layout */
-  --layout-max-width: 68ch;
-  --layout-max-width-wide: 75rem;
+  /* Layout rails */
+  --layout-rail-prose: 68ch;
+  --layout-rail-page: 72rem;
+  --layout-rail-wide: 80rem;
 
   /* Breakpoints */
   --bp-mobile: 720px;
@@ -183,8 +184,26 @@ body {
   padding: var(--space-component);
 }
 
+/* ── Layout rail utilities ── */
+.rail {
+  width: min(100%, var(--layout-rail-page));
+  margin-inline: auto;
+}
+
+.rail--prose {
+  max-width: var(--layout-rail-prose);
+}
+
+.rail--page {
+  max-width: var(--layout-rail-page);
+}
+
+.rail--wide {
+  max-width: var(--layout-rail-wide);
+}
+
 main {
-  max-width: var(--layout-max-width-wide);
+  max-width: var(--layout-rail-page);
   margin-inline: auto;
   padding: var(--space-layout) var(--space-component);
   flex: 1;
@@ -282,7 +301,7 @@ p {
 
 .prose p,
 .prose li {
-  max-width: var(--layout-max-width);
+  max-width: var(--layout-rail-prose);
 }
 
 .prose p {

@@ -291,7 +291,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-component);
-  max-width: var(--layout-max-width);
+  max-width: var(--layout-rail-prose);
   margin-inline: auto;
   margin-bottom: var(--space-section);
 }

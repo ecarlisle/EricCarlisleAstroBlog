@@ -7,7 +7,7 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header id="site-header" class="site-header site-frame">
   <nav aria-label="Main navigation">
-    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <h2><a href="/" class="site-title">{SITE_TITLE}</a></h2>
     <div class="internal-links" id="primary-navigation">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
@@ -63,21 +63,30 @@ import ThemeToggle from './ThemeToggle.astro';
     align-items: center;
     justify-content: space-between;
     min-height: 4.5rem;
-    max-width: var(--layout-max-width-wide);
+    max-width: var(--layout-rail-page);
     margin-inline: auto;
     position: relative;
   }
 
   h2 {
     margin: 0;
-    font-size: var(--type-size-h4);
     line-height: 1.1;
     white-space: nowrap;
   }
 
-  h2 a {
+  .site-title {
+    font-family: var(--font-headers);
+    font-weight: 800;
+    font-size: clamp(1rem, 0.35vw + 0.95rem, 1.25rem);
+    letter-spacing: -0.025em;
     text-decoration: none;
-    color: inherit;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .site-title:hover,
+  .site-title:focus-visible {
+    color: var(--brand-primary);
   }
 
   nav a {
@@ -165,11 +174,6 @@ import ThemeToggle from './ThemeToggle.astro';
     }
   }
 
-  @media (max-width: 420px) {
-    h2 {
-      font-size: var(--type-size-h5);
-    }
-  }
 </style>
 
 <!--
