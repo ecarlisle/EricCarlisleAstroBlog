@@ -31,7 +31,7 @@ const posts = (await getSortedPosts()).slice(0, 6);
           <h2 id="latest-writing">Latest writing</h2>
           <a href="/blog">Browse all articles <span aria-hidden="true">→</span></a>
         </header>
-        <ul class="grid grid--cards">
+        <ul class="grid grid--cards grid--featured-first">
           {posts.map((post) => (
             <Card
               as="li"

@@ -11,7 +11,7 @@
   --font-mono: "Fira Code Variable", ui-monospace, monospace;
 
   /* Type sizes */
-  --type-size-body: clamp(1rem, calc(0.45vw + 0.91rem), 1.25rem); /* 16px -> 20px */
+  --type-size-body: clamp(1rem, calc(0.23vw + 0.95rem), 1.125rem); /* 16px -> 18px */
   --type-size-small: clamp(0.8125rem, calc(0.2vw + 0.77rem), 0.9375rem); /* 13px -> 15px */
   --type-size-h1: clamp(2rem, calc(3.64vw + 1.27rem), 4rem); /* 32px -> 64px */
   --type-size-h2: clamp(1.625rem, calc(2.13vw + 1.2rem), 2.8rem); /* 26px -> 45px */
@@ -38,33 +38,26 @@
   --radius-lg: 12px;
 
   /* ========================================================================
-     Warm Dark Theme (OKLCH) — amber/coral editorial palette
+     Blue Relay — blue-led technical palette
      ======================================================================== */
-  --bg-main: oklch(0.12 0.015 280);
-  --bg-surface: oklch(0.16 0.02 280);
-  --bg-surface-elevated: oklch(0.2 0.025 280);
+  --bg-main: #0b1020;
+  --bg-surface: #111a2e;
+  --bg-surface-elevated: #18243a;
 
-  --text-primary: oklch(0.95 0.008 280);
-  --text-secondary: oklch(0.77 0.015 280);
-  --text-muted: oklch(0.72 0.02 280);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
 
-  /* Primary Amber */
-  --brand-primary: oklch(0.64 0.16 75);
-  /* Accent Coral */
-  --brand-accent: oklch(0.6 0.18 35);
-  /* Highlight Chartreuse */
-  --brand-highlight: oklch(0.81 0.15 110);
-  /* Anchor Slate */
-  --neutral-anchor: oklch(0.58 0.08 230);
-  /* Interaction Cerulean */
-  --accent-cold: oklch(0.69 0.15 250);
+  --brand-primary: #5ea8ff;
+  --brand-accent: #38d9a9;
+  --brand-highlight: #ffb86b;
 
-  --border-main: oklch(0.25 0.025 280);
-  --border-muted: oklch(0.19 0.015 280);
-  --border-control: oklch(0.52 0.04 280);
+  --border-main: #26344d;
+  --border-muted: #1a2638;
+  --border-control: #52627a;
 
-  /* Vertical rhythm follows the fluid body line box: 26.4px -> 33px. */
-  --rhythm: clamp(1.65rem, calc(0.75vw + 1.5rem), 2.0625rem);
+  /* Vertical rhythm follows the fluid body line box: 26.4px -> 30px. */
+  --rhythm: clamp(1.65rem, calc(0.34vw + 1.58rem), 1.875rem);
 
   /* Spacing — clean multiples of the baseline rhythm */
   --space-xs: calc(var(--rhythm) * 0.5);
@@ -82,12 +75,12 @@
   --space-layout: calc(var(--rhythm) * 3);
 
   /* Semantic color roles */
-  --color-link: var(--brand-accent);
-  --color-link-hover: var(--brand-highlight);
+  --color-link: var(--brand-primary);
+  --color-link-hover: var(--brand-accent);
   --color-action: var(--brand-primary);
-  --color-action-hover: var(--brand-highlight);
+  --color-action-hover: var(--brand-accent);
   --color-focus: var(--brand-accent);
-  --color-success: var(--brand-highlight);
+  --color-success: var(--brand-accent);
 
   --focus-outline-width: var(--size-border-pixel);
   --focus-outline-style: dashed;
@@ -116,28 +109,21 @@
    Light theme: explicit user toggle.
    ======================================================================== */
 [data-theme="light"] {
-  --bg-main: oklch(0.985 0.003 280);
-  --bg-surface: oklch(1 0 0);
-  --bg-surface-elevated: oklch(0.92 0.008 280);
+  --bg-main: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #e8eef7;
 
-  --text-primary: oklch(0.13 0.015 280);
-  --text-secondary: oklch(0.25 0.02 280);
-  --text-muted: oklch(0.38 0.025 280);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
 
-  /* Rich Amber */
-  --brand-primary: oklch(0.55 0.15 75);
-  /* Deep Coral */
-  --brand-accent: oklch(0.46 0.16 35);
-  /* High-Contrast Chartreuse */
-  --brand-highlight: oklch(0.45 0.14 110);
-  /* Dark Slate Anchor */
-  --neutral-anchor: oklch(0.35 0.06 230);
-  /* Deep Interactive Cerulean */
-  --accent-cold: oklch(0.52 0.14 250);
+  --brand-primary: #005fcc;
+  --brand-accent: #007a5a;
+  --brand-highlight: #a14b00;
 
-  --border-main: oklch(0.85 0.01 280);
-  --border-muted: oklch(0.92 0.005 280);
-  --border-control: oklch(0.62 0.03 280);
+  --border-main: #cbd5e1;
+  --border-muted: #e2e8f0;
+  --border-control: #64748b;
 }
 
 html {
@@ -304,9 +290,12 @@ p {
   text-wrap: pretty;
 }
 
-.prose h2,
+.prose h2 {
+  margin-top: var(--space-xl);
+}
+
 .prose h3 {
-  margin-top: var(--space-section);
+  margin-top: var(--space-lg);
 }
 
 code {

@@ -15,18 +15,18 @@ pagefind-modal {
   --pf-text-muted: var(--text-muted);
   --pf-background: var(--bg-surface);
   --pf-border: var(--border-main);
-  --pf-border-focus: var(--brand-primary);
+  --pf-border-focus: var(--color-focus);
   --pf-skeleton: var(--bg-surface);
   --pf-skeleton-shine: var(--bg-surface-elevated);
-  --pf-hover: oklch(0.22 0.025 280);
-  --pf-mark: var(--brand-highlight);
+  --pf-hover: var(--bg-surface-elevated);
+  --pf-mark: color-mix(in srgb, var(--brand-highlight) 28%, var(--bg-surface));
   --pf-scroll-shadow: rgba(255, 255, 255, 0.08);
 
   --pf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --pf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --pf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
 
-  --pf-outline-focus: var(--brand-primary);
+  --pf-outline-focus: var(--color-focus);
   --pf-modal-backdrop: rgba(0, 0, 0, 0.7);
   --pf-border-radius: var(--radius-lg);
   --pf-font: var(--font-copy);
@@ -34,8 +34,6 @@ pagefind-modal {
 }
 
 :root:root[data-theme="light"] {
-  --pf-hover: oklch(0.92 0.008 280);
-  --pf-mark: var(--brand-highlight);
   --pf-scroll-shadow: rgba(0, 0, 0, 0.08);
 
   --pf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -72,12 +70,12 @@ pagefind-modal {
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:hover {
-  color: var(--brand-primary);
+  color: var(--color-link);
   background: transparent;
 }
 
 :is(*, #\#):is(*, #\#):is(*, #\#) pagefind-modal-trigger .pf-trigger-btn:focus-visible {
-  outline: var(--size-border-pixel) dashed var(--brand-accent);
+  outline: var(--size-border-pixel) dashed var(--color-focus);
   outline-offset: 3px;
 }
 

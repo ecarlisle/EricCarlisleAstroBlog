@@ -128,14 +128,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 			}
 		}
 
-		.prose {
-			padding: var(--space-component);
-		}
-
-		:global(.prose--portfolio) {
-			padding: 0;
-		}
-
     .page-header {
       max-width: var(--layout-max-width);
       margin: 0 auto var(--space-component-lg);
@@ -223,7 +215,7 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
         )}
 				<div class:list={['post-layout', pageType !== 'article' && 'post-layout--no-sidebar']}>
 					<div class="post-content">
-						<div class:list={['prose', pageType === 'portfolio' && 'prose--portfolio']}>
+						<div class="prose">
 							<slot />
 						</div>
 
