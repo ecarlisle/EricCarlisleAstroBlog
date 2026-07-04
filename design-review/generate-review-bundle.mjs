@@ -64,7 +64,8 @@ function styleInventory(relativePath, contents) {
   ].slice(0, 10);
 
   const kinds = styleTags.map((match) => (match[1].includes('is:global') ? 'global' : 'scoped'));
-  const markup = classes.length > 0 ? classes.map((name) => `.${name}`).join(', ') : 'semantic/root markup';
+  const markup =
+    classes.length > 0 ? classes.map((name) => `.${name}`).join(', ') : 'semantic/root markup';
   return `| \`${relativePath}\` | ${kinds.join(' + ')} | ${markup} |`;
 }
 

@@ -153,12 +153,13 @@
   border-radius: var(--radius-md);
   background: var(--color-action);
   color: var(--bg-surface);
-  border: none;
+  border: var(--size-border-pixel) solid transparent;
   text-decoration: none;
   font-size: var(--type-size-body);
   cursor: pointer;
   transition:
     background var(--transition-fast),
+    border-color var(--transition-fast),
     transform var(--transition-fast);
 }
 
