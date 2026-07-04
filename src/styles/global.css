@@ -78,7 +78,7 @@
   --color-link: var(--brand-primary);
   --color-link-hover: var(--brand-accent);
   --color-action: var(--brand-primary);
-  --color-action-hover: var(--brand-accent);
+  --color-action-hover: #3d8ee0;
   --color-focus: var(--brand-accent);
   --color-success: var(--brand-accent);
 
@@ -121,6 +121,7 @@
   --brand-primary: #005fcc;
   --brand-accent: #007a5a;
   --brand-highlight: #a14b00;
+  --color-action-hover: #004799;
 
   --border-main: #cbd5e1;
   --border-muted: #e2e8f0;
