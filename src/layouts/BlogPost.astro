@@ -93,6 +93,10 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       position: relative;
 		}
 
+    .post-content {
+      min-width: 0;
+    }
+
 		@media (min-width: 1024px) {
 			.post-layout {
 				grid-template-columns: 1fr 220px;
@@ -100,7 +104,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 			.post-layout .post-content {
 				grid-column: 1;
-        min-width: 0;
 			}
 
 			.post-layout .post-sidebar {

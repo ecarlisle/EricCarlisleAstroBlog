@@ -292,10 +292,12 @@ p {
 
 .prose h2 {
   margin-top: var(--space-xl);
+  scroll-margin-top: calc(var(--header-height, 4.5rem) + var(--space-component));
 }
 
 .prose h3 {
   margin-top: var(--space-lg);
+  scroll-margin-top: calc(var(--header-height, 4.5rem) + var(--space-component));
 }
 
 code {
