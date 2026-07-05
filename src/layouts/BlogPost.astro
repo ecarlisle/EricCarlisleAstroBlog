@@ -74,6 +74,11 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
       {twitterHandle}
     />
 	<style>
+		main {
+			width: 100%;
+			min-width: 0;
+		}
+
 		.hero-image {
 			width: 100%;
       max-width: 1020px;
@@ -87,48 +92,29 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 		}
 
 		.post-layout {
-			display: grid;
-			grid-template-columns: 1fr;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: flex-start;
 			gap: var(--space-component-lg);
       position: relative;
 		}
 
     .post-content {
+      flex: 999 1 0;
       min-width: 0;
+      min-inline-size: 60%;
     }
 
-		@media (min-width: 1024px) {
-			.post-layout {
-				grid-template-columns: 1fr 220px;
-			}
+		.post-sidebar {
+			position: sticky;
+			top: calc(var(--header-height, 4.5rem) + var(--space-component));
+			flex: 1 1 220px;
+			align-self: flex-start;
+		}
 
-			.post-layout .post-content {
-				grid-column: 1;
-			}
-
-			.post-layout .post-sidebar {
-				grid-column: 2;
-			}
-
-			.post-layout--no-sidebar {
-				grid-template-columns: 1fr;
-			}
-
-			.post-sidebar-inner {
-				position: sticky;
-				top: var(--space-component-lg);
-			}
-
-			.sidebar-share {
-				padding: var(--space-component) 0 var(--space-component);
-				margin-bottom: var(--space-component);
-				border-bottom: var(--size-border-pixel) solid var(--border-main);
-			}
-
-			.sidebar-share :global(.share) {
-				padding: 0;
-				justify-content: flex-start;
-			}
+		.sidebar-share {
+			margin-bottom: var(--space-component);
+			border-bottom: var(--size-border-pixel) solid var(--border-main);
 		}
 
     .page-header {
