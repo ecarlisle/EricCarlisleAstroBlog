@@ -129,12 +129,57 @@
   --border-main: #cbd5e1;
   --border-muted: #e2e8f0;
   --border-control: #64748b;
+  color-scheme: light;
+}
+
+/* --- Follow system light preference when no manual override  --- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #e8eef7;
+
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+
+    --brand-primary: #005fcc;
+    --brand-accent: #007a5a;
+    --brand-highlight: #a14b00;
+    --color-action-hover: #004799;
+
+    --border-main: #cbd5e1;
+    --border-muted: #e2e8f0;
+    --border-control: #64748b;
+    color-scheme: light;
+  }
+}
+
+/* --- Explicit dark override (wins over system light) -- */
+[data-theme="dark"] {
+  --bg-main: #0b1020;
+  --bg-surface: #111a2e;
+  --bg-surface-elevated: #18243a;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --brand-primary: #5ea8ff;
+  --brand-accent: #38d9a9;
+  --brand-highlight: #ffb86b;
+  --color-action-hover: #3d8ee0;
+
+  --border-main: #26344d;
+  --border-muted: #1a2638;
+  --border-control: #52627a;
+  color-scheme: dark;
 }
 
 html {
   box-sizing: border-box;
   min-height: 100%;
-  color-scheme: dark light;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: no-preference) {

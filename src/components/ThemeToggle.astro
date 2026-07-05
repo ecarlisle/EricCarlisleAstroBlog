@@ -52,12 +52,19 @@
     }
   }
 
-  /* Show sun in dark mode (clicking switches to light) */
+  /* Dark: show sun (clicking switches to light) */
   .icon--sun { display: block; }
   .icon--moon { display: none; }
 
+  /* Light override: show moon */
   :global([data-theme='light']) .icon--sun { display: none; }
   :global([data-theme='light']) .icon--moon { display: block; }
+
+  /* System-light without override: show moon */
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme="dark"])) .theme-toggle .icon--sun { display: none; }
+    :global(:root:not([data-theme="dark"])) .theme-toggle .icon--moon { display: block; }
+  }
 </style>
 
 <script>
@@ -72,7 +79,7 @@
     if (theme === 'light') {
       root.setAttribute('data-theme', 'light');
     } else {
-      root.removeAttribute('data-theme');
+      root.setAttribute('data-theme', 'dark');
     }
   }
 

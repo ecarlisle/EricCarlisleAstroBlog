@@ -37,6 +37,19 @@
   --pf-modal-backdrop: rgba(0, 0, 0, 0.5);
 }
 
+/* System light preference without manual override */
+@media (prefers-color-scheme: light) {
+  :root:root:not([data-theme="dark"]) {
+    --pf-scroll-shadow: rgba(0, 0, 0, 0.08);
+
+    --pf-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --pf-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --pf-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.2);
+
+    --pf-modal-backdrop: rgba(0, 0, 0, 0.5);
+  }
+}
+
 /* ========================================================================
    Search page — pagefind-search inline UI
    Uses :root pagefind-search (0,2,0) to beat Pagefind's Shadow DOM default.
