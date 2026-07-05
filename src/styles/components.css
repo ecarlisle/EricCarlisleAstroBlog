@@ -194,20 +194,18 @@
 }
 
 .post-nav a {
-  padding: var(--space-component);
-  background: var(--bg-surface);
-  border: var(--size-border-pixel) solid var(--border-muted);
+  padding: var(--space-inline) var(--space-inline-strong);
   border-radius: var(--radius-md);
   text-decoration: none;
   color: var(--text-primary);
   transition:
-    border-color var(--transition-fast),
-    background var(--transition-fast);
+    background var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .post-nav a:hover {
-  border-color: var(--brand-primary);
-  background: var(--bg-surface-elevated);
+  background: var(--bg-surface);
+  color: var(--color-link);
 }
 
 .post-nav .post-nav-label {
@@ -215,6 +213,10 @@
   margin-bottom: var(--space-xs);
   color: var(--text-muted);
   font-size: var(--type-size-small);
+}
+
+.post-nav a:hover .post-nav-label {
+  color: var(--color-link);
 }
 
 .post-nav .post-nav-title {
