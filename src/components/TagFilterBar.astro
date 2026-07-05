@@ -52,28 +52,34 @@ const hasTags = tags && tags.length > 0;
   .filter-bar a {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-xs) var(--space-sm);
-    border: var(--size-border-pixel) solid var(--border-muted);
+    gap: 0.3em;
+    padding: 0.3em 0.7em;
     border-radius: 999px;
-    background: var(--bg-surface);
-    color: var(--text-primary);
+    color: var(--text-muted);
     font-size: var(--type-size-small);
     text-decoration: none;
     transition:
-      border-color var(--transition-fast),
-      background var(--transition-fast);
+      background var(--transition-fast),
+      color var(--transition-fast);
     white-space: nowrap;
   }
 
-  .filter-bar a:hover,
+  .filter-bar a:hover {
+    background: var(--bg-surface);
+    color: var(--color-link);
+  }
+
   .filter-bar a:focus-visible {
-    border-color: var(--color-link);
-    background: var(--bg-surface-elevated);
+    outline: var(--size-border-pixel) dashed var(--color-focus);
+    outline-offset: 2px;
   }
 
   .filter-bar a sup {
-    font-size: 0.75em;
-    opacity: 0.7;
+    font-size: 0.65em;
+    opacity: 0.5;
+  }
+
+  .filter-bar a:hover sup {
+    opacity: 0.8;
   }
 </style>
