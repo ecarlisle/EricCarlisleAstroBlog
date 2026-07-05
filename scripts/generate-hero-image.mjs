@@ -182,13 +182,17 @@ async function main() {
 
   const outputPath = resolve(repoRoot, 'src', 'assets', 'images', `${slug}-hero.webp`);
   const relOutput = `src/assets/images/${slug}-hero.webp`;
+  const cropW = 1200;
+  const cropH = 630;
 
-  console.log(`\n  Post:    ${opts.post}`);
-  console.log(`  Slug:    ${slug}`);
-  console.log(`  Image:   ${relOutput}`);
-  console.log(`  Size:    ${opts.width}x${opts.height}, ${opts.steps} steps`);
-  console.log(`  Subject: ${subject}`);
-  console.log(`  Style:   ${style}`);
+  console.log(`\n  Post:      ${opts.post}`);
+  console.log(`  Slug:      ${slug}`);
+  console.log(`  Image:     ${relOutput}`);
+  console.log(`  Generated: ${opts.width}x${opts.height}`);
+  console.log(`  Final:     ${cropW}x${cropH} (center crop)`);
+  console.log(`  Steps:     ${opts.steps}`);
+  console.log(`  Subject:   ${subject}`);
+  console.log(`  Style:     ${style}`);
   console.log();
 
   if (opts.dryRun) {
@@ -230,6 +234,32 @@ async function main() {
   } catch {
     console.error('\n  Image generation failed.\n');
     process.exit(1);
+  }
+
+  // Verify final image dimensions
+  if (existsSync(outputPath)) {
+    try {
+      const result = execSync(`sips -g pixelWidth -g pixelHeight "${outputPath}"`, {
+        encoding: 'utf-8',
+      });
+      const lines = result.split('\n');
+      const w = lines
+        .find((l) => l.includes('pixelWidth'))
+        ?.split(':')
+        .pop()
+        ?.trim();
+      const h = lines
+        .find((l) => l.includes('pixelHeight'))
+        ?.split(':')
+        .pop()
+        ?.trim();
+      if (w && h) {
+        const ok = w === String(cropW) && h === String(cropH);
+        console.log(`  Verified: ${w}x${h} ${ok ? '✓' : '⚠ unexpected dimensions'}`);
+      }
+    } catch {
+      // dimension check is non-fatal
+    }
   }
 
   const updated = updateFrontmatter(content, slug);
