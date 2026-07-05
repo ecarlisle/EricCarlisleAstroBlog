@@ -1,7 +1,7 @@
 .card {
   position: relative;
   padding: var(--space-component);
-  background: var(--bg-surface);
+  background: var(--color-card-bg);
   border: var(--size-border-pixel) solid var(--bg-surface-elevated);
   border-radius: var(--radius-lg);
   transition:
@@ -55,13 +55,13 @@
 .callout {
   padding: var(--space-component);
   border-left: var(--size-border-thick) solid var(--color-link);
-  background: var(--bg-surface);
+  background: var(--color-card-bg);
   border-radius: var(--radius-md);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
 }
 
 .callout strong {
-  color: var(--text-primary);
+  color: var(--color-text-primary);
 }
 
 .tag {
@@ -72,7 +72,7 @@
   font-size: var(--type-size-small);
   border-radius: 999px;
   background: var(--bg-surface-elevated);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   text-decoration: none;
   transition:
     background var(--transition-fast),
@@ -93,12 +93,12 @@
   font-size: var(--type-size-small);
   border-radius: 999px;
   background: var(--bg-surface-elevated);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
 }
 
 .meta {
   font-size: var(--type-size-small);
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   display: flex;
   gap: var(--space-inline);
   flex-wrap: wrap;
@@ -108,7 +108,7 @@
 .meta time,
 .meta strong {
   font-family: var(--font-mono);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   font-size: 0.9375em;
 }
 
@@ -144,7 +144,7 @@
 
 .collection-description {
   margin-bottom: 0;
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 720px) {
@@ -197,7 +197,7 @@
   padding: var(--space-inline) var(--space-inline-strong);
   border-radius: var(--radius-md);
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--color-text-primary);
   transition:
     background var(--transition-fast),
     color var(--transition-fast);
@@ -211,7 +211,7 @@
 .post-nav .post-nav-label {
   display: block;
   margin-bottom: var(--space-xs);
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: var(--type-size-small);
 }
 
@@ -246,7 +246,7 @@
 
 .toc h3 {
   margin-bottom: var(--space-inline);
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: inherit;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -266,7 +266,7 @@
   display: block;
   padding: 0.2em 0;
   padding-left: var(--space-inline);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   border-left: var(--size-border-pixel) solid transparent;
   text-decoration: none;
   transition:
@@ -285,7 +285,7 @@
   align-items: center;
   gap: var(--space-xs);
   margin-bottom: var(--space-component);
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: var(--type-size-small);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -296,7 +296,7 @@
 }
 
 .reading-time {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: var(--type-size-small);
 }
@@ -313,7 +313,7 @@
 .stat {
   padding: var(--space-component);
   text-align: center;
-  background: var(--bg-surface);
+  background: var(--color-card-bg);
   border: var(--size-border-pixel) solid var(--border-muted);
   border-radius: var(--radius-md);
 }
@@ -330,7 +330,7 @@
 .stat-label {
   display: block;
   margin-top: var(--space-xs);
-  color: var(--text-secondary);
+  color: var(--color-text-secondary);
   font-family: var(--font-mono);
   font-size: var(--type-size-small);
 }
