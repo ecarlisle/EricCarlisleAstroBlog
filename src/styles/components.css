@@ -179,6 +179,7 @@
 
 .button:hover {
   background: var(--color-action-hover);
+  color: var(--bg-surface);
   box-shadow: 0 4px 12px oklch(0 0 0 / 0.2);
   transform: translateY(-1px);
 }
