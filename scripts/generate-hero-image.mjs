@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -182,6 +182,7 @@ async function main() {
 
   const outputPath = resolve(repoRoot, 'src', 'assets', 'images', `${slug}-hero.webp`);
   const relOutput = `src/assets/images/${slug}-hero.webp`;
+  const rawPng = outputPath.replace('.webp', '.raw.png');
   const cropW = 1200;
   const cropH = 630;
 
@@ -213,7 +214,7 @@ async function main() {
     '--negative-prompt',
     'text, letters, fake words, labels, captions, speech bubbles, title, watermark, signature, logo, UI screenshot, random code, generic circuit board, robot, floating icons, multiple panels, comic strip, grid layout, frame border, cells, distorted hands, extra fingers',
     '--output',
-    outputPath,
+    rawPng,
     '--width',
     String(opts.width),
     '--height',
@@ -223,6 +224,16 @@ async function main() {
   ];
   if (opts.seed) {
     generateArgs.push('--seed', String(opts.seed));
+  }
+
+  // Check for required system tools
+  for (const tool of ['sips', 'cwebp']) {
+    try {
+      execSync(`which "${tool}"`, { stdio: 'ignore' });
+    } catch {
+      console.error(`  Error: ${tool} not found. Install it to generate hero images.`);
+      process.exit(1);
+    }
   }
 
   console.log('  Generating image...');
@@ -236,30 +247,46 @@ async function main() {
     process.exit(1);
   }
 
-  // Verify final image dimensions
-  if (existsSync(outputPath)) {
-    try {
-      const result = execSync(`sips -g pixelWidth -g pixelHeight "${outputPath}"`, {
-        encoding: 'utf-8',
-      });
-      const lines = result.split('\n');
-      const w = lines
-        .find((l) => l.includes('pixelWidth'))
-        ?.split(':')
-        .pop()
-        ?.trim();
-      const h = lines
-        .find((l) => l.includes('pixelHeight'))
-        ?.split(':')
-        .pop()
-        ?.trim();
-      if (w && h) {
-        const ok = w === String(cropW) && h === String(cropH);
-        console.log(`  Verified: ${w}x${h} ${ok ? '✓' : '⚠ unexpected dimensions'}`);
-      }
-    } catch {
-      // dimension check is non-fatal
-    }
+  if (!existsSync(rawPng)) {
+    console.error(`\n  Error: generated image not found at ${rawPng}\n`);
+    process.exit(1);
+  }
+
+  // Crop to social/OG dimensions (1200×630)
+  console.log('  Cropping to 1200x630...');
+  const croppedPng = outputPath.replace('.webp', '-cropped.png');
+  execSync(`sips --cropToHeightWidth ${cropH} ${cropW} "${rawPng}" --out "${croppedPng}"`, {
+    stdio: 'inherit',
+  });
+
+  // Convert to WebP
+  console.log('  Converting to WebP...');
+  execSync(`cwebp -quiet -q 85 "${croppedPng}" -o "${outputPath}"`, { stdio: 'inherit' });
+
+  // Clean up temp files
+  rmSync(rawPng);
+  rmSync(croppedPng);
+
+  // Verify final image dimensions — fail if not 1200×630
+  const result = execSync(`sips -g pixelWidth -g pixelHeight "${outputPath}"`, {
+    encoding: 'utf-8',
+  });
+  const lines = result.split('\n');
+  const w = lines
+    .find((l) => l.includes('pixelWidth'))
+    ?.split(':')
+    .pop()
+    ?.trim();
+  const h = lines
+    .find((l) => l.includes('pixelHeight'))
+    ?.split(':')
+    .pop()
+    ?.trim();
+  if (w === String(cropW) && h === String(cropH)) {
+    console.log(`  Verified: ${w}x${h} ✓`);
+  } else {
+    console.error(`  Error: expected ${cropW}x${cropH}, got ${w}x${h}`);
+    process.exit(1);
   }
 
   const updated = updateFrontmatter(content, slug);
