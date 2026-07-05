@@ -1,3 +1,5 @@
+import type { CollectionEntry } from 'astro:content';
+
 function countWords(text: string): number {
   const cleaned = text
     .replace(/^---[\s\S]*?---/, '')
