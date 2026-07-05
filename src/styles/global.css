@@ -79,7 +79,10 @@
   --color-link-hover: var(--brand-accent);
   --color-action: var(--brand-primary);
   --color-action-hover: #3d8ee0;
-  --color-focus: var(--brand-accent);
+  /* Focus-visible uses primary blue instead of brand-accent teal.
+     The teal --brand-accent is preserved for --color-link-hover and
+     --color-success where subtle green is intentional. */
+  --color-focus: var(--color-link);
   --color-success: var(--brand-accent);
 
   --focus-outline-width: var(--size-border-pixel);
