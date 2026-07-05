@@ -157,14 +157,17 @@
   text-decoration: none;
   font-size: var(--type-size-body);
   cursor: pointer;
+  box-shadow: none;
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
     transform var(--transition-fast);
 }
 
 .button:hover {
   background: var(--color-action-hover);
+  box-shadow: 0 4px 12px oklch(0 0 0 / 0.2);
   transform: translateY(-1px);
 }
 
