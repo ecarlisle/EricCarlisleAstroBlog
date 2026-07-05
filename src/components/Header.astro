@@ -144,9 +144,12 @@ import ThemeToggle from './ThemeToggle.astro';
     transition: color var(--transition-fast);
   }
 
-  .search-link:hover,
+  .search-link:hover {
+    color: var(--color-link);
+  }
+
   .search-link:focus-visible {
-    color: var(--color-link-hover);
+    color: var(--color-link);
   }
 
   .search-link:focus-visible {
