@@ -84,6 +84,18 @@
   color: var(--bg-main);
 }
 
+/* ── Static chips: same visual as .tag but without interactivity ── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--type-size-small);
+  border-radius: 999px;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+}
+
 .meta {
   font-size: var(--type-size-small);
   color: var(--text-muted);
