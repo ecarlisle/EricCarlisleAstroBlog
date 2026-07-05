@@ -24,7 +24,7 @@ import ThemeToggle from './ThemeToggle.astro';
       >
         Menu
       </button>
-      <div class="utility-links">
+      <div class="header-utilities">
         <a href="/search" class="search-link" aria-label="Search site">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="7"></circle>
@@ -33,7 +33,7 @@ import ThemeToggle from './ThemeToggle.astro';
         </a>
         <ThemeToggle />
       </div>
-      <div class="social-links">
+      <div class="header-socials">
         <SocialLinks />
       </div>
     </div>
@@ -83,7 +83,6 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   .site-title {
-    position: relative;
     display: inline-flex;
     align-items: center;
     min-height: var(--size-touch-target-min);
@@ -95,31 +94,13 @@ import ThemeToggle from './ThemeToggle.astro';
     letter-spacing: -0.03em;
     color: var(--text-primary);
     text-decoration: none;
+    border-bottom: none;
     transition: color var(--transition-fast);
-  }
-
-  .site-title::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.35rem;
-    height: 2px;
-    border-radius: 999px;
-    background: var(--brand-primary);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-fast);
   }
 
   .site-title:hover,
   .site-title:focus-visible {
-    color: var(--text-primary);
-  }
-
-  .site-title:hover::after,
-  .site-title:focus-visible::after {
-    transform: scaleX(1);
+    color: var(--color-link);
   }
 
   nav a {
@@ -144,10 +125,10 @@ import ThemeToggle from './ThemeToggle.astro';
     gap: var(--space-inline);
   }
 
-  .utility-links {
+  .header-utilities {
     display: flex;
     align-items: center;
-    gap: var(--space-inline);
+    gap: 0;
   }
 
   .search-link {
@@ -173,10 +154,11 @@ import ThemeToggle from './ThemeToggle.astro';
     outline-offset: 3px;
   }
 
-  .social-links {
+  .header-socials {
     display: flex;
-    gap: var(--space-inline);
-    margin-inline-start: var(--space-inline-strong);
+    align-items: center;
+    gap: 0;
+    margin-inline-start: var(--space-component);
   }
 
   .menu-toggle {
@@ -193,7 +175,7 @@ import ThemeToggle from './ThemeToggle.astro';
   }
 
   @media (max-width: 1024px) {
-    .social-links {
+    .header-socials {
       display: none;
     }
   }
