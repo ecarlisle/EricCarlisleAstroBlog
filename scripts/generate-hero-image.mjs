@@ -11,7 +11,7 @@ const repoRoot = resolve(__dirname, '..');
 //const DEFAULT_STYLE =
 //  'Minimalist vector line art, crisp ink illustration style, high contrast, clean solid dark gray background, precise geometric line weights, modern tech editorial vignette';
 const DEFAULT_STYLE =
-  'Create an illustration with bold, sweeping lines and dynamic color gradients, evoking a modern, vibrant energy. Use a fluid, organic line style with no rigid grids, ensuring a full-bleed composition that harmonizes with a warm, dark palette of amber, coral, and chartreuse accents. Keep the mood playful yet sophisticated, with no borders and a smooth, immersive flow.';
+  'Create a thoughtful editorial illustration for a professional technology blog. Use a refined dark editorial palette: deep navy, muted slate blue, soft cyan, desaturated periwinkle, warm ivory highlights, and restrained amber accents. Use bold but controlled linework, layered shapes, and a clear visual metaphor connected to the article topic. Favor meaningful objects, diagrams, interfaces, tools, documents, light, architecture, systems, pathways, or human-scale workspaces. Keep the composition full-bleed, polished, calm, modern, and slightly playful. Avoid generic tech clichés, random floating symbols, fake text, labels, captions, speech bubbles, comic panels, borders, grids, watermarks, or logos.';
 function resolvePostPath(input) {
   const blogDir = resolve(repoRoot, 'src/content/blog');
   const candidates = [resolve(input)];
@@ -64,13 +64,12 @@ function parseArgs() {
 
   if (!opts.post) {
     console.error('Usage: node scripts/generate-hero-image.mjs [--post] <slug> [options]');
-    console.error(
-      '  --prompt <text>     Subject override (default: generic scene; avoid literal text)',
-    );
-    console.error('  --style <text>      Visual direction (default: New Yorker cartoon)');
+    console.error('  --prompt <text>     Subject override (strongest override)');
+    console.error('  --style <text>      Visual style override (default: dark editorial tech)');
     console.error('  --steps <n>         Inference steps (default: 9)');
     console.error('  --seed <n>          Random seed for reproducibility');
     console.error('  --dry-run           Preview only');
+    console.error('  Frontmatter field  heroPrompt (used when --prompt is not given)');
     console.error(
       '  Model: flux_2_klein_4b_q6p.ckpt (draw-things-cli), 1216x640 → cropped to 1200x630',
     );
@@ -104,9 +103,50 @@ function parseFrontmatter(content) {
   return { fields, raw, fullMatch: match[0], prefix: match[0].length };
 }
 
-function buildSubject(_fields, override) {
-  if (override) return override;
-  return 'A witty editorial illustration';
+function parseTags(raw) {
+  if (!raw) return [];
+  const trimmed = raw.trim();
+  if (!trimmed.startsWith('[')) return [trimmed];
+  return trimmed
+    .slice(1, -1)
+    .split(',')
+    .map((t) => t.trim().replace(/^['"]|['"]$/g, ''))
+    .filter(Boolean);
+}
+
+function buildSubject(fields, override) {
+  // --prompt is the strongest override
+  if (override) {
+    console.log('  Source: --prompt');
+    return override;
+  }
+
+  // heroPrompt from frontmatter
+  if (fields.heroPrompt) {
+    console.log('  Source: heroPrompt');
+    return fields.heroPrompt;
+  }
+
+  // Build from title, description, and tags
+  const title = fields.title;
+  const desc = fields.description;
+  const tags = parseTags(fields.tags);
+
+  if (title || desc) {
+    console.log('  Source: title/description/tags');
+    let subject = 'A meaningful editorial illustration';
+    if (title) subject += ` about "${title}"`;
+    subject += '. Use a clear visual metaphor that reflects the article topic.';
+    if (tags.length > 0) {
+      subject += ` Related themes: ${tags.join(', ')}.`;
+    }
+    subject += ' No readable text.';
+    return subject;
+  }
+
+  // Fallback
+  console.log('  Source: fallback');
+  return 'A meaningful editorial illustration for a frontend engineering article, using visual metaphor rather than readable text.';
 }
 
 function getSlug(postPath) {
@@ -147,12 +187,14 @@ async function main() {
   console.log(`  Slug:    ${slug}`);
   console.log(`  Image:   ${relOutput}`);
   console.log(`  Size:    ${opts.width}x${opts.height}, ${opts.steps} steps`);
-  console.log(`  Subject: ${subject.slice(0, 100)}...`);
-  console.log(`  Style:   ${style.slice(0, 100)}...`);
+  console.log(`  Subject: ${subject}`);
+  console.log(`  Style:   ${style}`);
   console.log();
 
   if (opts.dryRun) {
     console.log('  [dry-run] No changes made.\n');
+    console.log('  Full prompt sent to model:\n');
+    console.log(`  ${prompt}\n`);
     return;
   }
 
@@ -165,7 +207,7 @@ async function main() {
     '--prompt',
     prompt,
     '--negative-prompt',
-    'text, letters, speech bubble, caption, title, multiple panels, comic strip, grid layout, frame border, cells, watermark, signature, overlay, label',
+    'text, letters, fake words, labels, captions, speech bubbles, title, watermark, signature, logo, UI screenshot, random code, generic circuit board, robot, floating icons, multiple panels, comic strip, grid layout, frame border, cells, distorted hands, extra fingers',
     '--output',
     outputPath,
     '--width',
