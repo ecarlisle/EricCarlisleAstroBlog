@@ -301,11 +301,6 @@
   font-size: var(--type-size-small);
 }
 
-.reading-time::before {
-  content: "\00b7";
-  margin: 0 var(--space-inline);
-}
-
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
