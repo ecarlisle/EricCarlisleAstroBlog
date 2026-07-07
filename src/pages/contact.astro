@@ -10,7 +10,7 @@ const sent = Astro.url.searchParams.get('sent') === '1';
   ) : (
     <div class="prose contact-section">
       <p>Have a question, suggestion, or just want to say hi? Fill out the form below and I&rsquo;ll get back to you as soon as possible.</p>
-      <form action="/api/contact" method="POST" id="contact-form" class="contact-form">
+      <form action="/api/contact" method="POST" id="contact-form" class="contact-form" data-contact-api-url={import.meta.env.PUBLIC_CONTACT_API_URL}>
         <label>
           <span>Name</span>
           <input type="text" name="name" required autocomplete="given-name" />
@@ -61,17 +61,22 @@ const sent = Astro.url.searchParams.get('sent') === '1';
             if (errorEl) errorEl.hidden = true;
 
             try {
+              const contactApiUrl =
+                form.dataset.contactApiUrl || form.getAttribute('action') || '/api/contact';
               const formData = new FormData(form);
-              const resp = await fetch(import.meta.env.PUBLIC_CONTACT_API_URL, {
+              const resp = await fetch(contactApiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.fromEntries(formData)),
               });
-              const data = await resp.json();
+              const contentType = resp.headers.get('content-type') || '';
+              const data = contentType.includes('application/json')
+                ? await resp.json()
+                : { ok: false, error: await resp.text() };
               if (resp.ok && data.ok) {
                 window.location.href = '/contact?sent=1';
               } else {
-                throw new Error(data.error || 'Failed to send message');
+                throw new Error(data.error || `Failed to send message (${resp.status})`);
               }
             } catch (err) {
               if (errorEl) {
